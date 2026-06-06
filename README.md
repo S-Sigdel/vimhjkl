@@ -14,7 +14,7 @@
 ⭐ Star it if it makes you faster — it helps a lot!
 
 The dot command, operator + motion grammar, text objects, registers, macros, ex
-commands (`:g`, `:normal`, ranges), and substitution — **61 lessons, 563
+commands (`:g`, `:normal`, ranges), and substitution — **61 lessons, 548
 challenges**, every one replayed through real vim so the "optimal" it shows you
 actually works. While you edit, the goal sits in a pane beside the buffer, so you
 practise the move instead of remembering it.
@@ -58,21 +58,31 @@ uv sync && uv run vimhjkl
 ## Usage
 
 ```sh
-vimhjkl              # interactive menu   (from source: uv run vimhjkl)
-vimhjkl --drill      # Learn: read the move, then drill it
-vimhjkl --practice   # retry the skills you keep missing
-vimhjkl --reps 6     # Grind: one skill, 6× back-to-back
-vimhjkl --review     # no-editor flashcards
-vimhjkl --list       # curriculum, mastery, belt
+vimhjkl                                     # interactive menu   (from source: uv run vimhjkl)
+vimhjkl --drill                             # Learn: read the move, then drill it
+vimhjkl --drill --mode blind                # Blind: before/after only, recall it yourself
+vimhjkl --drill --mode blind --blind-all    # endless blind sweep of every skill, no repeats
+vimhjkl --practice                          # retry the skills you keep missing
+vimhjkl --reps 6 [--skill ID]               # Grind: pick a skill, drill it N× back-to-back
+vimhjkl --review                            # no-editor flashcards
+vimhjkl --list                              # curriculum, mastery, belt (and skill IDs)
 ```
+
+Other flags: `-n/--count N` (challenges per session), `--gate D` (only introduce
+skills up to difficulty D), `--hide-moves`.
 
 | Mode     | What it does                                            |
 |----------|--------------------------------------------------------|
 | Learn    | Shows the technique and idiomatic move before you edit |
-| Blind    | Before/after only — recall the move yourself           |
+| Blind    | Before/after only — recall the move; names the expected technique so you aren't blindsided |
+| Blind-all| Endless sweep over every skill, free-form (any path), skips ones you've passed |
 | Practice | Your weakest skills, retry until you pass              |
-| Grind    | One skill, N times back-to-back (`--reps N`)           |
+| Grind    | Pick a skill, drill it N times back-to-back (`--reps N`, `--skill ID`) |
 | Review   | Read-only flashcards, self-rated, no editor            |
+
+**Settings** (in the menu): turn lessons on/off, and remap any key in any mode
+(e.g. `jk` or `<C-p>` → `<Esc>`, `;` → `:`) — your key shows in the suggested move
+and is graded as the original.
 
 ## How it works
 
@@ -115,13 +125,14 @@ costs you.
 
 Mastery has two axes:
 
-- **Leitner box (1 → 5)** — *do you know the move?* A pass bumps the box up one (a
-  fail knocks it down one), filling in after ~3–4 good reps. The box drives how
-  soon a skill comes back, your belt rank, and which new skills unlock.
+- **Leitner box (1 → 5)** — *do you know the move?* A fast, clean solve bumps the box
+  up; a slow-but-correct one holds it; a wrong answer knocks it down — and one slip at
+  the top box is forgiven. The box drives how soon a skill comes back, your belt rank,
+  and which new skills unlock.
 - **Reps toward grooved (25)** — *have you drilled it into muscle memory?* A
   box-maxed skill keeps resurfacing on the normal schedule until it has 25 clean
-  reps; only then is it `✦ grooved` and moves to a rare maintenance schedule. One
-  later fail drops the box and pulls it straight back into active review.
+  reps; only then is it `✦ grooved` and moves to a rare maintenance schedule. A
+  later miss drops the box and pulls it back into active review.
 
 New material is gated by difficulty: harder skills unlock only once the tier below
 them is mastered, so the curriculum opens up as your boxes fill rather than
