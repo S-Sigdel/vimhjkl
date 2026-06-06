@@ -24,7 +24,7 @@ from .engine import (
     select_due_skills, select_weak_skills, mastery_summary, is_due,
     is_grooved, MASTERY_REPS,
     pick_challenge, outcome_passed, attempt_abstained, run_attempt,
-    reveal_pane_lines, EFFICIENCY_FLOOR,
+    reveal_pane_lines, EFFICIENCY_FLOOR, usable_skills, remap_blocks_skill,
 )
 from .grader import find_editor, display_solution
 
@@ -1198,19 +1198,18 @@ def run_lessons(skills: list[Skill], cfg: dict) -> None:
     tui.live_view(render, on_key)
 
 
-def _remap_warnings(frm: str, to: str, skills: list[Skill]) -> list[str]:
+def _remap_warnings(frm: str, to: str, mode: str, skills: list[Skill]) -> list[str]:
     """Honest caveats for a remap the user is about to add (none == fully clean):
-    a collision with a key the curriculum uses, and a suggestion that can't show the
-    user's key.  (A multi-key `from` is fine — it's folded back to a single key.)"""
-    from .keys import translate
+    the lessons it makes impossible (which will be hidden), and a suggestion that
+    can't show the user's key."""
     warns: list[str] = []
-    fb = translate(frm)
-    if fb:
-        hits = sum(1 for s in skills for c in s.challenges
-                   if c.solution and fb in translate(c.solution))
-        if hits:
-            warns.append(f"{frm} is used by {hits} drill solution(s) — remapping it "
-                         "may get in the way there.")
+    cand = {"from": frm, "to": to, "mode": mode}
+    blocked = [s for s in skills if remap_blocks_skill(cand, s)]
+    if blocked:
+        names = ", ".join(s.title for s in blocked[:3])
+        more = f", +{len(blocked) - 3} more" if len(blocked) > 3 else ""
+        warns.append(f"you won't be able to do {len(blocked)} lesson(s) with {frm} "
+                     f"remapped, so they'll be hidden — {names}{more}.")
     if not (len(to) > 2 and to.startswith("<") and to.endswith(">")):
         warns.append(f"suggestions keep showing {to} (only <..> keys like <Esc> are "
                      "rewritten to your key); the remap still works in the drill.")
@@ -1278,7 +1277,7 @@ def _remap_add(cfg: dict, skills: list[Skill], frm: str, to: str, mode: str) -> 
         print(tui.rule())
         tui.pause()
         return
-    warns = _remap_warnings(frm, to, skills)
+    warns = _remap_warnings(frm, to, mode, skills)
     tui.clear()
     tui.banner("key remaps", "review")
     print(tui.c("  adding: ", tui.CYAN) + tui.c(frm, tui.BOLD)
@@ -1364,8 +1363,11 @@ def interactive_menu(skills: list[Skill], progress: dict, cfg: dict,
         # SINGLE filter point: schedule (and rank) only enabled lessons, so a
         # switched-off skill never appears AND never drags the belt down.  The
         # full list still feeds the curriculum + settings views.
-        enabled = config.enabled_skills(skills, cfg)
         remaps = config.remaps(cfg)
+        # Drill only enabled lessons you can actually DO: drop ones whose taught key
+        # you've remapped away (you couldn't complete them — issue: don't serve
+        # lessons the mapping makes impossible).
+        enabled = usable_skills(config.enabled_skills(skills, cfg), remaps)
         choice = tui.menu(
             "vimhjkl — pick up where vimtutor stopped",
             [
@@ -1454,9 +1456,10 @@ def main(argv: Optional[list[str]] = None) -> int:
     skills = store.load_skills()
     progress = store.load_progress()
     cfg = config.load()
-    # Single filter point for CLI-flag sessions too: drill only enabled lessons.
-    enabled = config.enabled_skills(skills, cfg)
+    # Single filter point for CLI-flag sessions too: drill only enabled lessons you
+    # can actually do (exclude ones whose taught key you've remapped away).
     remaps = config.remaps(cfg)
+    enabled = usable_skills(config.enabled_skills(skills, cfg), remaps)
 
     problems = [p for s in skills for p in s.validate()]
     if problems:

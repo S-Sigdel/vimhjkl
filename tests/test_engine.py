@@ -156,6 +156,27 @@ def main():
           rms == [{"from": "<C-p>", "to": "<Esc>", "mode": "i"},
                   {"from": ";", "to": ":", "mode": "n"}], rms)
 
+    # a remap that shadows a taught key hides that lesson; a comfort remap (and a
+    # key the skill only lists as a sibling) hides nothing.
+    from vimhjkl.engine import remap_blocks_skill, usable_skills
+    sub = Skill(id="sub", title="sub", category="operator", teach="t",
+                key_commands=["s", ";", "."],
+                challenges=[Challenge(start=["x"], goal=["y"], par_keys=1,
+                                      solution="f^sX<Esc>;.")])
+    auto = Skill(id="auto", title="auto", category="text_object", teach="t",
+                 key_commands=["<C-n>", "<C-p>"],   # lists <C-p>, but uses <C-n>
+                 challenges=[Challenge(start=["x"], goal=["y"], par_keys=1,
+                                       solution="A<C-n><Esc>")])
+    check("remap of taught key blocks the lesson",
+          remap_blocks_skill({"from": "s", "to": "x", "mode": "n"}, sub))
+    check("escape remap blocks nothing",
+          not remap_blocks_skill({"from": "jk", "to": "<Esc>", "mode": "i"}, sub))
+    check("remap of an unused sibling key blocks nothing",
+          not remap_blocks_skill({"from": "<C-p>", "to": "<Esc>", "mode": "i"}, auto))
+    check("usable_skills drops blocked, keeps the rest",
+          [s.id for s in usable_skills([sub, auto], [{"from": "s", "to": "x", "mode": "n"}])]
+          == ["auto"])
+
     # --- blind-all sweep: endless + no-repeat (issue #4) -------------------
     from vimhjkl.cli import _blind_all_sweep, _record_blind_all_cleared
     from vimhjkl.engine import SessionSummary, AttemptRecord

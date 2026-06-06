@@ -17,6 +17,7 @@ from typing import Callable, Optional
 from . import store
 from .challenge import Skill, Challenge, is_cursor_category
 from .grader import GradeResult, run_attempt, display_solution
+from .keys import translate
 
 
 # ---------------------------------------------------------------------------
@@ -335,6 +336,62 @@ EFFICIENCY_FLOOR = 0.5
 
 def outcome_passed(result: GradeResult) -> bool:
     return result.correct and result.efficiency >= EFFICIENCY_FLOOR
+
+
+# ---------------------------------------------------------------------------
+# remap collisions — a remap can shadow a key a lesson needs, making it
+# impossible.  Detect those skills so they can be excluded from scheduling.
+# ---------------------------------------------------------------------------
+
+def _first_key(kc: str) -> str:
+    """The first keystroke of a key_command string: a ``<…>`` token whole, else the
+    first character (``dd``→``d``, ``ciw``→``c``, ``<C-a>``→``<C-a>``)."""
+    if kc.startswith("<") and ">" in kc:
+        return kc[: kc.index(">") + 1]
+    return kc[:1]
+
+
+_CMDLINE_CATEGORIES = {"ex_command", "search_replace"}
+
+
+def remap_blocks_skill(remap: dict, skill: Skill) -> bool:
+    """True if ``remap`` shadows a key the skill TEACHES, so the lesson can't be done
+    with the mapping in place.  Three conditions, so it neither over- nor
+    under-blocks:
+
+    1. The skill isn't cmdline-driven (``ex_command``/``search_replace`` are typed
+       after ``:`` — a normal/insert key remap doesn't shadow them).
+    2. ``from`` matches the skill's author-declared ``key_commands`` — a single-key
+       command it lists (``s``, ``;``, ``/``) or the leading key of one (``d`` in
+       ``dd``).  This confirms the key is part of the taught technique.
+    3. ``from`` actually appears in at least one optimal solution — so a key the
+       skill merely lists as a sibling (``<C-p>`` next to the ``<C-n>`` it really
+       uses) doesn't block it, and neither does a comfort remap like ``jk``/``<C-p>``
+       → ``<Esc>`` (which matches no command and no solution)."""
+    if skill.category in _CMDLINE_CATEGORIES:
+        return False
+    frm = remap.get("from", "")
+    if not frm:
+        return False
+    if not any(kc == frm or _first_key(kc) == frm for kc in skill.key_commands):
+        return False
+    fb = translate(frm)
+    return bool(fb) and any(fb in translate(c.solution)
+                            for c in skill.challenges if c.solution)
+
+
+def usable_skills(skills: list[Skill], remaps: Optional[list[dict]]) -> list[Skill]:
+    """Skills schedulable given the player's remaps — those NOT blocked by any
+    remap (you can't drill a technique whose key you've mapped away)."""
+    rs = remaps or []
+    return [s for s in skills
+            if not any(remap_blocks_skill(r, s) for r in rs)]
+
+
+def skills_blocked_by_remaps(skills: list[Skill],
+                             remaps: Optional[list[dict]]) -> list[Skill]:
+    rs = remaps or []
+    return [s for s in skills if any(remap_blocks_skill(r, s) for r in rs)]
 
 
 def attempt_abstained(result: GradeResult, category: str) -> bool:
