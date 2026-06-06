@@ -497,7 +497,8 @@ class DrillSession:
                  highlight_target: bool = False,
                  reveal_detail: bool = False,
                  free_form: bool = False,
-                 remaps: Optional[list[dict]] = None):
+                 remaps: Optional[list[dict]] = None,
+                 on_disable: Optional[Callable[[str], None]] = None):
         self.skills = skills
         self.progress = progress
         self.present = present
@@ -518,6 +519,10 @@ class DrillSession:
         # General key remaps to inject into the live drill (and to rewrite the
         # suggested move in the goal pane so it shows the player's own keys).
         self.remaps = remaps
+        # Called with a skill id when the player chooses "turn this lesson off"
+        # on the result screen — the caller disables it (config) so it stops
+        # being scheduled.  The current attempt is not recorded.
+        self.on_disable = on_disable
 
     def run(self, selected: list[Skill]) -> SessionSummary:
         """Drill each selected skill.  ``review`` returns an action string:
@@ -553,6 +558,13 @@ class DrillSession:
                     else:
                         challenge = pick_challenge(skill, self.rng)
                     continue            # toss this attempt; mastery untouched
+                if action == "off":
+                    # The player switched this lesson off — disable it and move on
+                    # WITHOUT recording the attempt (they're rejecting it, not
+                    # failing it).
+                    if self.on_disable:
+                        self.on_disable(skill.id)
+                    break
                 # Accepted: commit exactly this attempt's outcome (graded by
                 # correctness + efficiency, so a fast solve advances and a slow one
                 # holds — see store.record_result).

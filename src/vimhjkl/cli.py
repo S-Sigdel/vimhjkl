@@ -15,7 +15,7 @@ import shutil
 import sys
 import time
 from functools import partial
-from typing import Optional
+from typing import Callable, Optional
 
 from . import store, tui, config
 from .challenge import Skill, Challenge, CATEGORIES, is_cursor_category
@@ -203,9 +203,10 @@ def _beat_par_line(r) -> Optional[str]:
 
 
 def _result_action() -> str:
-    """Prompt for what to do after a graded attempt: retry / next / quit."""
+    """Prompt for what to do after a graded attempt: retry / next / off / quit."""
     print("  " + tui.c("r", tui.YELLOW) + " retry   "
           + tui.c("n", tui.GREEN) + " next   "
+          + tui.c("o", tui.MAGENTA) + " turn this lesson off   "
           + tui.c("q", tui.GREY) + " quit")
     while True:
         k = tui.read_key()
@@ -213,6 +214,11 @@ def _result_action() -> str:
             return "retry"
         if k in ("n", "N", " ", "\r"):
             return "next"
+        if k in ("o", "O"):
+            print(tui.c("  ✕ off — you won't see this lesson again "
+                        "(turn it back on in Settings ▸ Lessons).", tui.GREY))
+            tui.pause()
+            return "off"
         if k in ("q", "Q"):
             return "quit"
 
@@ -280,11 +286,23 @@ def _show_result(record: AttemptRecord, show_moves: bool = True,
 # drill
 # ---------------------------------------------------------------------------
 
+def _disabler(cfg: Optional[dict]) -> Optional[Callable[[str], None]]:
+    """A callback that switches a skill off and persists it — wired to the result
+    screen's 'turn this lesson off'.  None when there's no config to write to."""
+    if cfg is None:
+        return None
+    def off(skill_id: str) -> None:
+        config.set_disabled(cfg, skill_id, True)
+        config.save(cfg)
+    return off
+
+
 def run_drill(skills: list[Skill], progress: dict, count: int,
               new_gate: Optional[int] = None, mode: str = "learn",
               show_moves: bool = True,
               blind_all: bool = False,
-              remaps: Optional[list[dict]] = None) -> None:
+              remaps: Optional[list[dict]] = None,
+              cfg: Optional[dict] = None) -> None:
     if find_editor() is None:
         print(tui.c("No vim or nvim found on PATH — install one, or try "
                     "`--review` for the no-vim flashcards.", tui.RED))
@@ -329,7 +347,8 @@ def run_drill(skills: list[Skill], progress: dict, count: int,
                            on_record=lambda: store.save_progress(progress),
                            highlight_target=(mode != "blind"),
                            reveal_detail=(mode == "learn"),
-                           free_form=cold, remaps=remaps)
+                           free_form=cold, remaps=remaps,
+                           on_disable=_disabler(cfg))
     summary = session.run(selected)
     sweep = None
     if cold:
@@ -416,6 +435,7 @@ def _show_practice_result(record: AttemptRecord, show_moves: bool = True,
     print(tui.c(prompt
                 + tui.c("r", tui.YELLOW) + " retry   "
                 + tui.c("n", tui.GREEN) + " next skill   "
+                + tui.c("o", tui.MAGENTA) + " turn off   "
                 + tui.c("q", tui.GREY) + " quit", tui.RESET))
     while True:
         k = tui.read_key()
@@ -423,13 +443,18 @@ def _show_practice_result(record: AttemptRecord, show_moves: bool = True,
             return "retry"
         if k in ("n", "N", " ", "\r"):
             return "next"
+        if k in ("o", "O"):
+            print(tui.c("  ✕ off — re-enable in Settings ▸ Lessons.", tui.GREY))
+            tui.pause()
+            return "off"
         if k in ("q", "Q", "\x03"):
             return "quit"
 
 
 def run_practice(skills: list[Skill], progress: dict, count: int,
                  show_moves: bool = True,
-                 remaps: Optional[list[dict]] = None) -> None:
+                 remaps: Optional[list[dict]] = None,
+                 cfg: Optional[dict] = None) -> None:
     if find_editor() is None:
         print(tui.c("No vim or nvim found on PATH — install one, or try "
                     "`--review` for the no-vim flashcards.", tui.RED))
@@ -483,6 +508,11 @@ def run_practice(skills: list[Skill], progress: dict, count: int,
                     challenge = pick_challenge(skill)
                 continue
             break
+        if action == "off":
+            # Switched off mid-practice: disable it, record no outcome, move on.
+            if cfg is not None:
+                config.set_disabled(cfg, skill.id, True); config.save(cfg)
+            continue
         # Record ONE Leitner outcome per skill (no double-demotion thrash from
         # rapid retries).  If every try was a quit-without-saving bail, leave the
         # box untouched — promote only on a real solve, demote only on a real miss.
@@ -550,7 +580,8 @@ def _pick_grind_skill(skills: list[Skill], progress: dict,
 def run_grind(skills: list[Skill], progress: dict, reps: int,
               new_gate: Optional[int] = None, show_moves: bool = True,
               skill: Optional[Skill] = None,
-              remaps: Optional[list[dict]] = None) -> None:
+              remaps: Optional[list[dict]] = None,
+              cfg: Optional[dict] = None) -> None:
     """Drill a SINGLE skill ``reps`` times back-to-back, recording every rep, so
     you groove one move into muscle memory in one sitting (depth, vs the breadth
     of a normal session).  Each rep is a fresh random instance of the same skill
@@ -602,6 +633,12 @@ def run_grind(skills: list[Skill], progress: dict, reps: int,
         record = AttemptRecord(skill, challenge, result, passed, abstained=abstained)
         action = _show_result(record, show_moves=show_moves, mode="grind",
                               rep=(done + 1, reps), remaps=remaps)
+        if action == "off":
+            # Switched this lesson off — disable it and end the grind (it's the
+            # only skill being drilled).
+            if cfg is not None:
+                config.set_disabled(cfg, skill.id, True); config.save(cfg)
+            break
         if action == "retry":
             if abstained:
                 present_next = False        # abstain screen already re-showed it
@@ -1391,22 +1428,22 @@ def interactive_menu(skills: list[Skill], progress: dict, cfg: dict,
             return
         if choice == "learn":
             run_drill(enabled, progress, count=10, mode="learn",
-                      show_moves=show_moves, remaps=remaps)
+                      show_moves=show_moves, remaps=remaps, cfg=cfg)
         elif choice == "blind":
             cold = _blind_is_cold(enabled)
             if cold is None:
                 continue
             run_drill(enabled, progress, count=10, mode="blind",
-                      show_moves=show_moves, blind_all=cold, remaps=remaps)
+                      show_moves=show_moves, blind_all=cold, remaps=remaps, cfg=cfg)
         elif choice == "practice":
             run_practice(enabled, progress, count=10, show_moves=show_moves,
-                         remaps=remaps)
+                         remaps=remaps, cfg=cfg)
         elif choice == "grind":
             new_gate = mastery_summary(enabled, progress)["new_gate"]
             chosen = _pick_grind_skill(enabled, progress, new_gate)
             if chosen is not None:        # None = backed out, return to the menu
                 run_grind(enabled, progress, reps=DEFAULT_GRIND_REPS, skill=chosen,
-                          show_moves=show_moves, remaps=remaps)
+                          show_moves=show_moves, remaps=remaps, cfg=cfg)
         elif choice == "review":
             run_review(enabled, progress, count=10, remaps=remaps)
         elif choice == "list":
@@ -1489,14 +1526,14 @@ def main(argv: Optional[list[str]] = None) -> int:
                                 "Run --list to see skill ids.", tui.YELLOW))
                     return 1
             run_grind(enabled, progress, reps=args.reps, new_gate=args.gate,
-                      show_moves=show_moves, skill=grind_skill, remaps=remaps)
+                      show_moves=show_moves, skill=grind_skill, remaps=remaps, cfg=cfg)
         elif args.practice:
             run_practice(enabled, progress, count=args.count, show_moves=show_moves,
-                         remaps=remaps)
+                         remaps=remaps, cfg=cfg)
         elif args.drill:
             run_drill(enabled, progress, count=args.count, new_gate=args.gate,
                       mode=args.mode, show_moves=show_moves,
-                      blind_all=args.blind_all, remaps=remaps)
+                      blind_all=args.blind_all, remaps=remaps, cfg=cfg)
         else:
             interactive_menu(skills, progress, cfg, show_moves=show_moves)
     except KeyboardInterrupt:

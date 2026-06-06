@@ -240,6 +240,24 @@ def main():
           len(pool2) == 4 and reset2 and p2["blind_all_cleared"] == [],
           (len(pool2), reset2))
 
+    # --- "turn this lesson off" mid-drill: disables + records nothing ------
+    from unittest import mock
+    from vimhjkl.engine import DrillSession
+    off_skill = mk("off_me", 2)
+    prog_off = {"skills": {}}
+    disabled = []
+    res_ok = GradeResult(True, 1, 1, 1.0, ["y"], None, None, True, False)
+    with mock.patch("vimhjkl.engine.run_attempt", return_value=res_ok), \
+         mock.patch("vimhjkl.engine.pick_challenge",
+                    return_value=off_skill.challenges[0]):
+        sess = DrillSession([off_skill], prog_off,
+                            present=lambda *a: None, review=lambda r: "off",
+                            on_disable=lambda sid: disabled.append(sid))
+        out = sess.run([off_skill])
+    check("'off' disables the skill, records no mastery, no summary entry",
+          disabled == ["off_me"] and "off_me" not in prog_off["skills"]
+          and out.total == 0, (disabled, prog_off["skills"], out.total))
+
     print(f"\n{PASS} passed, {FAIL} failed")
     return 1 if FAIL else 0
 
