@@ -7,7 +7,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from vimhjkl.challenge import Skill, Challenge
-from vimhjkl.engine import select_due_skills, is_due, outcome_passed
+from vimhjkl.engine import select_due_skills, is_due, outcome_passed, _due_interval
 from vimhjkl.grader import GradeResult
 from vimhjkl import store
 
@@ -53,11 +53,11 @@ def main():
     check("box-4 not-yet-due skill is deprioritised",
           sel[-1].id == "c", [s.id for s in sel])
 
-    # is_due: box 4 rests 600s.
+    # is_due: box 4 rests 1h (3600s).
     check("box4 not due after 5s",
           not is_due({"box": 4, "last_seen": now - 5}, now))
-    check("box4 due after 700s",
-          is_due({"box": 4, "last_seen": now - 700}, now))
+    check("box4 due after 2h",
+          is_due({"box": 4, "last_seen": now - 7200}, now))
     check("never-seen always due", is_due({"box": 1, "last_seen": 0.0}, now))
 
     # --- Two-axis (rep grooming) regression guards -------------------------
@@ -93,11 +93,48 @@ def main():
     # schedule, so it is NOT due right after being seen...
     grooved = {"box": 5, "passes": 30, "last_seen": now - 10}
     check("grooved skill not due right after seen", not is_due(grooved, now))
-    # ...but a later fail drops the box, pulling it out of maintenance and back
-    # into frequent review even though its lifetime pass count stays high.
-    fumbled = {"box": 4, "passes": 30, "last_seen": now - 700}
-    check("fumbled-once grooved skill returns to active review",
-          is_due(fumbled, now))
+    # ...and once it drops out of maintenance (box below max), it returns to the
+    # frequent box schedule (box 3 here rests 10 min).
+    dropped = {"box": 3, "passes": 30, "last_seen": now - 1200}
+    check("a skill below max box is back on frequent review",
+          is_due(dropped, now))
+
+    # --- graded outcomes: efficiency drives the box, not just pass/fail ----
+    pg = {"skills": {}}
+    store.record_result(pg, "great", correct=True, efficiency=1.0)
+    check("great solve promotes and raises ease",
+          pg["skills"]["great"]["box"] == 2 and pg["skills"]["great"]["ease"] > 1.0,
+          pg["skills"]["great"])
+    store.record_result(pg, "good", correct=True, efficiency=0.6)
+    check("good solve promotes, ease neutral",
+          pg["skills"]["good"]["box"] == 2 and pg["skills"]["good"]["ease"] == 1.0)
+    store.record_result(pg, "slow", correct=True, efficiency=0.3)
+    check("slow-but-correct holds the box and shortens ease",
+          pg["skills"]["slow"]["box"] == 1 and pg["skills"]["slow"]["ease"] < 1.0)
+    # a miss demotes a mid box; a fast solve's ease lengthens the next interval.
+    for _ in range(3):
+        store.record_result(pg, "mid", correct=True, efficiency=1.0)   # -> box 4
+    box_before = pg["skills"]["mid"]["box"]
+    store.record_result(pg, "mid", correct=False, efficiency=0.0)
+    check("miss demotes a mid box and resets ease",
+          pg["skills"]["mid"]["box"] == box_before - 1
+          and pg["skills"]["mid"]["ease"] == 1.0)
+    check("higher ease lengthens the interval",
+          _due_interval({"box": 3, "ease": 2.0}) > _due_interval({"box": 3}))
+    check("maintenance respects the 30-day cap even with max ease",
+          _due_interval({"box": 5, "passes": 200, "ease": 2.5}) <= 2592000)
+
+    # --- softened demotion: a grooved skill survives ONE slip (issue #3) ---
+    pgr = {"skills": {}}
+    e = store.get_entry(pgr, "g")
+    e.update({"box": store.MAX_BOX, "passes": 30, "last_result": "pass"})
+    store.record_result(pgr, "g", correct=False, efficiency=0.0)
+    check("one miss at top box is forgiven (grace)",
+          pgr["skills"]["g"]["box"] == store.MAX_BOX
+          and pgr["skills"]["g"]["last_result"] == "fail")
+    store.record_result(pgr, "g", correct=False, efficiency=0.0)
+    check("a second consecutive miss finally demotes",
+          pgr["skills"]["g"]["box"] == store.MAX_BOX - 1)
 
     # Leitner record_result promotes/demotes within [1,5].
     p = {"skills": {}}

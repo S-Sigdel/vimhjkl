@@ -31,8 +31,12 @@ from .keys import translate
 # "Due" uses a simple per-box interval: higher box == longer rest.
 
 # Minimum seconds before a skill in a given box is due again.  Box 1 is always
-# due; higher boxes rest longer (spaced repetition).
-_BOX_INTERVAL = {1: 0, 2: 30, 3: 120, 4: 600, 5: 3600}
+# due; higher boxes rest longer (spaced repetition).  Boxes 3–5 stretch toward
+# hours so a "known but not yet grooved" skill gets genuine spacing — but note
+# `select_due_skills` backfills a session from not-yet-due skills, so this mostly
+# changes PRIORITY, not whether a skill appears (true day-scale spacing is the
+# grooved/maintenance tier below).  Scaled per-skill by `ease` (fluency).
+_BOX_INTERVAL = {1: 0, 2: 60, 3: 600, 4: 3600, 5: 28800}
 
 # Second axis: how many *successful* reps grooves a technique into muscle memory.
 # The Leitner box (above) measures "do you know the move" and fills in ~3-4 good
@@ -62,10 +66,14 @@ def is_grooved(entry: dict) -> bool:
 
 
 def _due_interval(entry: dict) -> float:
+    # `ease` (a fluency multiplier, 0.5–2.5) stretches/shrinks the rest: fast solves
+    # earn longer rests, slow ones shorter.  Applied BEFORE the maintenance cap so a
+    # high ease can never push a grooved skill past the 30-day ceiling.
+    ease = entry.get("ease", 1.0)
     if is_grooved(entry):
         extra = entry.get("passes", 0) - MASTERY_REPS
-        return min(_MAINT_CAP, _MAINT_BASE * (2 ** (extra // 5)))
-    return _BOX_INTERVAL.get(entry.get("box", 1), 0)
+        return min(_MAINT_CAP, _MAINT_BASE * (2 ** (extra // 5)) * ease)
+    return _BOX_INTERVAL.get(entry.get("box", 1), 0) * ease
 
 
 def is_due(entry: dict, now: float) -> bool:
@@ -329,9 +337,11 @@ def _new_gate(skills: list[Skill], progress: dict) -> int:
 # ---------------------------------------------------------------------------
 # A "pass" for spaced-rep purposes = correct AND reasonably efficient.  Correct
 # but wasteful still counts as correct (the buffer is right) but we require a
-# modest efficiency floor to PROMOTE — sloppy solves don't advance the box.
+# modest efficiency floor to PROMOTE — sloppy solves don't advance the box.  Same
+# threshold store.record_result uses to grade a "good" (promoting) solve, so the
+# session summary's "promoted" count and the actual box move never disagree.
 
-EFFICIENCY_FLOOR = 0.5
+EFFICIENCY_FLOOR = store.PROMOTE_EFF
 
 
 def outcome_passed(result: GradeResult) -> bool:
@@ -543,9 +553,11 @@ class DrillSession:
                     else:
                         challenge = pick_challenge(skill, self.rng)
                     continue            # toss this attempt; mastery untouched
-                # Accepted: commit exactly this attempt's outcome.
+                # Accepted: commit exactly this attempt's outcome (graded by
+                # correctness + efficiency, so a fast solve advances and a slow one
+                # holds — see store.record_result).
                 if not abstained:
-                    store.record_result(self.progress, skill.id, passed,
+                    store.record_result(self.progress, skill.id, result.correct,
                                         result.efficiency)
                     if self.on_record:
                         self.on_record()  # flush so Ctrl-C never loses it

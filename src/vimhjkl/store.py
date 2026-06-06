@@ -78,6 +78,20 @@ def save_skills(skills: list[Skill], path: Path | None = None) -> None:
 MIN_BOX = 1
 MAX_BOX = 5
 
+# A drill is graded by EFFICIENCY, not just pass/fail, because this is a fluency
+# trainer — being fast/idiomatic is the goal, not bare recall:
+#   correct & >= GREAT_EFF  -> "great": promote + earn a longer rest (ease up)
+#   correct & >= PROMOTE_EFF-> "good":  promote a box
+#   correct &  < PROMOTE_EFF-> "slow":  hold the box, resurface sooner (ease down)
+#   not correct             -> "miss":  demote (with one grace at the top box)
+PROMOTE_EFF = 0.5
+GREAT_EFF = 0.95
+# `ease` is a lightweight per-skill interval multiplier (a mini stability factor):
+# fluent solves stretch the next rest, slow ones pull it in, a miss resets it.
+_EASE_STEP = 1.3            # great solve multiplies ease by this …
+_EASE_DECAY = 0.7          # … a slow one multiplies by this
+_EASE_MIN, _EASE_MAX = 0.5, 2.5
+
 
 def default_progress_entry() -> dict:
     return {
@@ -85,6 +99,7 @@ def default_progress_entry() -> dict:
         "seen": 0,
         "passes": 0,
         "fails": 0,
+        "ease": 1.0,             # interval multiplier (fluency); 1.0 == neutral
         "last_seen": 0.0,        # epoch seconds; 0 == never
         "last_result": None,     # "pass" | "fail" | None
         "best_efficiency": 0.0,
@@ -110,20 +125,36 @@ def get_entry(progress: dict, skill_id: str) -> dict:
     return skills[skill_id]
 
 
-def record_result(progress: dict, skill_id: str, passed: bool,
+def record_result(progress: dict, skill_id: str, correct: bool,
                   efficiency: float) -> dict:
-    """Update Leitner box + history for a drill/review outcome."""
+    """Update the Leitner box + history for a drill/review outcome, graded by how
+    FLUENT the solve was (see the PROMOTE_EFF/GREAT_EFF notes above), not merely
+    whether it was correct.  Slow-but-correct holds the box (and shortens the next
+    rest) instead of demoting; a fast solve earns a longer rest; a single miss at
+    the top box is forgiven (a hard-won skill shouldn't fall to one slip)."""
     entry = get_entry(progress, skill_id)
     entry["seen"] += 1
     entry["last_seen"] = time.time()
-    if passed:
-        entry["passes"] += 1
-        entry["box"] = min(MAX_BOX, entry["box"] + 1)
-        entry["last_result"] = "pass"
-    else:
+    ease = entry.get("ease", 1.0)
+    if not correct:
         entry["fails"] += 1
-        entry["box"] = max(MIN_BOX, entry["box"] - 1)
+        # Soften demotion: the first miss at the top box keeps it (a slip isn't
+        # forgetting); only a SECOND consecutive miss demotes.
+        grace = entry["box"] >= MAX_BOX and entry.get("last_result") != "fail"
+        if not grace:
+            entry["box"] = max(MIN_BOX, entry["box"] - 1)
         entry["last_result"] = "fail"
+        entry["ease"] = 1.0
+    else:
+        entry["passes"] += 1
+        entry["last_result"] = "pass"
+        if efficiency >= GREAT_EFF:                  # great: promote + rest longer
+            entry["box"] = min(MAX_BOX, entry["box"] + 1)
+            entry["ease"] = min(_EASE_MAX, ease * _EASE_STEP)
+        elif efficiency >= PROMOTE_EFF:              # good: promote
+            entry["box"] = min(MAX_BOX, entry["box"] + 1)
+        else:                                        # slow: hold box, rest sooner
+            entry["ease"] = max(_EASE_MIN, ease * _EASE_DECAY)
     entry["best_efficiency"] = max(entry.get("best_efficiency", 0.0), efficiency)
     return entry
 

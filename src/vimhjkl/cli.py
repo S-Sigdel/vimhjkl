@@ -487,8 +487,9 @@ def run_practice(skills: list[Skill], progress: dict, count: int,
         # rapid retries).  If every try was a quit-without-saving bail, leave the
         # box untouched — promote only on a real solve, demote only on a real miss.
         if genuine_attempt:
-            store.record_result(progress, skill.id,
-                                passed and best_eff >= EFFICIENCY_FLOOR, best_eff)
+            # Grade the skill once on its BEST attempt: correctness + best efficiency
+            # (record_result handles the slow/good/great/miss split).
+            store.record_result(progress, skill.id, passed, best_eff)
             store.save_progress(progress)   # flush after every practiced skill
         if action == "quit":
             break
@@ -613,8 +614,9 @@ def run_grind(skills: list[Skill], progress: dict, reps: int,
                 break
             challenge = pick_challenge(skill, rng)
             continue
-        # A committed rep: record it toward the box + the 25-rep groove target.
-        store.record_result(progress, skill.id, passed, result.efficiency)
+        # A committed rep: record it toward the box + the 25-rep groove target,
+        # graded by correctness + efficiency (fast advances, slow holds).
+        store.record_result(progress, skill.id, result.correct, result.efficiency)
         store.save_progress(progress)
         summary.attempts.append(record)
         done += 1
