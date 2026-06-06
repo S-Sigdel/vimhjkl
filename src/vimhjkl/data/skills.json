@@ -388,17 +388,6 @@
         },
         {
           "start": [
-            "health = 100"
-          ],
-          "par_keys": 3,
-          "hint": "A appends at end of line",
-          "goal": [
-            "health = 100;"
-          ],
-          "solution": "A;<Esc>"
-        },
-        {
-          "start": [
             "print('hi')"
           ],
           "par_keys": 11,
@@ -844,18 +833,6 @@
         },
         {
           "start": [
-            "current_round = 7"
-          ],
-          "par_keys": 1,
-          "hint": "Advance to the next round like a game show host.",
-          "goal": [
-            "current_round = 8"
-          ],
-          "solution": "<C-a>",
-          "why": "<C-a> adds 1 to the number under the cursor."
-        },
-        {
-          "start": [
             "code_review_pending = 15"
           ],
           "par_keys": 2,
@@ -999,18 +976,6 @@
         },
         {
           "start": [
-            "Planets in the solar system: "
-          ],
-          "par_keys": 6,
-          "hint": "Sorry, Pluto.",
-          "goal": [
-            "Planets in the solar system: 8"
-          ],
-          "solution": "A<C-r>=8<CR><Esc>",
-          "why": "<C-r>= inserts the result of a sum, mid-insert."
-        },
-        {
-          "start": [
             "Pixels per inch: "
           ],
           "par_keys": 9,
@@ -1065,38 +1030,6 @@
           ],
           "solution": "gUitj.",
           "why": "vitU would reuse a 3-char width and break on the long word."
-        },
-        {
-          "start": [
-            "<i>tiny</i>",
-            "<i>gargantuan</i>",
-            "<i>medium</i>"
-          ],
-          "par_keys": 8,
-          "hint": "use the operator so . can repeat it",
-          "goal": [
-            "<i>TINY</i>",
-            "<i>GARGANTUAN</i>",
-            "<i>MEDIUM</i>"
-          ],
-          "solution": "gUitj.j.",
-          "why": "Using gUit ensures each line's contents flip to uppercase effectively, no matter the length."
-        },
-        {
-          "start": [
-            "<h1>Riddle me this</h1>",
-            "<h1>Answer me that</h1>",
-            "<h1>Who's afraid of the big black bat?</h1>"
-          ],
-          "par_keys": 8,
-          "hint": "use the operator so . can repeat it",
-          "goal": [
-            "<h1>RIDDLE ME THIS</h1>",
-            "<h1>ANSWER ME THAT</h1>",
-            "<h1>WHO'S AFRAID OF THE BIG BLACK BAT?</h1>"
-          ],
-          "solution": "gUitj.j.",
-          "why": "gUit operates neatly within tags' boundaries; j. repeats it robustly, regardless of line length."
         }
       ]
     },
@@ -1113,24 +1046,6 @@
       ],
       "difficulty": 3,
       "challenges": [
-        {
-          "start": [
-            "gremlin",
-            "goblin",
-            "ogre",
-            "troll"
-          ],
-          "par_keys": 12,
-          "hint": "block down the first column, then I to insert the prefix once",
-          "goal": [
-            "summon gremlin",
-            "summon goblin",
-            "summon ogre",
-            "summon troll"
-          ],
-          "solution": "<C-v>3jIsummon <Esc>",
-          "why": "Block-I types 'summon ' once and stamps it onto every selected line."
-        },
         {
           "start": [
             "var a = 1",
@@ -1415,18 +1330,19 @@
         },
         {
           "start": [
-            "log.debug('a')",
-            "log.debug('b')"
+            "x = 1",
+            "y = 1",
+            "z = 1"
           ],
-          "par_keys": 5,
-          "hint": "copy line 1 to the end (the base for an @: repeat)",
+          "par_keys": 14,
+          "hint": "substitute on line 1, then @: repeats it down each line",
           "goal": [
-            "log.debug('a')",
-            "log.debug('b')",
-            "log.debug('a')"
+            "x = 0",
+            "y = 0",
+            "z = 0"
           ],
-          "solution": ":1t$<CR>",
-          "why": "Run it once, and @: would append line 1 again."
+          "solution": ":s/1/0/<CR>j@:j@:",
+          "why": "@: replays the :s — one j@: per remaining line, no retyping."
         }
       ]
     },
@@ -2721,20 +2637,6 @@
           ],
           "solution": "ddp",
           "why": "ddp swaps a line with the one beneath it — fix the wrong order fast."
-        },
-        {
-          "start": [
-            "Tea Coffee Chocolate Milk",
-            "Add baby shark doo doo right here"
-          ],
-          "par_keys": 3,
-          "hint": "The baby shark deserves the spotlight!",
-          "goal": [
-            "Add baby shark doo doo right here",
-            "Tea Coffee Chocolate Milk"
-          ],
-          "solution": "ddp",
-          "why": "dd cuts the line, p puts it back below — a swap."
         }
       ]
     },
@@ -2915,22 +2817,6 @@
             "- potion"
           ],
           "solution": "qaI- <Esc>jq2@a"
-        },
-        {
-          "start": [
-            "gandalf",
-            "frodo",
-            "samwise"
-          ],
-          "par_keys": 11,
-          "hint": "capitalise each name; normalise with 0 first",
-          "goal": [
-            "Gandalf",
-            "Frodo",
-            "Samwise"
-          ],
-          "solution": "qa0gUljq2@a",
-          "why": "starting at column 0 keeps the macro repeatable."
         }
       ]
     },
@@ -3208,19 +3094,6 @@
         },
         {
           "start": [
-            "price: $9.99",
-            "other"
-          ],
-          "par_keys": 18,
-          "hint": "treat $ and . as plain characters",
-          "goal": [
-            "price: PAID",
-            "other"
-          ],
-          "solution": ":%s/\\V$9.99/PAID/<CR>"
-        },
-        {
-          "start": [
             "call run() now"
           ],
           "par_keys": 18,
@@ -3256,18 +3129,6 @@
           ],
           "solution": ":%s/cat\\c/dog/g<CR>",
           "why": "One \\c catches CAT, cat and Cat in a single substitute."
-        },
-        {
-          "start": [
-            "The cat chased the Cat which scared the CAT."
-          ],
-          "par_keys": 16,
-          "hint": "add \\c so the pattern ignores case",
-          "goal": [
-            "The dog chased the dog which scared the dog."
-          ],
-          "solution": ":%s/cat\\c/dog/g<CR>",
-          "why": "\\c makes the pattern case-insensitive."
         },
         {
           "start": [
@@ -3343,22 +3204,6 @@
           ],
           "solution": ":%s/\\v(\\w+),(\\w+)/\\2=\\1/<CR>",
           "why": "Submatches turn a substitute into a field-reshuffler."
-        },
-        {
-          "start": [
-            "salty sweet",
-            "bitter sour",
-            "spicy savory"
-          ],
-          "par_keys": 26,
-          "hint": "capture with (), replay with \\1 \\2",
-          "goal": [
-            "sweet, salty",
-            "sour, bitter",
-            "savory, spicy"
-          ],
-          "solution": ":%s/\\v(\\w+) (\\w+)/\\2, \\1/<CR>",
-          "why": "\\1 and \\2 replay the () groups in any order."
         },
         {
           "start": [
@@ -3453,18 +3298,6 @@
             "tree logger prologue dialogue logging"
           ],
           "solution": ":%s/\\v<log>/tree/g<CR>",
-          "why": "\\v< > match whole words, skipping longer ones."
-        },
-        {
-          "start": [
-            "code decode encode codex coding"
-          ],
-          "par_keys": 22,
-          "hint": "anchor with \\v< > to whole words",
-          "goal": [
-            "recipe decode encode codex coding"
-          ],
-          "solution": ":%s/\\v<code>/recipe/g<CR>",
           "why": "\\v< > match whole words, skipping longer ones."
         }
       ]
@@ -3585,22 +3418,6 @@
             "}"
           ],
           "solution": "/cloudy<CR>cgnsunny<Esc>.",
-          "why": "cgn changes the next match; . repeats it down the file."
-        },
-        {
-          "start": [
-            "TODO buy a giraffe",
-            "TODO invent time travel",
-            "TODO retire on Mars"
-          ],
-          "par_keys": 16,
-          "hint": "Check off the impossible with cgn and dot.",
-          "goal": [
-            "DONE buy a giraffe",
-            "DONE invent time travel",
-            "DONE retire on Mars"
-          ],
-          "solution": "/TODO<CR>cgnDONE<Esc>..",
           "why": "cgn changes the next match; . repeats it down the file."
         }
       ]
@@ -3771,20 +3588,6 @@
         },
         {
           "start": [
-            "shiver me timbers",
-            "ARR matey"
-          ],
-          "par_keys": 16,
-          "hint": "\\u& / \\U& change case in the replacement",
-          "goal": [
-            "Shiver Me Timbers",
-            "ARR Matey"
-          ],
-          "solution": ":%s/\\v<\\l/\\u&/g<CR>",
-          "why": "\\u& capitalises each match's first letter."
-        },
-        {
-          "start": [
             "lumberjack",
             "MAPLE syrup"
           ],
@@ -3911,22 +3714,6 @@
             "level 10"
           ],
           "solution": ":%s/\\v\\d+/\\=submatch(0)-5/<CR>",
-          "why": "\\= computes each replacement; submatch(0) is the match."
-        },
-        {
-          "start": [
-            "lap 3",
-            "lap 7",
-            "lap 12"
-          ],
-          "par_keys": 28,
-          "hint": "Add one more lap for extra cardio delight.",
-          "goal": [
-            "lap 4",
-            "lap 8",
-            "lap 13"
-          ],
-          "solution": ":%s/\\v\\d+/\\=submatch(0)+1/g<CR>",
           "why": "\\= computes each replacement; submatch(0) is the match."
         },
         {
@@ -4087,24 +3874,6 @@
         },
         {
           "start": [
-            "ERROR: Critical potion spilled.",
-            "INFO: Wand polished successfully.",
-            "DEBUG: Wizard hat located.",
-            "ERROR: Spell mispronounced.",
-            "INFO: Library expanded."
-          ],
-          "par_keys": 11,
-          "hint": "Eliminate all INFO lines.",
-          "goal": [
-            "ERROR: Critical potion spilled.",
-            "DEBUG: Wizard hat located.",
-            "ERROR: Spell mispronounced."
-          ],
-          "solution": ":g/^INFO/d<CR>",
-          "why": ":g/pat/d deletes every line that matches."
-        },
-        {
-          "start": [
             "knight.jpg",
             "mage.png",
             "orc.gif",
@@ -4155,23 +3924,23 @@
       "challenges": [
         {
           "start": [
-            "fn summon()",
-            "  altar.ready = true",
-            "fn banish()",
-            "  altar.clear()",
-            "fn invoke()",
-            "  cast(spell)",
+            "fn connect()",
+            "  socket.open = true",
+            "fn disconnect()",
+            "  socket.open = false",
+            "fn reconnect()",
+            "  retry(3)",
             "done"
           ],
           "par_keys": 18,
           "hint": "only the fn lines get the comment prefix",
           "goal": [
-            "// fn summon()",
-            "  altar.ready = true",
-            "// fn banish()",
-            "  altar.clear()",
-            "// fn invoke()",
-            "  cast(spell)",
+            "// fn connect()",
+            "  socket.open = true",
+            "// fn disconnect()",
+            "  socket.open = false",
+            "// fn reconnect()",
+            "  retry(3)",
             "done"
           ],
           "solution": ":g/fn/normal I// <CR>",
@@ -4198,22 +3967,6 @@
           ],
           "solution": ":g/=/normal A;<CR>",
           "why": ":g/=/ targets the code lines and leaves the comments alone."
-        },
-        {
-          "start": [
-            "ERROR: Unable to locate the dragon.",
-            "WARNING: High magical activity detected.",
-            "ERROR: Potion brewing failed."
-          ],
-          "par_keys": 21,
-          "hint": "Only append !!! to the lines reporting errors.",
-          "goal": [
-            "ERROR: Unable to locate the dragon.!!!",
-            "WARNING: High magical activity detected.",
-            "ERROR: Potion brewing failed.!!!"
-          ],
-          "solution": ":g/ERROR/normal A!!!<CR>",
-          "why": ":g/pat/normal runs the keys on each matching line."
         },
         {
           "start": [
@@ -4369,31 +4122,6 @@
             "## Chapter 3: The Redemption"
           ],
           "solution": ":g/^## /t$<CR>",
-          "why": ":g/pat/t$ copies every matching line to the end."
-        },
-        {
-          "start": [
-            "function embarkOnQuest()",
-            "return true",
-            "function slayDragon()",
-            "return true",
-            "function rescuePrincess()",
-            "return false"
-          ],
-          "par_keys": 17,
-          "hint": "copy all matching lines to the end",
-          "goal": [
-            "function embarkOnQuest()",
-            "return true",
-            "function slayDragon()",
-            "return true",
-            "function rescuePrincess()",
-            "return false",
-            "function embarkOnQuest()",
-            "function slayDragon()",
-            "function rescuePrincess()"
-          ],
-          "solution": ":g/^function /t$<CR>",
           "why": ":g/pat/t$ copies every matching line to the end."
         }
       ]
