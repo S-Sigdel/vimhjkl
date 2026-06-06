@@ -38,10 +38,12 @@ def _default() -> dict:
         # decision (and from the belt/mastery maths) but still listed, greyed, in
         # the curriculum so they can be switched back on.
         "disabled_skills": [],
-        # Insert-mode escape aliases, e.g. ["jk", "jj"].  Each becomes an
-        # `inoremap <alias> <Esc>` injected ONLY into interactive drills (never the
-        # build's par replay).  See grader._INTERACTIVE_SETTINGS / cli.
-        "escape_aliases": [],
+        # Key remaps, e.g. {"from": "<C-p>", "to": "<Esc>", "mode": "i"}.  Each
+        # becomes a `{mode}noremap {from} {to}` injected into interactive drills, the
+        # suggested solution is shown with YOUR key, and the typed key is folded back
+        # to canonical so it costs the same as the original.  An escape remap is just
+        # `{from} → <Esc>` in insert mode.  See cli.run_remaps.
+        "remaps": [],
     }
 
 
@@ -58,6 +60,12 @@ def load(path: Path | None = None) -> dict:
     cfg = _default()
     if isinstance(data, dict):
         cfg.update({k: data[k] for k in cfg if k in data})
+        # Migration: escape aliases used to be their own list; they're just remaps
+        # to <Esc> in insert mode, so fold any old ones into `remaps`.
+        for alias in data.get("escape_aliases", []):
+            if isinstance(alias, str) and alias:
+                cfg.setdefault("remaps", []).append(
+                    {"from": alias, "to": "<Esc>", "mode": "i"})
     return cfg
 
 
@@ -111,24 +119,37 @@ def enabled_skills(skills: list, cfg: dict) -> list:
 
 
 # ---------------------------------------------------------------------------
-# escape-key aliases (insert-mode)
+# key remaps (any key, any mode — escape remaps are just `… → <Esc>` in insert)
 # ---------------------------------------------------------------------------
 
-# Only short, letter-only aliases are accepted: they are unambiguous to map and
-# never collide with a real key sequence a drill needs.  (A digit/punct alias
-# could shadow a count or a literal character mid-edit.)
-def _valid_alias(alias: str) -> bool:
-    return bool(alias) and 1 <= len(alias) <= 3 and alias.isalpha()
+_MODES = {"i", "n"}        # insert / normal — the two modes the drills exercise
 
 
-def escape_aliases(cfg: dict) -> list[str]:
-    """The configured, validated insert-mode escape aliases (de-duplicated)."""
-    out: list[str] = []
-    for a in cfg.get("escape_aliases", []):
-        if _valid_alias(a) and a not in out:
-            out.append(a)
+def _valid_remap(r: dict) -> bool:
+    return (isinstance(r, dict)
+            and bool(r.get("from")) and bool(r.get("to"))
+            and r.get("mode") in _MODES
+            and "|" not in (r["from"] + r["to"]))   # | would break the map command
+
+
+def remaps(cfg: dict) -> list[dict]:
+    """The configured, validated key remaps (de-duplicated by from+mode).
+
+    Each is ``{"from": <your key>, "to": <canonical key>, "mode": "i"|"n"}`` in vim
+    notation (``<C-p>``, ``<Esc>``, ``;`` …)."""
+    out: list[dict] = []
+    seen: set[tuple] = set()
+    for r in cfg.get("remaps", []):
+        if not _valid_remap(r):
+            continue
+        key = (r["from"], r["mode"])
+        if key in seen:
+            continue
+        seen.add(key)
+        out.append({"from": r["from"], "to": r["to"], "mode": r["mode"]})
     return out
 
 
-def set_escape_aliases(cfg: dict, aliases: list[str]) -> None:
-    cfg["escape_aliases"] = [a for a in aliases if _valid_alias(a)]
+def set_remaps(cfg: dict, rms: list[dict]) -> None:
+    cfg["remaps"] = [{"from": r["from"], "to": r["to"], "mode": r["mode"]}
+                     for r in rms if _valid_remap(r)]

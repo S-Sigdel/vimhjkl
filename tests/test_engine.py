@@ -132,9 +132,55 @@ def main():
     config.set_many_disabled(cfg, ["a", "c"], True)
     check("category-style bulk disable",
           [s.id for s in config.enabled_skills(cfg_skills, cfg)] == ["b"])
-    config.set_escape_aliases(cfg, ["jk", "jj", "BAD1", "waytoolong", "x"])
-    check("escape aliases keep only letter, 1-3 char",
-          config.escape_aliases(cfg) == ["jk", "jj", "x"], config.escape_aliases(cfg))
+    # legacy escape_aliases in an old config file migrate into remaps on load.
+    import json, tempfile
+    from pathlib import Path
+    tmp = Path(tempfile.mkdtemp()) / "config.json"
+    tmp.write_text(json.dumps({"escape_aliases": ["jk", "jj"], "remaps": []}))
+    migrated = config.load(tmp)
+    check("escape aliases migrate to <Esc> remaps on load",
+          config.remaps(migrated) == [{"from": "jk", "to": "<Esc>", "mode": "i"},
+                                       {"from": "jj", "to": "<Esc>", "mode": "i"}],
+          config.remaps(migrated))
+
+    # general key remaps: round-trip valid ones, drop the malformed.
+    config.set_remaps(cfg, [
+        {"from": "<C-p>", "to": "<Esc>", "mode": "i"},
+        {"from": ";", "to": ":", "mode": "n"},
+        {"from": "z", "mode": "i"},                 # no `to` -> dropped
+        {"from": "a", "to": "b", "mode": "x"},       # bad mode -> dropped
+        {"from": "<C-p>", "to": "<Esc>", "mode": "i"},  # dup -> deduped
+    ])
+    rms = config.remaps(cfg)
+    check("remaps keep valid, drop malformed + dups",
+          rms == [{"from": "<C-p>", "to": "<Esc>", "mode": "i"},
+                  {"from": ";", "to": ":", "mode": "n"}], rms)
+
+    # --- blind-all sweep: endless + no-repeat (issue #4) -------------------
+    from vimhjkl.cli import _blind_all_sweep, _record_blind_all_cleared
+    from vimhjkl.engine import SessionSummary, AttemptRecord
+    sweep_skills = [mk("a", 1), mk("b", 2), mk("c", 3), mk("d", 4)]
+    p = {"skills": {}, "blind_all_cleared": ["a"]}
+    pool, reset = _blind_all_sweep(sweep_skills, p)
+    check("blind-all excludes already-cleared skill",
+          {s.id for s in pool} == {"b", "c", "d"} and not reset,
+          [s.id for s in pool])
+    # a sweep that passes b and fails c records only b as cleared
+    res_pass = GradeResult(True, 1, 1, 1.0, ["y"], None, None, True, False)
+    res_fail = GradeResult(False, 5, 1, 0.2, ["x"], None, None, False, False)
+    summ = SessionSummary()
+    summ.attempts = [AttemptRecord(sweep_skills[1], sweep_skills[1].challenges[0], res_pass, True),
+                     AttemptRecord(sweep_skills[2], sweep_skills[2].challenges[0], res_fail, False)]
+    _record_blind_all_cleared(p, summ)
+    check("passed skill recorded cleared, failed not",
+          "b" in p["blind_all_cleared"] and "c" not in p["blind_all_cleared"],
+          p["blind_all_cleared"])
+    # clearing every skill resets the sweep to the full list
+    p2 = {"skills": {}, "blind_all_cleared": ["a", "b", "c", "d"]}
+    pool2, reset2 = _blind_all_sweep(sweep_skills, p2)
+    check("full clear resets to a fresh sweep",
+          len(pool2) == 4 and reset2 and p2["blind_all_cleared"] == [],
+          (len(pool2), reset2))
 
     print(f"\n{PASS} passed, {FAIL} failed")
     return 1 if FAIL else 0

@@ -13,8 +13,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from vimhjkl.challenge import Challenge
 from vimhjkl.grader import (
     run_attempt, find_editor, count_keystrokes, strip_quit, _last_command_line,
-    _goal_window_script,
+    _normalized_bytes, _goal_window_script, display_solution,
 )
+from vimhjkl.engine import attempt_abstained
 
 ESC = "\x1b"
 CR = "\r"
@@ -48,11 +49,36 @@ def unit_checks():
           str(_last_command_line(b":s/a/b/g\r:wq\r")))
     check("quit-only -> no command",
           _last_command_line(b"dd:wq\r") is None)
-    # escape aliases fold to one Esc so there's no efficiency penalty for them.
-    check("jk alias counts as 1 (= par's Esc)",
-          count_keystrokes(b"ciwHELLOjk:wq\r", ["jk"]) == 9,
-          str(count_keystrokes(b"ciwHELLOjk:wq\r", ["jk"])))
-    check("no alias -> jk stays 2 keystrokes",
+    # issue #3: an Enter key that emits <NL> (0x0a, e.g. mapped to <C-j>) logs the
+    # quit/command terminator as 0x0a, not 0x0d — folded so grading is unaffected.
+    check("LF quit stripped from count",
+          count_keystrokes(b"ciwHELLO\x1b:wq\n") == 9,
+          str(count_keystrokes(b"ciwHELLO\x1b:wq\n")))
+    check("LF motion quit stripped", count_keystrokes(b"2w:q\n") == 2,
+          str(count_keystrokes(b"2w:q\n")))
+    check("ex command detected through LF terminator",
+          _last_command_line(_normalized_bytes(b":1,3d\n:wq\n")) == "1,3d",
+          str(_last_command_line(_normalized_bytes(b":1,3d\n:wq\n"))))
+    # key remaps: a single-key remap (e.g. <C-p>→<Esc>) costs the SAME as the
+    # original — the typed byte is one key, just like <Esc> (no fold needed).
+    check("<C-p> escape counts the same as <Esc>",
+          count_keystrokes(b"ciwNEW\x10:wq\r") == count_keystrokes(b"ciwNEW\x1b:wq\r"),
+          (count_keystrokes(b"ciwNEW\x10:wq\r"), count_keystrokes(b"ciwNEW\x1b:wq\r")))
+    # suggestions show YOUR key for a special-token `to`; a printable `to` stays
+    # canonical (substituting it inline could corrupt the solution's own text).
+    check("display swaps <Esc>→<C-p> in a suggestion",
+          display_solution("ciwNEW<Esc>", [{"from": "<C-p>", "to": "<Esc>", "mode": "i"}])
+          == "ciwNEW<C-p>",
+          display_solution("ciwNEW<Esc>", [{"from": "<C-p>", "to": "<Esc>", "mode": "i"}]))
+    check("display leaves a printable `to` canonical",
+          display_solution(":%s/a/b/<CR>", [{"from": ";", "to": ":", "mode": "n"}])
+          == ":%s/a/b/<CR>")
+    # a multi-key remap (jk → <Esc>) folds to one key — no penalty vs <Esc>.
+    JK = [{"from": "jk", "to": "<Esc>", "mode": "i"}]
+    check("jk remap counts as 1 (= par's Esc)",
+          count_keystrokes(b"ciwHELLOjk:wq\r", JK) == 9,
+          str(count_keystrokes(b"ciwHELLOjk:wq\r", JK)))
+    check("no remap -> jk stays 2 keystrokes",
           count_keystrokes(b"ciwHELLOjk:wq\r") == 10,
           str(count_keystrokes(b"ciwHELLOjk:wq\r")))
     # goal side-pane: buffer drills show the goal buffer; motion drills (no goal
@@ -141,6 +167,22 @@ def integration_checks():
     check("ex_command hand-edit -> not correct", not r.correct, str(r.command_line))
     r = run_attempt(rng, "ex_command", playback=":1,3d\r:wq\r")  # real command
     check("ex_command via :range passes", r.correct, str(r.command_line))
+    # free-form (no-handcuffs blind): the SAME hand-edit that's rejected under
+    # strict grading is accepted when enforce_command=False — any path to the goal.
+    r = run_attempt(rng, "ex_command", playback="dddddd:wq\r", enforce_command=False)
+    check("free-form hand-edit passes", r.correct, str(r.final_buffer))
+
+    # yank: graded on the unnamed register, not the buffer (which is unchanged).
+    # A bare quit that yanks nothing must FAIL, and a correct yank must NOT be
+    # mistaken for an abstain just because it didn't write (issue #5).
+    yk = Challenge(start=["Cheese", "Pickles", "Ham", "", "Milkshake"],
+                   goal=["Cheese", "Pickles", "Ham", "", "Milkshake"],
+                   yank="Cheese\nPickles\nHam\n", par_keys=3)
+    r = run_attempt(yk, "text_object", playback="yip:q\r")
+    check("yank correct via register", r.correct, repr(r.register))
+    check("yank pass is not an abstain", not attempt_abstained(r, "text_object"))
+    r = run_attempt(yk, "text_object", playback=":q\r")   # yanked nothing
+    check("no-yank quit -> not correct", not r.correct, repr(r.register))
 
 
 def main():

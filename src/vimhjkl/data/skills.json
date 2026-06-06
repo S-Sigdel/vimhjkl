@@ -63,7 +63,7 @@
             25
           ],
           "solution": "2w",
-          "why": "Two jumps take you from 'vampire' to 'ghost'."
+          "why": "2w skips forward 2 words in one go."
         },
         {
           "start": [
@@ -80,7 +80,7 @@
             15
           ],
           "solution": "2w",
-          "why": "Jump two words to reach 'whale'."
+          "why": "2w skips forward 2 words in one go."
         },
         {
           "start": [
@@ -97,7 +97,7 @@
             15
           ],
           "solution": "w",
-          "why": "Move one word forward to 'necklace'."
+          "why": "w hops to the start of the next word."
         },
         {
           "start": [
@@ -115,7 +115,7 @@
             1
           ],
           "solution": "w",
-          "why": "Cross the line to begin 'giving'."
+          "why": "w hops to the start of the next word."
         },
         {
           "start": [
@@ -132,7 +132,7 @@
             8
           ],
           "solution": "w",
-          "why": "Advance to 'elixir'."
+          "why": "w hops to the start of the next word."
         },
         {
           "start": [
@@ -149,7 +149,7 @@
             17
           ],
           "solution": "3w",
-          "why": "Land on 'jumps' in three hops."
+          "why": "3w skips forward 3 words in one go."
         }
       ]
     },
@@ -211,7 +211,7 @@
             "that is the question"
           ],
           "solution": "jdd",
-          "why": "j takes you to line 2, dd removes its nonsense."
+          "why": "j drops to the target line, dd wipes it."
         },
         {
           "start": [
@@ -230,7 +230,7 @@
             "}"
           ],
           "solution": "jjdd",
-          "why": "jj navigates to the target, dd disposes of it."
+          "why": "jj steps down two lines, dd clears the line."
         },
         {
           "start": [
@@ -245,7 +245,7 @@
             "there was a dragon."
           ],
           "solution": "jdd",
-          "why": "Reach and remove unwanted fiction with jdd."
+          "why": "j drops to the target line, dd wipes it."
         },
         {
           "start": [
@@ -260,7 +260,7 @@
             "dog accordingly"
           ],
           "solution": "jdd",
-          "why": "Use jdd to handle pet-related emergencies."
+          "why": "j drops to the target line, dd wipes it."
         },
         {
           "start": [
@@ -279,7 +279,7 @@
             "}"
           ],
           "solution": "2jdd",
-          "why": "2j takes you to the line of anxiety, dd fixes it."
+          "why": "2j drops you on the offending line, dd makes it vanish."
         },
         {
           "start": [
@@ -296,7 +296,7 @@
             "3. memes"
           ],
           "solution": "jdd",
-          "why": "jdd cuts down on over-exuberant technology lists."
+          "why": "j drops to the target line, dd wipes it."
         },
         {
           "start": [
@@ -313,7 +313,7 @@
             "3. Captain Whiskers"
           ],
           "solution": "jdd",
-          "why": "jdd removes the unfortunate choice from history."
+          "why": "j drops to the target line, dd wipes it."
         }
       ]
     },
@@ -364,7 +364,7 @@
             "status = \"full\""
           ],
           "solution": "ci\"full<Esc>",
-          "why": "ci\" lets you replace the inner text quickly."
+          "why": "ci\" guts the text inside the double quotes and leaves the quotes standing."
         },
         {
           "start": [
@@ -376,7 +376,7 @@
             "announcement = \"meeting at 9am\""
           ],
           "solution": "ci\"meeting at 9am<Esc>",
-          "why": "It's a fast way to totally switch the plan."
+          "why": "ci\" guts the text inside the double quotes and leaves the quotes standing."
         },
         {
           "start": [
@@ -388,7 +388,7 @@
             "message = \"Mission Accomplished\""
           ],
           "solution": "ci\"Mission Accomplished<Esc>",
-          "why": "ci\" helps you take care of business efficiently."
+          "why": "ci\" guts the text inside the double quotes and leaves the quotes standing."
         },
         {
           "start": [
@@ -400,7 +400,7 @@
             "headline = \"Heatwave Expected Tomorrow\""
           ],
           "solution": "ci\"Heatwave Expected Tomorrow<Esc>",
-          "why": "Every detail can change inside quotes with ci\"."
+          "why": "ci\" guts the text inside the double quotes and leaves the quotes standing."
         },
         {
           "start": [
@@ -412,7 +412,7 @@
             "nickname = 'Bobby the Builder'"
           ],
           "solution": "ci'Bobby the Builder<Esc>",
-          "why": "ci' swaps the individual's persona promptly."
+          "why": "ci' guts the text inside the single quotes and leaves the quotes standing."
         },
         {
           "start": [
@@ -424,7 +424,7 @@
             "password = \"swordfish\""
           ],
           "solution": "ci\"swordfish<Esc>",
-          "why": "ci\" replaces sensitive information quickly."
+          "why": "ci\" guts the text inside the double quotes and leaves the quotes standing."
         },
         {
           "start": [
@@ -436,7 +436,7 @@
             "order = \"5 watermelons\""
           ],
           "solution": "ci\"5 watermelons<Esc>",
-          "why": "Perfect for when dietary preferences change."
+          "why": "ci\" guts the text inside the double quotes and leaves the quotes standing."
         },
         {
           "start": [
@@ -448,7 +448,7 @@
             "functionCall = \"servePizza()\""
           ],
           "solution": "ci\"servePizza()<Esc>",
-          "why": "Quickly swap one function call for another."
+          "why": "ci\" guts the text inside the double quotes and leaves the quotes standing."
         },
         {
           "start": [
@@ -460,7 +460,7 @@
             "title = \"The Lazy Dog\""
           ],
           "solution": "ci\"The Lazy Dog<Esc>",
-          "why": "Instantly change the focus of the title."
+          "why": "ci\" guts the text inside the double quotes and leaves the quotes standing."
         },
         {
           "start": [
@@ -472,7 +472,7 @@
             "quote = \"Eureka\""
           ],
           "solution": "ci\"Eureka<Esc>",
-          "why": "cio\" lets you express epiphanies succinctly."
+          "why": "ci\" guts the text inside the double quotes and leaves the quotes standing."
         },
         {
           "start": [
@@ -484,7 +484,7 @@
             "config = \"lightMode\""
           ],
           "solution": "ci\"lightMode<Esc>",
-          "why": "ci\" helps manage user preferences with ease."
+          "why": "ci\" guts the text inside the double quotes and leaves the quotes standing."
         },
         {
           "start": [
@@ -496,7 +496,7 @@
             "response = \"200 OK\""
           ],
           "solution": "ci\"200 OK<Esc>",
-          "why": "ci\" is essential for updating status codes swiftly."
+          "why": "ci\" guts the text inside the double quotes and leaves the quotes standing."
         },
         {
           "start": [
@@ -508,7 +508,7 @@
             "song = 'Row Row Row Your Boat'"
           ],
           "solution": "ci'Row Row Row Your Boat<Esc>",
-          "why": "ci' gives the playlist a fresh twist."
+          "why": "ci' guts the text inside the single quotes and leaves the quotes standing."
         },
         {
           "start": [
@@ -520,7 +520,7 @@
             "command = \"restart -r now\""
           ],
           "solution": "ci\"restart -r now<Esc>",
-          "why": "ci\" is deft at managing system commands."
+          "why": "ci\" guts the text inside the double quotes and leaves the quotes standing."
         },
         {
           "start": [
@@ -532,7 +532,7 @@
             "dream = \"eating endless tacos\""
           ],
           "solution": "ci\"eating endless tacos<Esc>",
-          "why": "ci\" alters the dream sequence swiftly."
+          "why": "ci\" guts the text inside the double quotes and leaves the quotes standing."
         }
       ]
     },
@@ -958,7 +958,7 @@
             "cat&dog&fish"
           ],
           "solution": "f^s&<Esc>;.;.",
-          "why": "Handy conversions utilizing repeat for seamless editing."
+          "why": "f jumps to the char and s swaps it; then ; finds the next and . repeats the swap."
         },
         {
           "start": [
@@ -970,7 +970,7 @@
             "apple#orange#banana"
           ],
           "solution": "f@s#<Esc>;.;.",
-          "why": "Conquer fruit challenges with vim's replace and repeat!"
+          "why": "f jumps to the char and s swaps it; then ; finds the next and . repeats the swap."
         },
         {
           "start": [
@@ -982,7 +982,7 @@
             "beef*chicken*pork"
           ],
           "solution": "f~s*<Esc>;.;.",
-          "why": "Effortless culinary conversions with vim prowess."
+          "why": "f jumps to the char and s swaps it; then ; finds the next and . repeats the swap."
         }
       ]
     },
@@ -1131,7 +1131,7 @@
             8
           ],
           "solution": "*",
-          "why": "A quick flick of the wand with * around the words."
+          "why": "* grabs the word under the cursor and hunts down the next one — no typing into /."
         },
         {
           "start": [
@@ -1151,7 +1151,7 @@
             5
           ],
           "solution": "*",
-          "why": "Let * help you track the mighty beast."
+          "why": "* grabs the word under the cursor and hunts down the next one — no typing into /."
         }
       ]
     },
@@ -1204,7 +1204,7 @@
             "resulting in spectacular explosion"
           ],
           "solution": "d2w",
-          "why": "Snap your fingers, make 'wizard cast' vanish in one go."
+          "why": "d2w wipes both words in one change, so a single u brings them all back."
         },
         {
           "start": [
@@ -1218,7 +1218,7 @@
             "filling the table with epic layers"
           ],
           "solution": "d3w",
-          "why": "Keeps the culinary wonders as a neat, chewable token."
+          "why": "d3w wipes both words in one change, so a single u brings them all back."
         },
         {
           "start": [
@@ -1232,7 +1232,7 @@
             "clear, compact, and readable code"
           ],
           "solution": "d2w",
-          "why": "Sets the stage for a love letter to brevity in pythonic style."
+          "why": "d2w wipes both words in one change, so a single u brings them all back."
         },
         {
           "start": [
@@ -1246,7 +1246,7 @@
             "ready to tackle the pending doom"
           ],
           "solution": "dw.",
-          "why": "Control your undo like a true superhero—one decision at a time."
+          "why": "dw once, then . to repeat — each delete is its own step you can peel back with u."
         },
         {
           "start": [
@@ -1260,7 +1260,7 @@
             "with meticulous precision daily"
           ],
           "solution": "2dw",
-          "why": "Leaves you ready to bake the perfect undo."
+          "why": "2dw wipes both words in one change, so a single u brings them all back."
         },
         {
           "start": [
@@ -1274,7 +1274,7 @@
             "with their flawless performance"
           ],
           "solution": "d2w",
-          "why": "Focus on the crescendo in a single, harmonious edit."
+          "why": "d2w wipes both words in one change, so a single u brings them all back."
         },
         {
           "start": [
@@ -1288,7 +1288,7 @@
             "creating an artistic illusion"
           ],
           "solution": "d2w",
-          "why": "Crafts a grassy masterpiece with just a couple snips."
+          "why": "d2w wipes both words in one change, so a single u brings them all back."
         },
         {
           "start": [
@@ -1302,7 +1302,7 @@
             "on the parade of jubilant clowns"
           ],
           "solution": "dw.",
-          "why": "For an undo that's as cheerful as the confetti itself."
+          "why": "dw once, then . to repeat — each delete is its own step you can peel back with u."
         },
         {
           "start": [
@@ -1316,7 +1316,7 @@
             "offering peace and weird snacks"
           ],
           "solution": "d2w",
-          "why": "Allows you to focus on the bizarre offerings."
+          "why": "d2w wipes both words in one change, so a single u brings them all back."
         }
       ]
     },
@@ -1391,7 +1391,7 @@
             "MYSTERIOUS FUNGI FOUND AT SITE 9#B"
           ],
           "solution": "gUU",
-          "why": "Doubling gU takes the whole line up a notch."
+          "why": "gUU doubles gU to hit the whole line — uppercase in one shot."
         }
       ]
     },
@@ -1454,7 +1454,7 @@
             "champion_age = 26"
           ],
           "solution": "<C-a>",
-          "why": "<C-a> adds 1 to the number — future partying ensues."
+          "why": "<C-a> ticks the number under the cursor up by one."
         },
         {
           "start": [
@@ -1466,7 +1466,7 @@
             "cookiesRemaining = 90"
           ],
           "solution": "10<C-x>",
-          "why": "10<C-x> finds 100 and munches away 10 cookies."
+          "why": "10<C-x> knocks 10 off the number under the cursor."
         },
         {
           "start": [
@@ -1478,7 +1478,7 @@
             "current_round = 8"
           ],
           "solution": "<C-a>",
-          "why": "<C-a> adds 1 to 7 — a seamless jump in the script."
+          "why": "<C-a> ticks the number under the cursor up by one."
         },
         {
           "start": [
@@ -1490,7 +1490,7 @@
             "zombie_walk_speed = 8"
           ],
           "solution": "5<C-a>",
-          "why": "5<C-a> makes zombies walk 5 units faster — flee accordingly."
+          "why": "5<C-a> bumps the number under the cursor up by 5 — no retyping."
         },
         {
           "start": [
@@ -1502,7 +1502,7 @@
             "witchPotionStock = 170"
           ],
           "solution": "30<C-x>",
-          "why": "30<C-x> reduces the stock by 30 — magic and math meet."
+          "why": "30<C-x> knocks 30 off the number under the cursor."
         },
         {
           "start": [
@@ -1514,7 +1514,7 @@
             "spaceShuttleCount = 8"
           ],
           "solution": "<C-a>",
-          "why": "<C-a> lets you add one more space shuttle without leaving Earth."
+          "why": "<C-a> ticks the number under the cursor up by one."
         },
         {
           "start": [
@@ -1526,7 +1526,7 @@
             "code_review_pending = 13"
           ],
           "solution": "2<C-x>",
-          "why": "2<C-x> slims down the pending reviews by 2."
+          "why": "2<C-x> knocks 2 off the number under the cursor."
         },
         {
           "start": [
@@ -1538,7 +1538,7 @@
             "wizardHatSize = 13"
           ],
           "solution": "3<C-a>",
-          "why": "3<C-a> increases the size by 3 — small comforts for big magic."
+          "why": "3<C-a> bumps the number under the cursor up by 3 — no retyping."
         },
         {
           "start": [
@@ -1550,7 +1550,7 @@
             "giantFootprintSize = 13"
           ],
           "solution": "5<C-x>",
-          "why": "5<C-x> minimizes the footprint size by 5."
+          "why": "5<C-x> knocks 5 off the number under the cursor."
         },
         {
           "start": [
@@ -1562,7 +1562,7 @@
             "trollFoodSupply = 35"
           ],
           "solution": "7<C-x>",
-          "why": "7<C-x> takes away 7 from the stock, leaving the troll grumpy."
+          "why": "7<C-x> knocks 7 off the number under the cursor."
         },
         {
           "start": [
@@ -1574,7 +1574,7 @@
             "adventurerHealth = 110"
           ],
           "solution": "10<C-a>",
-          "why": "10<C-a> bumps up the health — onward to more adventures."
+          "why": "10<C-a> bumps the number under the cursor up by 10 — no retyping."
         },
         {
           "start": [
@@ -1586,7 +1586,7 @@
             "pirateTreasureCount = 70"
           ],
           "solution": "20<C-a>",
-          "why": "20<C-a> tacks on treasure without appearing on the plank."
+          "why": "20<C-a> bumps the number under the cursor up by 20 — no retyping."
         },
         {
           "start": [
@@ -1598,7 +1598,7 @@
             "robotAntSpeed = 11"
           ],
           "solution": "6<C-a>",
-          "why": "6<C-a> accelerates the speed — those gears are greased."
+          "why": "6<C-a> bumps the number under the cursor up by 6 — no retyping."
         }
       ]
     },
@@ -1744,7 +1744,7 @@
             "Pi is approximately 3.14159"
           ],
           "solution": "A<C-r>=3.14159+0<CR><Esc>",
-          "why": "<C-r>= lets you insert exact numbers effortlessly."
+          "why": "<C-r>= opens Vim's calculator mid-insert — type the sum, drop in the answer."
         },
         {
           "start": [
@@ -1756,7 +1756,7 @@
             "Eggs in dozens: 96"
           ],
           "solution": "A<C-r>=12*8<CR><Esc>",
-          "why": "Vim's calculator converts egg math into exact answer with ease."
+          "why": "<C-r>= opens Vim's calculator mid-insert — type the sum, drop in the answer."
         },
         {
           "start": [
@@ -1768,7 +1768,7 @@
             "The meaning of life = 42"
           ],
           "solution": "A<C-r>=42<CR><Esc>",
-          "why": "Become an arithmetic hitchhiker with <C-r>=."
+          "why": "<C-r>= opens Vim's calculator mid-insert — type the sum, drop in the answer."
         },
         {
           "start": [
@@ -1780,7 +1780,7 @@
             "It's a bird, it's a plane, it's 60"
           ],
           "solution": "A<C-r>=3*20<CR><Esc>",
-          "why": "Vim superpowers handle calculations mid-flight."
+          "why": "<C-r>= opens Vim's calculator mid-insert — type the sum, drop in the answer."
         },
         {
           "start": [
@@ -1792,7 +1792,7 @@
             "Days till next year: 108"
           ],
           "solution": "A<C-r>=365-257<CR><Esc>",
-          "why": "<C-r>= does the countdown so you don't have to."
+          "why": "<C-r>= opens Vim's calculator mid-insert — type the sum, drop in the answer."
         },
         {
           "start": [
@@ -1804,7 +1804,7 @@
             "Dragons defeated: 2"
           ],
           "solution": "A<C-r>=9-7<CR><Esc>",
-          "why": "You wield numbers in battles within Vim."
+          "why": "<C-r>= opens Vim's calculator mid-insert — type the sum, drop in the answer."
         },
         {
           "start": [
@@ -1816,7 +1816,7 @@
             "Planets in the solar system: 8"
           ],
           "solution": "A<C-r>=8<CR><Esc>",
-          "why": "Precision orbits around your input with <C-r>=."
+          "why": "<C-r>= opens Vim's calculator mid-insert — type the sum, drop in the answer."
         },
         {
           "start": [
@@ -1828,7 +1828,7 @@
             "Unicorns ridden: 6"
           ],
           "solution": "A<C-r>=20-14<CR><Esc>",
-          "why": "Leap with calculations mid-gallop using <C-r>=."
+          "why": "<C-r>= opens Vim's calculator mid-insert — type the sum, drop in the answer."
         },
         {
           "start": [
@@ -1840,7 +1840,7 @@
             "Cats needed for world takeover: 81"
           ],
           "solution": "A<C-r>=9*9<CR><Esc>",
-          "why": "<C-r>= evaluates feline power levels instantly."
+          "why": "<C-r>= opens Vim's calculator mid-insert — type the sum, drop in the answer."
         },
         {
           "start": [
@@ -1852,7 +1852,7 @@
             "Cookie stockpile: 10"
           ],
           "solution": "A<C-r>=5*2<CR><Esc>",
-          "why": "Count your cookies without crumbling under pressure."
+          "why": "<C-r>= opens Vim's calculator mid-insert — type the sum, drop in the answer."
         },
         {
           "start": [
@@ -1864,7 +1864,7 @@
             "Bananas in monkey hands: 21"
           ],
           "solution": "A<C-r>=3*7<CR><Esc>",
-          "why": "<C-r>= is your jungle calculator."
+          "why": "<C-r>= opens Vim's calculator mid-insert — type the sum, drop in the answer."
         },
         {
           "start": [
@@ -1876,7 +1876,7 @@
             "Bees in the hive: 36"
           ],
           "solution": "A<C-r>=6*6<CR><Esc>",
-          "why": "Buzz through calculations with <C-r>=."
+          "why": "<C-r>= opens Vim's calculator mid-insert — type the sum, drop in the answer."
         },
         {
           "start": [
@@ -1888,7 +1888,7 @@
             "Hospital floors: 8"
           ],
           "solution": "A<C-r>=3+5<CR><Esc>",
-          "why": "<C-r>= treats number issues immediately."
+          "why": "<C-r>= opens Vim's calculator mid-insert — type the sum, drop in the answer."
         },
         {
           "start": [
@@ -1900,7 +1900,7 @@
             "Pixels per inch: 144"
           ],
           "solution": "A<C-r>=2*72<CR><Esc>",
-          "why": "<C-r>= focuses your pixel precision."
+          "why": "<C-r>= opens Vim's calculator mid-insert — type the sum, drop in the answer."
         },
         {
           "start": [
@@ -1912,7 +1912,7 @@
             "The Empire strikes back... in 49"
           ],
           "solution": "A<C-r>=7*7<CR><Esc>",
-          "why": "<C-r>= makes your calculations as inevitable as destiny."
+          "why": "<C-r>= opens Vim's calculator mid-insert — type the sum, drop in the answer."
         }
       ]
     },
@@ -2007,7 +2007,7 @@
             "RISING: Scorpio (intense)"
           ],
           "solution": "jgUiwj.j.",
-          "why": "gUiw shifts the key astral terms into focus, efficiently repeatable with j."
+          "why": "gUiw uppercases the word as an operator+motion, so j. machine-guns it down the lines."
         }
       ]
     },
@@ -2072,7 +2072,7 @@
             "Hello, Samantha"
           ],
           "solution": "<C-v>jjIHello, <Esc>",
-          "why": "When you need to greet everyone at once, block-I saves the day."
+          "why": "<C-v> carves a column, I types the prefix once, and it stamps onto every line you caught."
         },
         {
           "start": [
@@ -2088,7 +2088,7 @@
             "def bake_pie()"
           ],
           "solution": "<C-v>jjIdef <Esc>",
-          "why": "Block-I effortlessly adds common prefixes across lines."
+          "why": "<C-v> carves a column, I types the prefix once, and it stamps onto every line you caught."
         },
         {
           "start": [
@@ -2104,7 +2104,7 @@
             "// import matplotlib.pyplot as plt"
           ],
           "solution": "<C-v>jjjI// <Esc>",
-          "why": "Block-I lets you quickly prefix lines for commenting."
+          "why": "<C-v> carves a column, I types the prefix once, and it stamps onto every line you caught."
         },
         {
           "start": [
@@ -2120,7 +2120,7 @@
             "[Task] Save game"
           ],
           "solution": "<C-v>jj0I[Task] <Esc>",
-          "why": "Block-I helps transform bland lists into epic tasks in one stroke."
+          "why": "<C-v> carves a column, I types the prefix once, and it stamps onto every line you caught."
         },
         {
           "start": [
@@ -2136,7 +2136,7 @@
             "public java.lang.Double price"
           ],
           "solution": "<C-v>jjjIpublic <Esc>",
-          "why": "Block-I helps you avoid the tedium of manual typing by covering multiple lines."
+          "why": "<C-v> carves a column, I types the prefix once, and it stamps onto every line you caught."
         },
         {
           "start": [
@@ -2152,7 +2152,7 @@
             "[Movie] Spider-Man: No Way Home"
           ],
           "solution": "<C-v>jjI[Movie] <Esc>",
-          "why": "Categorizing becomes concise and universal with Block-I."
+          "why": "<C-v> carves a column, I types the prefix once, and it stamps onto every line you caught."
         }
       ]
     },
@@ -2229,7 +2229,7 @@
             "//#endif"
           ],
           "solution": ":%normal I//<CR>",
-          "why": "Protects code by commenting it all out — protective barriers!"
+          "why": ":%normal fires the same keystrokes at every line at once."
         },
         {
           "start": [
@@ -2245,7 +2245,7 @@
             "# Bread"
           ],
           "solution": ":%normal I# <CR>",
-          "why": "Prepares each item with hashtag level importance."
+          "why": ":%normal fires the same keystrokes at every line at once."
         },
         {
           "start": [
@@ -2261,7 +2261,7 @@
             "gray"
           ],
           "solution": ":2normal Ivery <CR>",
-          "why": "Modifies specified line for extra visual flair."
+          "why": ":2normal runs your keys on just that slice of lines."
         },
         {
           "start": [
@@ -2277,7 +2277,7 @@
             "<< mumble"
           ],
           "solution": ":%normal I<< <CR>",
-          "why": "Directs each word to the left with subtle hierarchy."
+          "why": ":%normal fires the same keystrokes at every line at once."
         },
         {
           "start": [
@@ -2293,7 +2293,7 @@
             "green forest"
           ],
           "solution": ":2,3normal Igreen <CR>",
-          "why": "Provides nature with more eco-friendly expressions."
+          "why": ":2,3normal runs your keys on just that slice of lines."
         },
         {
           "start": [
@@ -2309,7 +2309,7 @@
             "// Nutrition:eatCherries()"
           ],
           "solution": ":%normal I// Nutrition:<CR>",
-          "why": "Introduces a dietary note before every fruit-eating endeavor."
+          "why": ":%normal fires the same keystrokes at every line at once."
         },
         {
           "start": [
@@ -2323,7 +2323,7 @@
             "closeCurtains"
           ],
           "solution": ":1normal Ilet's <CR>",
-          "why": "Only one line invites action with a promising suggestion."
+          "why": ":1normal runs your keys on just that slice of lines."
         },
         {
           "start": [
@@ -2339,7 +2339,7 @@
             "if (snowing) // check forecast"
           ],
           "solution": ":%normal A // check forecast<CR>",
-          "why": "Clarifies all weather checks with a thoughtful suggestion."
+          "why": ":%normal fires the same keystrokes at every line at once."
         }
       ]
     },
@@ -2403,7 +2403,7 @@
             "Goblin"
           ],
           "solution": ":2t0<CR>",
-          "why": ":2t0 replicates the bravery of the Knight by placing him at the start."
+          "why": ":2t0 copies line 2 to the top of the file — the original stays put."
         },
         {
           "start": [
@@ -2420,7 +2420,7 @@
             "Unicorn"
           ],
           "solution": ":3t$<CR>",
-          "why": "Unicorns love to stay at the end of a mystical lineup — :t$ sends them there."
+          "why": ":3t$ copies line 3 to the end of the file — the original stays put."
         },
         {
           "start": [
@@ -2437,7 +2437,7 @@
             "Intergalactic Chinchilla"
           ],
           "solution": ":2t0<CR>",
-          "why": "The cosmic guinea pig insisted on leading the charge."
+          "why": ":2t0 copies line 2 to the top of the file — the original stays put."
         },
         {
           "start": [
@@ -2454,7 +2454,7 @@
             "Potion of Madness"
           ],
           "solution": ":1t$<CR>",
-          "why": "A little madness is often the final touch."
+          "why": ":1t$ copies line 1 to the end of the file — the original stays put."
         },
         {
           "start": [
@@ -2471,7 +2471,7 @@
             "Llama Lullaby"
           ],
           "solution": ":2t.<CR>",
-          "why": ":t. is perfect for those dramatic llama moments."
+          "why": ":2t. copies line 2 to just below the current line — the original stays put."
         },
         {
           "start": [
@@ -2488,7 +2488,7 @@
             "Machine Learning Engineer"
           ],
           "solution": ":3t0<CR>",
-          "why": "Putting engineers up front ensures they build the path forward."
+          "why": ":3t0 copies line 3 to the top of the file — the original stays put."
         },
         {
           "start": [
@@ -2505,7 +2505,7 @@
             "Neon Squash"
           ],
           "solution": ":1t.<CR>",
-          "why": "Quantum potatoes have an uncanny ability to multiply."
+          "why": ":1t. copies line 1 to just below the current line — the original stays put."
         },
         {
           "start": [
@@ -2522,7 +2522,7 @@
             "Candy Corn"
           ],
           "solution": ":2t$<CR>",
-          "why": "Candies have a way of sweetening the end :t$ makes it happen."
+          "why": ":2t$ copies line 2 to the end of the file — the original stays put."
         },
         {
           "start": [
@@ -2539,7 +2539,7 @@
             "Classical"
           ],
           "solution": ":3t1<CR>",
-          "why": "Punk intros love a classical twist to keep things interesting."
+          "why": ":3t1 copies line 3 to below line 1 — the original stays put."
         },
         {
           "start": [
@@ -2556,7 +2556,7 @@
             "Nachos"
           ],
           "solution": ":1t0<CR>",
-          "why": "Nothing says 'party starter' like two scoops of Mango Salsa."
+          "why": ":1t0 copies line 1 to the top of the file — the original stays put."
         },
         {
           "start": [
@@ -2573,7 +2573,7 @@
             "Rising Sun"
           ],
           "solution": ":2t3<CR>",
-          "why": "Sunrises are known for appearing in unexpected places."
+          "why": ":2t3 copies line 2 to below line 3 — the original stays put."
         }
       ]
     },
@@ -2638,7 +2638,7 @@
             "Voldemort's nose"
           ],
           "solution": ":1m$<CR>",
-          "why": ":m$ pulls the line to last place without dark magic."
+          "why": ":1m$ lifts line 1 to the end of the file — no yank, no paste."
         },
         {
           "start": [
@@ -2656,7 +2656,7 @@
             "2. It shall not end until my death."
           ],
           "solution": ":3m0<CR>",
-          "why": ":m0 places the critical beginning up front."
+          "why": ":3m0 lifts line 3 to the top of the file — no yank, no paste."
         },
         {
           "start": [
@@ -2674,7 +2674,7 @@
             "Schrödinger's deprived feline"
           ],
           "solution": ":3m0<CR>",
-          "why": ":m0 helps your paradoxical intro leap to prominence."
+          "why": ":3m0 lifts line 3 to the top of the file — no yank, no paste."
         },
         {
           "start": [
@@ -2692,7 +2692,7 @@
             "Eureka!"
           ],
           "solution": ":2m$<CR>",
-          "why": ":m$ makes Eureka pack a punch at the end."
+          "why": ":2m$ lifts line 2 to the end of the file — no yank, no paste."
         },
         {
           "start": [
@@ -2710,7 +2710,7 @@
             "3. Duel with a dragon"
           ],
           "solution": ":3m0<CR>",
-          "why": ":m0 ensures the wardrobe adventure is front and center."
+          "why": ":3m0 lifts line 3 to the top of the file — no yank, no paste."
         }
       ]
     },
@@ -2854,7 +2854,7 @@
             "kiwi"
           ],
           "solution": ":sort<CR>",
-          "why": ":sort is much quicker than juggling fruit names yourself."
+          "why": ":sort alphabetizes the lines — no dragging them around by hand."
         },
         {
           "start": [
@@ -2872,7 +2872,7 @@
             "zebra 99"
           ],
           "solution": ":sort n<CR>",
-          "why": "Sorting by numbers places the 5-ton elephant before the showy zebra."
+          "why": ":sort n reads the numbers AS numbers, so 9 lands before 80, not after."
         },
         {
           "start": [
@@ -2889,7 +2889,7 @@
             "TODO: Nuclear fusion"
           ],
           "solution": ":sort u<CR>",
-          "why": "We don't need two laundries; :sort u cleans that right up."
+          "why": ":sort u sorts AND drops the duplicates in one pass."
         },
         {
           "start": [
@@ -2909,7 +2909,7 @@
             "quack"
           ],
           "solution": ":sort<CR>",
-          "why": "Orderly :sort alphabetizes your barnyard noise orchestra."
+          "why": ":sort alphabetizes the lines — no dragging them around by hand."
         },
         {
           "start": [
@@ -2927,7 +2927,7 @@
             "walk the turtle 12"
           ],
           "solution": ":sort n<CR>",
-          "why": "Align tasks by priority, unless meteor-dodging is an art form."
+          "why": ":sort n reads the numbers AS numbers, so 9 lands before 80, not after."
         },
         {
           "start": [
@@ -2947,7 +2947,7 @@
             "ninja"
           ],
           "solution": ":sort!<CR>",
-          "why": "Reverse :-sort! marches your parade of chaotic archetypes backward."
+          "why": ":sort! flips it — sorted, but top-to-bottom reversed."
         },
         {
           "start": [
@@ -2965,7 +2965,7 @@
             "20 Enchantress"
           ],
           "solution": ":sort n<CR>",
-          "why": "In numerical fantasy drafts, Giants stomp their way ahead of the Enchantress."
+          "why": ":sort n reads the numbers AS numbers, so 9 lands before 80, not after."
         },
         {
           "start": [
@@ -2981,7 +2981,7 @@
             "train llama"
           ],
           "solution": ":sort u<CR>",
-          "why": "Too many muffins spoil the focus; sort u keeps you lean."
+          "why": ":sort u sorts AND drops the duplicates in one pass."
         },
         {
           "start": [
@@ -2999,7 +2999,7 @@
             "456 Unicorn"
           ],
           "solution": ":sort n<CR>",
-          "why": "When numbers call the dance, 20 taps ahead of 456."
+          "why": ":sort n reads the numbers AS numbers, so 9 lands before 80, not after."
         },
         {
           "start": [
@@ -3016,7 +3016,7 @@
             "yak"
           ],
           "solution": ":sort u<CR>",
-          "why": "Once you nap once, your sorting u slumbers"
+          "why": ":sort u sorts AND drops the duplicates in one pass."
         },
         {
           "start": [
@@ -3034,7 +3034,7 @@
             "samba 10"
           ],
           "solution": ":sort n<CR>",
-          "why": "Starting with a waltz, you maintain numerical synchronization."
+          "why": ":sort n reads the numbers AS numbers, so 9 lands before 80, not after."
         },
         {
           "start": [
@@ -3052,7 +3052,7 @@
             "run 99"
           ],
           "solution": ":sort n<CR>",
-          "why": "Numbers first — let's not rush the crawl with :sort n."
+          "why": ":sort n reads the numbers AS numbers, so 9 lands before 80, not after."
         },
         {
           "start": [
@@ -3069,7 +3069,7 @@
             "tomato"
           ],
           "solution": ":sort u<CR>",
-          "why": "With :sort u, you're not guac-blocked by repeats."
+          "why": ":sort u sorts AND drops the duplicates in one pass."
         },
         {
           "start": [
@@ -3089,7 +3089,7 @@
             "mumble"
           ],
           "solution": ":sort!<CR>",
-          "why": "With :sort!, your whispers will amplify last."
+          "why": ":sort! flips it — sorted, but top-to-bottom reversed."
         }
       ]
     },
@@ -3409,7 +3409,7 @@
             5
           ],
           "solution": "^",
-          "why": "^ zips past the fluff to real text."
+          "why": "^ skips the indent and lands on the first real character."
         },
         {
           "start": [
@@ -3428,7 +3428,7 @@
             7
           ],
           "solution": "G$",
-          "why": "$ skips to the juicy part—er, end."
+          "why": "G dives to the last line, $ rides it to the end."
         },
         {
           "start": [
@@ -3446,7 +3446,7 @@
             1
           ],
           "solution": "G0",
-          "why": "G lands on the first non-blank; 0 then snaps to column one."
+          "why": "G dives to the last line, 0 pins column one."
         },
         {
           "start": [
@@ -3465,7 +3465,7 @@
             1
           ],
           "solution": "2G0",
-          "why": "2G lands on the first non-blank; 0 reaches true column one."
+          "why": "2G jumps to line 2, 0 pins column one."
         },
         {
           "start": [
@@ -3483,7 +3483,7 @@
             23
           ],
           "solution": "G$",
-          "why": "$ captures completeness, like Snorlax's nap."
+          "why": "G dives to the last line, $ rides it to the end."
         },
         {
           "start": [
@@ -3501,7 +3501,7 @@
             1
           ],
           "solution": "G0",
-          "why": "0 brings you to the core of mystery."
+          "why": "G dives to the last line, 0 pins column one."
         },
         {
           "start": [
@@ -3518,7 +3518,7 @@
             1
           ],
           "solution": "0",
-          "why": "0 holds the gravitational pull to column one."
+          "why": "0 snaps to column one, indent and all."
         },
         {
           "start": [
@@ -3536,7 +3536,7 @@
             19
           ],
           "solution": "$",
-          "why": "$ leaps to the edge of curiosity."
+          "why": "$ shoots to the end of the line."
         },
         {
           "start": [
@@ -3553,7 +3553,7 @@
             1
           ],
           "solution": "^",
-          "why": "^ starts the brew, skipping gaps."
+          "why": "^ skips the indent and lands on the first real character."
         },
         {
           "start": [
@@ -3572,7 +3572,7 @@
             5
           ],
           "solution": "j^",
-          "why": "^ conjures magic by aligning on essentials."
+          "why": "j drops a line, ^ lands on its first real character."
         },
         {
           "start": [
@@ -3591,7 +3591,7 @@
             17
           ],
           "solution": "2G$",
-          "why": "$ reaches the line end no matter how long the line is."
+          "why": "2G jumps to line 2, $ rides to its end."
         },
         {
           "start": [
@@ -3609,7 +3609,7 @@
             5
           ],
           "solution": "j^",
-          "why": "^ knows the frosting from the fluff."
+          "why": "j drops a line, ^ lands on its first real character."
         },
         {
           "start": [
@@ -3630,7 +3630,7 @@
             1
           ],
           "solution": "3G0",
-          "why": "0 starts the action by snapping to column one."
+          "why": "3G jumps to line 3, 0 pins column one."
         }
       ]
     },
@@ -3981,7 +3981,7 @@
             3
           ],
           "solution": "/Unicorn<CR>",
-          "why": "A quick /Unicorn zips you to legendary groceries."
+          "why": "/Unicorn flies straight to the next line with 'Unicorn' in it."
         },
         {
           "start": [
@@ -4000,7 +4000,7 @@
             14
           ],
           "solution": "/Swordfish<CR>",
-          "why": "/Swordfish is precise for sensitive info retrieval."
+          "why": "/Swordfish jumps right to the next 'Swordfish' line."
         },
         {
           "start": [
@@ -4452,6 +4452,7 @@
             "",
             "Milkshake"
           ],
+          "yank": "Cheese\nPickles\nHam\n",
           "solution": "yip",
           "why": "yip grabs the inner paragraph text for future use."
         },
@@ -4518,6 +4519,7 @@
             "",
             "Delivery: Neverland"
           ],
+          "yank": "Order: KD12345\nItems: 20 Platypuses\n",
           "solution": "yip",
           "why": "yip grabs the paragraph's contents, ready to paste or duplicate."
         },
@@ -4588,6 +4590,7 @@
             "",
             "Bridge"
           ],
+          "yank": "Chess\nCheckers\nGo\n",
           "solution": "yip",
           "why": "yip copies the list of games for future strategizing."
         },
@@ -4692,7 +4695,7 @@
             1
           ],
           "solution": "%",
-          "why": "With %, dictionaries open gracefully and close symmetrically."
+          "why": "% leaps from a bracket straight to its partner."
         }
       ]
     },
@@ -4743,7 +4746,7 @@
             "Her majesty's fez, and an imaginary crown."
           ],
           "solution": "fhd/fez<CR>",
-          "why": "d/ creates room for a fez-focused fashion statement."
+          "why": "d/pat deletes everything from the cursor up to the next match — aim by search, not by counting."
         },
         {
           "start": [
@@ -4755,7 +4758,7 @@
             "rat, wearing a tiny wizard hat."
           ],
           "solution": "d/rat<CR>",
-          "why": "d/ enables surgical removal of feline narratives."
+          "why": "d/pat deletes everything from the cursor up to the next match — aim by search, not by counting."
         },
         {
           "start": [
@@ -4767,7 +4770,7 @@
             "pineapple or without, cats with hats or without."
           ],
           "solution": "d/pineapple<CR>",
-          "why": "d/ makes debates as concise as ordering at midnight."
+          "why": "d/pat deletes everything from the cursor up to the next match — aim by search, not by counting."
         }
       ]
     },
@@ -4821,7 +4824,7 @@
             5
           ],
           "solution": "ma2G`a",
-          "why": "`a leaps back to the knight's original spot, precisely where he was whispering about his missing sword."
+          "why": "ma pins the spot; wander off, then `a snaps you right back."
         },
         {
           "start": [
@@ -4841,7 +4844,7 @@
             1
           ],
           "solution": "mjGgg`j",
-          "why": "`j takes you to the spot where the class transitions from black holes being a mystery to misunderstood."
+          "why": "mj pins the spot; wander off, then `j snaps you right back."
         },
         {
           "start": [
@@ -4861,7 +4864,7 @@
             20
           ],
           "solution": "meGk`e",
-          "why": "`e returns to the wizard's point of excitement before his vanishing act."
+          "why": "me pins the spot; wander off, then `e snaps you right back."
         },
         {
           "start": [
@@ -4881,7 +4884,7 @@
             7
           ],
           "solution": "mlG``",
-          "why": "`` lands you smack back at the exact point in the robot's survey logs."
+          "why": "`` flings you back to where you were before the last jump."
         },
         {
           "start": [
@@ -4900,7 +4903,7 @@
             1
           ],
           "solution": "mjG''",
-          "why": "'' snaps back to the unicorn's gallant entry point in the draft."
+          "why": "'' drops you back on the line you jumped from."
         },
         {
           "start": [
@@ -4919,7 +4922,7 @@
             10
           ],
           "solution": "mj2G`j",
-          "why": "`j whisks you back to that crucial potion-pinning spot."
+          "why": "mj pins the spot; wander off, then `j snaps you right back."
         }
       ]
     },
@@ -5054,7 +5057,7 @@
             "toad stool magical room"
           ],
           "solution": "ddp",
-          "why": "A magical sequence needs the enchantment first."
+          "why": "dd cuts the line, p drops it back below — the two swap places."
         },
         {
           "start": [
@@ -5068,7 +5071,7 @@
             "Book: To Kill a Mocking Bird"
           ],
           "solution": "ddp",
-          "why": "Alphabetical jealousy settled."
+          "why": "dd cuts the line, p drops it back below — the two swap places."
         },
         {
           "start": [
@@ -5082,7 +5085,7 @@
             "Tea Coffee Chocolate Milk"
           ],
           "solution": "ddp",
-          "why": "Sequences must respect viral hierarchy."
+          "why": "dd cuts the line, p drops it back below — the two swap places."
         },
         {
           "start": [
@@ -5096,7 +5099,7 @@
             "function escapeDragon"
           ],
           "solution": "ddp",
-          "why": "Prioritize entering before escaping; builds suspense."
+          "why": "dd cuts the line, p drops it back below — the two swap places."
         },
         {
           "start": [
@@ -5110,7 +5113,7 @@
             "Zebra-crossing laws fo traffic"
           ],
           "solution": "ddp",
-          "why": "Logical sequencing dictates harmony."
+          "why": "dd cuts the line, p drops it back below — the two swap places."
         },
         {
           "start": [
@@ -5124,7 +5127,7 @@
             "Coding ninjas sleep code"
           ],
           "solution": "ddp",
-          "why": "A well-codded story flips lines."
+          "why": "dd cuts the line, p drops it back below — the two swap places."
         },
         {
           "start": [
@@ -5138,7 +5141,7 @@
             "Gargantuan tortoise scales"
           ],
           "solution": "ddp",
-          "why": "Visualize ascension with sugar."
+          "why": "dd cuts the line, p drops it back below — the two swap places."
         }
       ]
     },
@@ -5601,7 +5604,7 @@
             "I dare you to try: Trapeze Artist!"
           ],
           "solution": "qaII dare you to try: <Esc>A!<Esc>jq2@a",
-          "why": "With macros, challenging introductions become a breeze."
+          "why": "Record the wrap once, then @a stamps it down every line."
         },
         {
           "start": [
@@ -5633,7 +5636,7 @@
             "**Special Offer: Mega Burger!**"
           ],
           "solution": "qaI**Special Offer: <Esc>A!**<Esc>jq2@a",
-          "why": "Macros help transform mundane lists into exciting promos."
+          "why": "Capture the prefix-and-suffix once; @a echoes it onto each line."
         },
         {
           "start": [
@@ -5649,7 +5652,7 @@
             "***Legend: Bigfoot!?***"
           ],
           "solution": "qaI***Legend: <Esc>A!?***<Esc>jq2@a",
-          "why": "Macros bring thematic uniformity to legendary tales."
+          "why": "@a replays the whole insert verbatim, line after line."
         },
         {
           "start": [
@@ -6037,7 +6040,7 @@
             "mug"
           ],
           "solution": ":%s/teacup\\c/mug/g<CR>",
-          "why": "One \\c to catch all the variants of 'teacup', regardless of case."
+          "why": "\\c makes the pattern shrug off case, catching every CAPS-or-not variant."
         },
         {
           "start": [
@@ -6049,7 +6052,7 @@
             "The dog chased the dog which scared the dog."
           ],
           "solution": ":%s/cat\\c/dog/g<CR>",
-          "why": "The \\c ignores case and fetches all variations of 'cat'."
+          "why": "\\c makes the pattern shrug off case, catching every CAPS-or-not variant."
         },
         {
           "start": [
@@ -6061,7 +6064,7 @@
             "I whisper, you whisper, we all whisper for ice cream!"
           ],
           "solution": ":%s/scream\\c/whisper/g<CR>",
-          "why": "\\c converts every 'scream' regardless of how loud it is in text."
+          "why": "\\c makes the pattern shrug off case, catching every CAPS-or-not variant."
         },
         {
           "start": [
@@ -6073,7 +6076,7 @@
             "Ms. Mystery is not the same as Ms. Mystery, or is she Ms. Mystery?"
           ],
           "solution": ":%s/Dr\\. Susan\\c/Ms. Mystery/g<CR>",
-          "why": "Using \\c ensures every variant of 'Dr. Susan' gets equal treatment."
+          "why": "\\c makes the pattern shrug off case, catching every CAPS-or-not variant."
         },
         {
           "start": [
@@ -6089,7 +6092,7 @@
             "Oh no, the window was left ajar!"
           ],
           "solution": ":%s/door\\c/window/g<CR>",
-          "why": "\\c uniformly alters every 'door', being a master in case diplomacy."
+          "why": "\\c makes the pattern shrug off case, catching every CAPS-or-not variant."
         },
         {
           "start": [
@@ -6105,7 +6108,7 @@
             "Both cocoa AND Tea are fine."
           ],
           "solution": ":%s/coffee\\c/cocoa/g<CR>",
-          "why": "The \\c modifier harmonizes 'coffee' and 'COFFEE' effortlessly."
+          "why": "\\c makes the pattern shrug off case, catching every CAPS-or-not variant."
         },
         {
           "start": [
@@ -6121,7 +6124,7 @@
             "moonlight is refreshing."
           ],
           "solution": ":%s/sun\\c/moon/g<CR>",
-          "why": "\\c facilitates a flawless lunar takeover by suppressing solar discrepancies."
+          "why": "\\c makes the pattern shrug off case, catching every CAPS-or-not variant."
         },
         {
           "start": [
@@ -6137,7 +6140,7 @@
             "Even the little sheep was naughty."
           ],
           "solution": ":%s/lamb\\c/sheep/g<CR>",
-          "why": "\\c handles different 'lamb' cases with a shepherd's touch."
+          "why": "\\c makes the pattern shrug off case, catching every CAPS-or-not variant."
         },
         {
           "start": [
@@ -6153,7 +6156,7 @@
             "An banana a day keeps the doctor away."
           ],
           "solution": ":%s/apple\\c/banana/g<CR>",
-          "why": "A \\c substitution has the neutrality to handle fruit in any case."
+          "why": "\\c makes the pattern shrug off case, catching every CAPS-or-not variant."
         },
         {
           "start": [
@@ -6169,7 +6172,7 @@
             "CAPTAIN SPARROW marooned on a open island."
           ],
           "solution": ":%s/high\\c/open/g<CR>",
-          "why": "\\c allows an unrestricted transformation across different cases."
+          "why": "\\c makes the pattern shrug off case, catching every CAPS-or-not variant."
         },
         {
           "start": [
@@ -6185,7 +6188,7 @@
             "lord fuzzball hides well"
           ],
           "solution": ":%s/mr\\. whiskers\\c/lord fuzzball/g<CR>",
-          "why": "A regal upgrade needs \\c to ensure no whisker is left unturned."
+          "why": "\\c makes the pattern shrug off case, catching every CAPS-or-not variant."
         },
         {
           "start": [
@@ -6201,7 +6204,7 @@
             "wizard snape;"
           ],
           "solution": ":%s/professor\\c/wizard/g<CR>",
-          "why": "The \\c modifier is proficient in converting all forms of 'professor'."
+          "why": "\\c makes the pattern shrug off case, catching every CAPS-or-not variant."
         }
       ]
     },
@@ -6260,7 +6263,7 @@
             "Cracker, Alpaca"
           ],
           "solution": ":%s/\\v(\\w+) (\\w+)/\\2, \\1/<CR>",
-          "why": "Reordering words? Submatch ballet of \\1 and \\2 does it with grace."
+          "why": "The ()s capture pieces; \\1 and \\2 spit them back in whatever order you like."
         },
         {
           "start": [
@@ -6276,7 +6279,7 @@
             "Black Rook"
           ],
           "solution": ":%s/\\v(\\w+):(\\w+)/\\2 \\1/<CR>",
-          "why": "Transformations like \\2 \\1 are the rook to your regex game."
+          "why": "The ()s capture pieces; \\1 and \\2 spit them back in whatever order you like."
         },
         {
           "start": [
@@ -6292,7 +6295,7 @@
             "savory, spicy"
           ],
           "solution": ":%s/\\v(\\w+) (\\w+)/\\2, \\1/<CR>",
-          "why": "Swapping flavors is as easy as swapping \\1 and \\2."
+          "why": "The ()s capture pieces; \\1 and \\2 spit them back in whatever order you like."
         },
         {
           "start": [
@@ -6308,7 +6311,7 @@
             "123 - backflip"
           ],
           "solution": ":%s/\\v(\\w+):(\\d+)/\\2 - \\1/<CR>",
-          "why": "Perfect for transforming with rhythm: \\2 - \\1."
+          "why": "The ()s capture pieces; \\1 and \\2 spit them back in whatever order you like."
         },
         {
           "start": [
@@ -6324,7 +6327,7 @@
             "Task: compile | Priority: 45"
           ],
           "solution": ":%s/\\v(\\w+),(\\d+)/Task: \\1 | Priority: \\2/<CR>",
-          "why": "Glossy output achieved through \\1 and \\2, the dynamic duo."
+          "why": "The ()s capture pieces; \\1 and \\2 spit them back in whatever order you like."
         },
         {
           "start": [
@@ -6338,7 +6341,7 @@
             "Welcome Whiskers to Cat Cafe!"
           ],
           "solution": ":%s/\\v(\\w+ \\w+) - (\\w+)/Welcome \\2 to \\1!/<CR>",
-          "why": "Switch-party using \\1 and \\2 to make pets feel at home."
+          "why": "The ()s capture pieces; \\1 and \\2 spit them back in whatever order you like."
         },
         {
           "start": [
@@ -6352,7 +6355,7 @@
             "member of Sheep Flock"
           ],
           "solution": ":%s/\\v(\\w+ \\w+):(\\w+)/\\2 of \\1<CR>",
-          "why": "\\1 and \\2 power-move roles with locations."
+          "why": "The ()s capture pieces; \\1 and \\2 spit them back in whatever order you like."
         },
         {
           "start": [
@@ -6368,7 +6371,7 @@
             "socks in green"
           ],
           "solution": ":%s/\\v(\\w+) (\\w+)/\\2 in \\1/<CR>",
-          "why": "\\1 and \\2 re-style fashion statements effortlessly."
+          "why": "The ()s capture pieces; \\1 and \\2 spit them back in whatever order you like."
         },
         {
           "start": [
@@ -6384,7 +6387,7 @@
             "flute has 0 strings"
           ],
           "solution": ":%s/\\v(\\w+):(\\d+)/\\1 has \\2 strings<CR>",
-          "why": "Transform dry data into musical prose with \\1 and \\2."
+          "why": "The ()s capture pieces; \\1 and \\2 spit them back in whatever order you like."
         },
         {
           "start": [
@@ -6400,7 +6403,7 @@
             "Haiku: a work by Climber"
           ],
           "solution": ":%s/\\v(\\w+):(\\w+)/\\2: a work by \\1<CR>",
-          "why": "Let \\1 and \\2 introduce literary talent smoothly."
+          "why": "The ()s capture pieces; \\1 and \\2 spit them back in whatever order you like."
         },
         {
           "start": [
@@ -6416,7 +6419,7 @@
             "sweet is the nature of strawberry"
           ],
           "solution": ":%s/\\v(\\w+):(\\w+)/\\2 is the nature of \\1<CR>",
-          "why": "Harness \\1 and \\2 to capture culinary descriptions."
+          "why": "The ()s capture pieces; \\1 and \\2 spit them back in whatever order you like."
         }
       ]
     },
@@ -6467,7 +6470,7 @@
             "begin stop restart startle stoplight"
           ],
           "solution": ":%s/\\v<start>/begin/g<CR>",
-          "why": "Avoid disrupting closely related words mid-transformation."
+          "why": "\\v< > lock onto whole words, so the swap won't chew through a longer word that contains the pattern."
         },
         {
           "start": [
@@ -6479,7 +6482,7 @@
             "moose cowbell cowboy moose tipping"
           ],
           "solution": ":%s/\\v<cow>/moose/g<CR>",
-          "why": "Avoid transforming compound words unexpectedly."
+          "why": "\\v< > lock onto whole words, so the swap won't chew through a longer word that contains the pattern."
         },
         {
           "start": [
@@ -6493,7 +6496,7 @@
             "end submenu end"
           ],
           "solution": ":%s/\\v<menu>/start/g<CR>",
-          "why": "Preserve the integrity of words containing 'menu' as a substring."
+          "why": "\\v< > lock onto whole words, so the swap won't chew through a longer word that contains the pattern."
         },
         {
           "start": [
@@ -6505,7 +6508,7 @@
             "spider anteater antics spider antelope"
           ],
           "solution": ":%s/\\v<ant>/spider/g<CR>",
-          "why": "We want spiders, not rewriting anteaters or antics!"
+          "why": "\\v< > lock onto whole words, so the swap won't chew through a longer word that contains the pattern."
         },
         {
           "start": [
@@ -6517,7 +6520,7 @@
             "dock portrait import export portal"
           ],
           "solution": ":%s/\\v<port>/dock/g<CR>",
-          "why": "Change the dock, not the composition or the gates."
+          "why": "\\v< > lock onto whole words, so the swap won't chew through a longer word that contains the pattern."
         },
         {
           "start": [
@@ -6529,7 +6532,7 @@
             "tree logger prologue dialogue logging"
           ],
           "solution": ":%s/\\v<log>/tree/g<CR>",
-          "why": "Transform individual logs without touching compound words."
+          "why": "\\v< > lock onto whole words, so the swap won't chew through a longer word that contains the pattern."
         },
         {
           "start": [
@@ -6541,7 +6544,7 @@
             "stone bricklayer brisk bricked unbrick"
           ],
           "solution": ":%s/\\v<brick>/stone/g<CR>",
-          "why": "Focus on isolated bricks for precise masonry."
+          "why": "\\v< > lock onto whole words, so the swap won't chew through a longer word that contains the pattern."
         },
         {
           "start": [
@@ -6555,7 +6558,7 @@
             "football basketball cube"
           ],
           "solution": ":%s/\\v<ball>/cube/g<CR>",
-          "why": "Isolate 'ball' transformations, skipping over compound spheres."
+          "why": "\\v< > lock onto whole words, so the swap won't chew through a longer word that contains the pattern."
         },
         {
           "start": [
@@ -6567,7 +6570,7 @@
             "recipe decode encode codex coding"
           ],
           "solution": ":%s/\\v<code>/recipe/g<CR>",
-          "why": "Target specific 'code' entities, not the complex systems."
+          "why": "\\v< > lock onto whole words, so the swap won't chew through a longer word that contains the pattern."
         },
         {
           "start": [
@@ -6579,7 +6582,7 @@
             "parade marching marchers demarche parade"
           ],
           "solution": ":%s/\\v<march>/parade/g<CR>",
-          "why": "Ensure transformation of solo marches without affecting longer terms."
+          "why": "\\v< > lock onto whole words, so the swap won't chew through a longer word that contains the pattern."
         },
         {
           "start": [
@@ -6593,7 +6596,7 @@
             "bobcat catnip panther"
           ],
           "solution": ":%s/\\v<cat>/panther/g<CR>",
-          "why": "Careful substitution avoids disturbing long words on a whim."
+          "why": "\\v< > lock onto whole words, so the swap won't chew through a longer word that contains the pattern."
         }
       ]
     },
@@ -6632,7 +6635,7 @@
             "Dracula's cape is black like a moonless brilliance"
           ],
           "solution": ":%s/moonless \\zsnight/brilliance/<CR>",
-          "why": "\\zs allows you to transform just 'night', keeping 'moonless' for dramatic effect."
+          "why": "\\zs marks where the match really starts, so only the tail gets replaced."
         },
         {
           "start": [
@@ -6644,7 +6647,7 @@
             "The secret code is fizzbuzzmagic for extra confusion"
           ],
           "solution": ":%s/fizzbuzz\\zsfuzz/magic/<CR>",
-          "why": "\\zs modifies just 'fuzz', keeping 'fizzbuzz' safely hidden."
+          "why": "\\zs marks where the match really starts, so only the tail gets replaced."
         },
         {
           "start": [
@@ -6656,7 +6659,7 @@
             "We love icecreamsandwich so much"
           ],
           "solution": ":%s/icecream\\zscake/sandwich/<CR>",
-          "why": "Preserve the 'icecream', swap the 'cake' — all thanks to \\zs."
+          "why": "\\zs marks where the match really starts, so only the tail gets replaced."
         },
         {
           "start": [
@@ -6668,7 +6671,7 @@
             "Potion: Snake essence with dragon tears"
           ],
           "solution": ":%s/Snake \\zsvenom/essence/<CR>",
-          "why": "\\zs lets you keep 'Snake', while 'venom' magically changes."
+          "why": "\\zs marks where the match really starts, so only the tail gets replaced."
         },
         {
           "start": [
@@ -6680,7 +6683,7 @@
             "The art of quantum physics takes decades"
           ],
           "solution": ":%s/quantum \\zssarcasm/physics/<CR>",
-          "why": "\\zs focuses the swap on the 'sarcasm', not the 'quantum'."
+          "why": "\\zs marks where the match really starts, so only the tail gets replaced."
         },
         {
           "start": [
@@ -6692,7 +6695,7 @@
             "Mandrake screams in botanic aria"
           ],
           "solution": ":%s/botanic \\zsconcert/aria/<CR>",
-          "why": "Thanks to \\zs, 'concert' changes to 'aria', while 'botanic' stays for harmony."
+          "why": "\\zs marks where the match really starts, so only the tail gets replaced."
         }
       ]
     },
@@ -6755,7 +6758,7 @@
             "OK dog on the log"
           ],
           "solution": "/ERR<CR>cgnOK<Esc>..",
-          "why": "gn lets you focus on each battle without repetition."
+          "why": "cgn nails the first match; then . keeps landing the same change down the line."
         },
         {
           "start": [
@@ -6777,7 +6780,7 @@
             "}"
           ],
           "solution": "/cloudy<CR>cgnsunny<Esc>.",
-          "why": "cgn pins the first change, dot delivers the others."
+          "why": "cgn nails the first match; then . keeps landing the same change down the line."
         },
         {
           "start": [
@@ -6793,7 +6796,7 @@
             "rusty spoon"
           ],
           "solution": "/shiny<CR>cgnrusty<Esc>..",
-          "why": "cgn turns first, dot seals the transformation in place."
+          "why": "cgn nails the first match; then . keeps landing the same change down the line."
         },
         {
           "start": [
@@ -6809,7 +6812,7 @@
             "DONE retire on Mars"
           ],
           "solution": "/TODO<CR>cgnDONE<Esc>..",
-          "why": "cgn fixes the first task, while dot completes the list."
+          "why": "cgn nails the first match; then . keeps landing the same change down the line."
         },
         {
           "start": [
@@ -6825,7 +6828,7 @@
             "Ding! It's your phone buzzing!"
           ],
           "solution": "/Ring!<CR>cgnDing!<Esc>..",
-          "why": "cgn and dot replace ring with a new soundscape."
+          "why": "cgn nails the first match; then . keeps landing the same change down the line."
         },
         {
           "start": [
@@ -6841,7 +6844,7 @@
             "The hero flew."
           ],
           "solution": "/Once upon a time, a dragon<CR>cgnThe hero<Esc>..",
-          "why": "cgn sets the scene once, dot lets it unfold everywhere."
+          "why": "cgn nails the first match; then . keeps landing the same change down the line."
         }
       ]
     },
@@ -7081,7 +7084,7 @@
             "ARR Matey"
           ],
           "solution": ":%s/\\v<\\l/\\u&/g<CR>",
-          "why": "Only the lowercase start need a boost - \\u& gets them going."
+          "why": "\\u& caps the first letter of each match."
         },
         {
           "start": [
@@ -7095,21 +7098,7 @@
             "MAPLE syrup"
           ],
           "solution": ":s/.*/\\U& MAN!/<CR>",
-          "why": "Make that lumberjack statement loud with \\U& MAN!."
-        },
-        {
-          "start": [
-            "laugh out loud",
-            "cats have nine lives"
-          ],
-          "par_keys": 16,
-          "hint": "Matching an entire sentence? Lowercase it all.",
-          "goal": [
-            "laugh out loud",
-            "cats have nine lives"
-          ],
-          "solution": ":%s/\\v<.*/\\l&/g<CR>",
-          "why": "Tone down the shouting by forcing it all lowercase."
+          "why": "\\U& SHOUTS the whole match into caps."
         },
         {
           "start": [
@@ -7123,7 +7112,7 @@
             "Soldier SPY"
           ],
           "solution": ":%s/\\v<\\l/\\u&/g<CR>",
-          "why": "Ensure every lowercase leader gets its due title."
+          "why": "\\u& caps the first letter of each match."
         }
       ]
     },
@@ -7192,7 +7181,7 @@
             "Neverland is full of llamas."
           ],
           "solution": ":%s/Yonderland/Neverland/gc<CR>nyn",
-          "why": "Confirming lets you delicately balance your fantasy worlds."
+          "why": "The c flag pops a y/n at each match, so you wave the good ones through and skip the rest."
         }
       ]
     },
@@ -7255,7 +7244,7 @@
             "broomstick: 15"
           ],
           "solution": ":%s/\\v\\d+/\\=submatch(0)*3/<CR>",
-          "why": "Multiplying by 3 makes your magical inventory more powerful."
+          "why": "\\= runs a little expression per match — submatch(0) is the number it found, and the result drops back in."
         },
         {
           "start": [
@@ -7271,7 +7260,7 @@
             "level 10"
           ],
           "solution": ":%s/\\v\\d+/\\=submatch(0)-5/<CR>",
-          "why": "Subtracting 5 from each level calms down the adventure."
+          "why": "\\= runs a little expression per match — submatch(0) is the number it found, and the result drops back in."
         },
         {
           "start": [
@@ -7287,7 +7276,7 @@
             "bananas 4"
           ],
           "solution": ":%s/\\v\\d+/\\=submatch(0)-1/g<CR>",
-          "why": "Subtracting 1 accounts for the sneaky fruit thief."
+          "why": "\\= runs a little expression per match — submatch(0) is the number it found, and the result drops back in."
         },
         {
           "start": [
@@ -7301,7 +7290,7 @@
             "phoenix power level 80"
           ],
           "solution": ":%s/\\v\\d+/\\=submatch(0)+20/<CR>",
-          "why": "Adding 20 intensifies the legendary creature's prowess."
+          "why": "\\= runs a little expression per match — submatch(0) is the number it found, and the result drops back in."
         },
         {
           "start": [
@@ -7317,7 +7306,7 @@
             "lap 13"
           ],
           "solution": ":%s/\\v\\d+/\\=submatch(0)+1/g<CR>",
-          "why": "Bumping each lap number motivates increased endurance."
+          "why": "\\= runs a little expression per match — submatch(0) is the number it found, and the result drops back in."
         },
         {
           "start": [
@@ -7333,7 +7322,7 @@
             "fish 200g"
           ],
           "solution": ":%s/\\v\\d+/\\=submatch(0)-100/g<CR>",
-          "why": "Subtracting 100 grams trims down the meaty indulgence."
+          "why": "\\= runs a little expression per match — submatch(0) is the number it found, and the result drops back in."
         },
         {
           "start": [
@@ -7349,7 +7338,7 @@
             "episode -15"
           ],
           "solution": ":%s/\\v\\d+/\\=submatch(0)*(-1)/g<CR>",
-          "why": "Using \\= with negative multiplication flips expectations."
+          "why": "\\= runs a little expression per match — submatch(0) is the number it found, and the result drops back in."
         },
         {
           "start": [
@@ -7365,7 +7354,7 @@
             "quest 16.5 gold"
           ],
           "solution": ":%s/\\v\\d+/\\=submatch(0)*1.1/g<CR>",
-          "why": "A 10% bump buys better swords for the adventurers."
+          "why": "\\= runs a little expression per match — submatch(0) is the number it found, and the result drops back in."
         },
         {
           "start": [
@@ -7381,7 +7370,7 @@
             "book 3 edition 6"
           ],
           "solution": ":%s/\\v\\d+$/\\=submatch(0)+1/g<CR>",
-          "why": "Incrementing the edition makes readers think it's all brand new."
+          "why": "\\= runs a little expression per match — submatch(0) is the number it found, and the result drops back in."
         },
         {
           "start": [
@@ -7395,7 +7384,7 @@
             "vampire sighting 20"
           ],
           "solution": ":%s/\\v\\d+/\\=submatch(0)-5/g<CR>",
-          "why": "Subtracting 5 reduces the drama in your monster report."
+          "why": "\\= runs a little expression per match — submatch(0) is the number it found, and the result drops back in."
         },
         {
           "start": [
@@ -7411,7 +7400,7 @@
             "page 50"
           ],
           "solution": ":%s/\\v\\d+/\\=submatch(0)-10/g<CR>",
-          "why": "Editing pages this way reduces incongruous page jumps."
+          "why": "\\= runs a little expression per match — submatch(0) is the number it found, and the result drops back in."
         },
         {
           "start": [
@@ -7427,7 +7416,7 @@
             "dagger 17 sharpness"
           ],
           "solution": ":%s/\\v\\d+/\\=submatch(0)+10/g<CR>",
-          "why": "Adding 10 steps up your armory readiness by making weapons formidable."
+          "why": "\\= runs a little expression per match — submatch(0) is the number it found, and the result drops back in."
         },
         {
           "start": [
@@ -7443,7 +7432,7 @@
             "fern: 50"
           ],
           "solution": ":%s/\\v\\d+/\\=submatch(0)-100/g<CR>",
-          "why": "A 100-plant reduction aids your quest for minimalist gardening."
+          "why": "\\= runs a little expression per match — submatch(0) is the number it found, and the result drops back in."
         }
       ]
     },
@@ -7494,7 +7483,7 @@
             "My turtle jumps"
           ],
           "solution": ":s/sprints/jumps/<CR>g&",
-          "why": "g& lets us apply that energetic substitution across the whole zoo."
+          "why": "g& replays your last :s — same pattern, same flags — across the whole file."
         },
         {
           "start": [
@@ -7510,7 +7499,7 @@
             "The carrot is short"
           ],
           "solution": ":s/long/short/<CR>g&",
-          "why": "We lifted all the root vegetable's spirits with that g&."
+          "why": "g& replays your last :s — same pattern, same flags — across the whole file."
         },
         {
           "start": [
@@ -7526,7 +7515,7 @@
             "Reward a unicorn trainer"
           ],
           "solution": ":s/dragon/unicorn/<CR>g&",
-          "why": "g& lets our magical staffing needs adjust with ease."
+          "why": "g& replays your last :s — same pattern, same flags — across the whole file."
         },
         {
           "start": [
@@ -7542,7 +7531,7 @@
             "I secretly hate broccoli"
           ],
           "solution": ":s/love/hate/<CR>g&",
-          "why": "g& helps us reveal our true culinary biases seamlessly."
+          "why": "g& replays your last :s — same pattern, same flags — across the whole file."
         },
         {
           "start": [
@@ -7558,7 +7547,7 @@
             "INFO: Planet getting found"
           ],
           "solution": ":s/File not/Planet getting/<CR>g&",
-          "why": "g& turns our earthly errors into interstellar success."
+          "why": "g& replays your last :s — same pattern, same flags — across the whole file."
         },
         {
           "start": [
@@ -7574,7 +7563,7 @@
             "The tired brown hedgehog"
           ],
           "solution": ":s/fox/hedgehog/<CR>g&",
-          "why": "g& ensures all the villagers meet Mr. Hedgehog now."
+          "why": "g& replays your last :s — same pattern, same flags — across the whole file."
         },
         {
           "start": [
@@ -7590,7 +7579,7 @@
             "This is a scary vampire story"
           ],
           "solution": ":s/spooky/scary/<CR>g&",
-          "why": "g& turns the suspense dial to 11 with minimal effort."
+          "why": "g& replays your last :s — same pattern, same flags — across the whole file."
         },
         {
           "start": [
@@ -7606,7 +7595,7 @@
             "I found a silver gem"
           ],
           "solution": ":s/nugget/gem/<CR>g&",
-          "why": "g& lets us upgrade all our findings simultaneously."
+          "why": "g& replays your last :s — same pattern, same flags — across the whole file."
         },
         {
           "start": [
@@ -7622,7 +7611,7 @@
             "The cool before the storm"
           ],
           "solution": ":s/calm/cool/<CR>g&",
-          "why": "g& is the ultimate cool-button for word transformations."
+          "why": "g& replays your last :s — same pattern, same flags — across the whole file."
         },
         {
           "start": [
@@ -7638,7 +7627,7 @@
             "Ogres eat cakes"
           ],
           "solution": ":s/onions/cakes/<CR>g&",
-          "why": "g& ensures Ogres now have a sweet tooth universally."
+          "why": "g& replays your last :s — same pattern, same flags — across the whole file."
         },
         {
           "start": [
@@ -7654,7 +7643,7 @@
             "The sorcerer cast a fireball"
           ],
           "solution": ":s/spell/fireball/<CR>g&",
-          "why": "g& amplifies our magical prowess across the board."
+          "why": "g& replays your last :s — same pattern, same flags — across the whole file."
         },
         {
           "start": [
@@ -7670,7 +7659,7 @@
             "Licorice is sweet"
           ],
           "solution": ":s/tasty/sweet/<CR>g&",
-          "why": "g& makes sure every candy gets sweet recognition."
+          "why": "g& replays your last :s — same pattern, same flags — across the whole file."
         },
         {
           "start": [
@@ -7686,7 +7675,7 @@
             "They love blue shoes"
           ],
           "solution": ":s/pink/blue/<CR>g&",
-          "why": "g& dresses the entire buffer in style with ease."
+          "why": "g& replays your last :s — same pattern, same flags — across the whole file."
         },
         {
           "start": [
@@ -7702,7 +7691,7 @@
             "The hawk flies low"
           ],
           "solution": ":s/high/low/<CR>g&",
-          "why": "g& grounds all our avian friends in record speed."
+          "why": "g& replays your last :s — same pattern, same flags — across the whole file."
         },
         {
           "start": [
@@ -7718,7 +7707,7 @@
             "Cereal is soggy"
           ],
           "solution": ":s/crunchy/soggy/<CR>g&",
-          "why": "g& unfolds the soggy conspiracy across the menu."
+          "why": "g& replays your last :s — same pattern, same flags — across the whole file."
         }
       ]
     },
@@ -7794,7 +7783,7 @@
             "curious-owl.gif"
           ],
           "solution": ":g/\\.pdf/d<CR>",
-          "why": "Focus your attention on stuff that's not a report!"
+          "why": ":g/pat/d sweeps out every line that matches — gone in one command."
         },
         {
           "start": [
@@ -7811,7 +7800,7 @@
             "learn quantum knitting"
           ],
           "solution": ":g/^todo/d<CR>",
-          "why": "Sometimes you have to resist the urge to prioritize unicorns over quantum physics."
+          "why": ":g/pat/d sweeps out every line that matches — gone in one command."
         },
         {
           "start": [
@@ -7827,7 +7816,7 @@
             "knight.data"
           ],
           "solution": ":v/\\.data/d<CR>",
-          "why": "Who needs castles when you have data?"
+          "why": ":v/pat/d keeps the matches and bins everything else (the inverse of :g)."
         },
         {
           "start": [
@@ -7844,7 +7833,7 @@
             "ERROR: Dragon loose in lab."
           ],
           "solution": ":v/^ERROR/d<CR>",
-          "why": "Focus on the most serious problems. Gremlins and dragons are no joke!"
+          "why": ":v/pat/d keeps the matches and bins everything else (the inverse of :g)."
         },
         {
           "start": [
@@ -7865,7 +7854,7 @@
             "leopard"
           ],
           "solution": ":g/tiger/d<CR>",
-          "why": "Someone's got to keep the ecosystem balanced."
+          "why": ":g/pat/d sweeps out every line that matches — gone in one command."
         },
         {
           "start": [
@@ -7883,7 +7872,7 @@
             "Cheese: Cheddar"
           ],
           "solution": ":v/^Cheese/d<CR>",
-          "why": "It's grate to focus solely on cheese."
+          "why": ":v/pat/d keeps the matches and bins everything else (the inverse of :g)."
         },
         {
           "start": [
@@ -7902,7 +7891,7 @@
             "defense: castle walls"
           ],
           "solution": ":g/^attack/d<CR>",
-          "why": "Time to strategize defensively and not attack!"
+          "why": ":g/pat/d sweeps out every line that matches — gone in one command."
         },
         {
           "start": [
@@ -7920,7 +7909,7 @@
             "ERROR: Spell mispronounced."
           ],
           "solution": ":g/^INFO/d<CR>",
-          "why": "Focus on more critical and enigmatic happenings!"
+          "why": ":g/pat/d sweeps out every line that matches — gone in one command."
         },
         {
           "start": [
@@ -7940,7 +7929,7 @@
             "peach"
           ],
           "solution": ":g/banana/d<CR>",
-          "why": "Too many bananas can drive a person bananas."
+          "why": ":g/pat/d sweeps out every line that matches — gone in one command."
         },
         {
           "start": [
@@ -7957,7 +7946,7 @@
             "mage.png"
           ],
           "solution": ":v/\\.jpg\\|\\.png/d<CR>",
-          "why": "Because text files and PDFs are hardly photogenic."
+          "why": ":v/pat/d keeps the matches and bins everything else (the inverse of :g)."
         },
         {
           "start": [
@@ -7975,7 +7964,7 @@
             "css_tweaks.css"
           ],
           "solution": ":g/\\.html/d<CR>",
-          "why": "Simplify by sticking to styles and scripts."
+          "why": ":g/pat/d sweeps out every line that matches — gone in one command."
         },
         {
           "start": [
@@ -7995,7 +7984,7 @@
             "Mystic Orb"
           ],
           "solution": ":g/Potion/d<CR>",
-          "why": "Sometimes you need clarity over buffs."
+          "why": ":g/pat/d sweeps out every line that matches — gone in one command."
         },
         {
           "start": [
@@ -8013,7 +8002,7 @@
             "ERROR: Giant spider spotted"
           ],
           "solution": ":v/ERROR/d<CR>",
-          "why": "Gain focus on the calamities at hand!"
+          "why": ":v/pat/d keeps the matches and bins everything else (the inverse of :g)."
         }
       ]
     },
@@ -8090,7 +8079,7 @@
             "ERROR: Potion brewing failed.!!!"
           ],
           "solution": ":g/ERROR/normal A!!!<CR>",
-          "why": "Raises the stakes only for the catastrophic events."
+          "why": ":g/pat/normal runs the same normal-mode combo on each matching line."
         },
         {
           "start": [
@@ -8108,7 +8097,7 @@
             "    boil_water()"
           ],
           "solution": ":g/^def/normal I// TODO: <CR>",
-          "why": "Adds a reminder to revisit every function definition."
+          "why": ":g/pat/normal runs the same normal-mode combo on each matching line."
         },
         {
           "start": [
@@ -8126,7 +8115,7 @@
             "eats fruits, gross"
           ],
           "solution": ":g/eats/normal A, gross<CR>",
-          "why": "Adds a gross note to everything eaten."
+          "why": ":g/pat/normal runs the same normal-mode combo on each matching line."
         },
         {
           "start": [
@@ -8144,7 +8133,7 @@
             "}"
           ],
           "solution": ":g/Mission/normal I// TODO:<CR>",
-          "why": "Targets only the mission-related function calls."
+          "why": ":g/pat/normal runs the same normal-mode combo on each matching line."
         },
         {
           "start": [
@@ -8162,7 +8151,7 @@
             "DRINK: Coffee"
           ],
           "solution": ":g/^FOOD/normal A - yum<CR>",
-          "why": "Expresses delight selectively for edibles."
+          "why": ":g/pat/normal runs the same normal-mode combo on each matching line."
         },
         {
           "start": [
@@ -8182,7 +8171,7 @@
             "]"
           ],
           "solution": ":g/  /normal I// pet: <CR>",
-          "why": "Adds a comment prefix and label to each pet entry."
+          "why": ":g/pat/normal runs the same normal-mode combo on each matching line."
         },
         {
           "start": [
@@ -8200,7 +8189,7 @@
             "Soup: Done"
           ],
           "solution": ":g/Not Done/normal I// <CR>",
-          "why": "Visually suppresses the unfinished task."
+          "why": ":g/pat/normal runs the same normal-mode combo on each matching line."
         },
         {
           "start": [
@@ -8218,7 +8207,7 @@
             "extinguish()"
           ],
           "solution": ":g/^fn/normal A // doc needed<CR>",
-          "why": "Marks functions in need of documentation."
+          "why": ":g/pat/normal runs the same normal-mode combo on each matching line."
         },
         {
           "start": [
@@ -8236,7 +8225,7 @@
             "Widget: Enable"
           ],
           "solution": ":g/Gizmo/normal! I//<Space><CR>",
-          "why": "Applies a comment to only the Gizmos."
+          "why": ":g/pat/normal runs the same normal-mode combo on each matching line."
         },
         {
           "start": [
@@ -8254,7 +8243,7 @@
             "// trackEvent('Account Deleted')"
           ],
           "solution": ":g/trackEvent/normal I// <CR>",
-          "why": "Isolates and comments out log lines."
+          "why": ":g/pat/normal runs the same normal-mode combo on each matching line."
         }
       ]
     },
@@ -8346,7 +8335,7 @@
             "Error: Sparkle overflow"
           ],
           "solution": ":g/^Error:/t$<CR>",
-          "why": ":g//t$ scoops all the Error lines to the end for quick access."
+          "why": ":g/pat/t$ scoops every matching line down to the end — an instant summary."
         },
         {
           "start": [
@@ -8371,7 +8360,7 @@
             "def make_pancakes():"
           ],
           "solution": ":g/^def /t$<CR>",
-          "why": "Quickly consolidate all your function headers for easy review."
+          "why": ":g/pat/t$ scoops every matching line down to the end — an instant summary."
         },
         {
           "start": [
@@ -8391,7 +8380,7 @@
             "55555: Ninja hides"
           ],
           "solution": ":g/: Ninja/t$<CR>",
-          "why": "Put all ninja-related events together for analysis."
+          "why": ":g/pat/t$ scoops every matching line down to the end — an instant summary."
         },
         {
           "start": [
@@ -8414,7 +8403,7 @@
             "- Eggs"
           ],
           "solution": ":g/^- /t$<CR>",
-          "why": "Gather all the bullet points at the bottom for double-checking."
+          "why": ":g/pat/t$ scoops every matching line down to the end — an instant summary."
         },
         {
           "start": [
@@ -8434,7 +8423,7 @@
             "DEBUG: Sock found under couch"
           ],
           "solution": ":g/^DEBUG:/t$<CR>",
-          "why": "Collect debugging information to resolve the missing sock saga."
+          "why": ":g/pat/t$ scoops every matching line down to the end — an instant summary."
         },
         {
           "start": [
@@ -8459,7 +8448,7 @@
             "## Chapter 3: The Redemption"
           ],
           "solution": ":g/^## /t$<CR>",
-          "why": "Create an impromptu chapter list at the bottom."
+          "why": ":g/pat/t$ scoops every matching line down to the end — an instant summary."
         },
         {
           "start": [
@@ -8479,7 +8468,7 @@
             "200: Fairy operational"
           ],
           "solution": ":g/^200:/t$<CR>",
-          "why": "This gathers all the 200 codes, as a clear status summary."
+          "why": ":g/pat/t$ scoops every matching line down to the end — an instant summary."
         },
         {
           "start": [
@@ -8499,7 +8488,7 @@
             "NOTE: Bake backup cupcakes"
           ],
           "solution": ":g/^NOTE:/t$<CR>",
-          "why": "Get a quick list of non-critical notes by duplicating them at the end."
+          "why": ":g/pat/t$ scoops every matching line down to the end — an instant summary."
         },
         {
           "start": [
@@ -8524,7 +8513,7 @@
             "function rescuePrincess()"
           ],
           "solution": ":g/^function /t$<CR>",
-          "why": "Collect function headers for a quick overview of available heroics."
+          "why": ":g/pat/t$ scoops every matching line down to the end — an instant summary."
         },
         {
           "start": [
@@ -8549,7 +8538,7 @@
             "### Task: Concerning levitation"
           ],
           "solution": ":g/^### /t$<CR>",
-          "why": "All tasks are conveniently gathered for the grand wizard’s checklist."
+          "why": ":g/pat/t$ scoops every matching line down to the end — an instant summary."
         },
         {
           "start": [
@@ -8569,7 +8558,7 @@
             "LOG: Refilling cheese"
           ],
           "solution": ":g/^LOG:/t$<CR>",
-          "why": "Log entries consolidated efficiently for fondue support analysis."
+          "why": ":g/pat/t$ scoops every matching line down to the end — an instant summary."
         },
         {
           "start": [
@@ -8589,7 +8578,7 @@
             "REMINDER: Feed the griffins"
           ],
           "solution": ":g/^REMINDER:/t$<CR>",
-          "why": "Keep crucial reminders in focus all at once."
+          "why": ":g/pat/t$ scoops every matching line down to the end — an instant summary."
         },
         {
           "start": [
@@ -8609,7 +8598,7 @@
             "DEBUG: Hyperdrive engaged"
           ],
           "solution": ":g/^DEBUG:/t$<CR>",
-          "why": "Gather debugging lines to track the spaceship's adventurous journey."
+          "why": ":g/pat/t$ scoops every matching line down to the end — an instant summary."
         },
         {
           "start": [
@@ -8629,7 +8618,7 @@
             "ACTION: Capture mermaids"
           ],
           "solution": ":g/^ACTION:/t$<CR>",
-          "why": "Conceptualize all immediate ACTION items by reeling them back in."
+          "why": ":g/pat/t$ scoops every matching line down to the end — an instant summary."
         },
         {
           "start": [
@@ -8654,7 +8643,7 @@
             "### Bug: Cat stuck in a paradox"
           ],
           "solution": ":g/^### Bug:/t$<CR>",
-          "why": "A quick review of all identified bugs for a bug-zapping session."
+          "why": ":g/pat/t$ scoops every matching line down to the end — an instant summary."
         },
         {
           "start": [
@@ -8674,7 +8663,7 @@
             "CHALLENGE: Climb mountiously high"
           ],
           "solution": ":g/^CHALLENGE:/t$<CR>",
-          "why": ":g//t$ helps focus on challenges by collecting them together."
+          "why": ":g/pat/t$ scoops every matching line down to the end — an instant summary."
         }
       ]
     },
@@ -8749,7 +8738,7 @@
             "chef -> bake bread"
           ],
           "solution": ":g/chef/s/:/ ->/<CR>",
-          "why": ":g restricts the changes to lines about chefs, leaving gardeners in blissful ignorance."
+          "why": ":g/pat/s/// aims the substitution at matching lines only — the rest stay put."
         },
         {
           "start": [
@@ -8765,7 +8754,7 @@
             "wizard: prepare potion (magic)"
           ],
           "solution": ":g/wizard/s/$/ (magic)/<CR>",
-          "why": "The command decorates only wizard lines with magical flair."
+          "why": ":g/pat/s/// aims the substitution at matching lines only — the rest stay put."
         },
         {
           "start": [
@@ -8781,7 +8770,7 @@
             "fish: nibble coral [wet]"
           ],
           "solution": ":g/fish/s/$/ [wet]/<CR>",
-          "why": "Lines mentioning fish get a special note about their sogginess."
+          "why": ":g/pat/s/// aims the substitution at matching lines only — the rest stay put."
         },
         {
           "start": [
@@ -8797,7 +8786,7 @@
             "cat: scratch post [purrs]"
           ],
           "solution": ":g/cat/s/$/ [purrs]/<CR>",
-          "why": "Only the cats get the purring treatment, leaving the dogs to their own devices."
+          "why": ":g/pat/s/// aims the substitution at matching lines only — the rest stay put."
         },
         {
           "start": [
@@ -8813,7 +8802,7 @@
             "meeting = review notes"
           ],
           "solution": ":g/meeting/s/:/ =/<CR>",
-          "why": "The command replaces colons with equals on meeting lines to keep things balanced."
+          "why": ":g/pat/s/// aims the substitution at matching lines only — the rest stay put."
         },
         {
           "start": [
@@ -8829,7 +8818,7 @@
             "unicorn: feast on rainbows [majestic]"
           ],
           "solution": ":g/unicorn/s/$/ [majestic]/<CR>",
-          "why": "Majesty is appended only to unicorn actions, because dragons have enough shine."
+          "why": ":g/pat/s/// aims the substitution at matching lines only — the rest stay put."
         },
         {
           "start": [
@@ -8845,7 +8834,7 @@
             "Librarian: catalog new arrivals [quietly]"
           ],
           "solution": ":g/Librarian/s/$/ [quietly]/<CR>",
-          "why": "The word 'quietly' is added to emphasize the librarian's silent prowess."
+          "why": ":g/pat/s/// aims the substitution at matching lines only — the rest stay put."
         },
         {
           "start": [
@@ -8861,7 +8850,7 @@
             "pirate: find buried treasure"
           ],
           "solution": ":g/pirate/s/sail/plunder/<CR>",
-          "why": "The change affects the pirate's seafaring line, giving it a proper piratical flair."
+          "why": ":g/pat/s/// aims the substitution at matching lines only — the rest stay put."
         },
         {
           "start": [
@@ -8877,7 +8866,7 @@
             "robot => recharge"
           ],
           "solution": ":g/robot/s/:/ =>/<CR>",
-          "why": "This gives robot actions a Cyborg-2023 style."
+          "why": ":g/pat/s/// aims the substitution at matching lines only — the rest stay put."
         },
         {
           "start": [
@@ -8893,7 +8882,7 @@
             "zombie: moan loudly [undead]"
           ],
           "solution": ":g/zombie/s/$/ [undead]/<CR>",
-          "why": "The undead status is proudly showcased only on zombie lines."
+          "why": ":g/pat/s/// aims the substitution at matching lines only — the rest stay put."
         },
         {
           "start": [
@@ -8909,7 +8898,7 @@
             "spy = remain undetected"
           ],
           "solution": ":g/spy/s/:/ =/<CR>",
-          "why": "The transformation balances the power dynamics in reconnaissance."
+          "why": ":g/pat/s/// aims the substitution at matching lines only — the rest stay put."
         },
         {
           "start": [
@@ -8925,7 +8914,7 @@
             "alien: decode human technology [extraterrestrial]"
           ],
           "solution": ":g/alien/s/$/ [extraterrestrial]/<CR>",
-          "why": "Aliens get their titles enhanced, keeping farmers earthly."
+          "why": ":g/pat/s/// aims the substitution at matching lines only — the rest stay put."
         },
         {
           "start": [
@@ -8941,7 +8930,7 @@
             "lab rat -> run maze"
           ],
           "solution": ":g/lab rat/s/:/ ->/<CR>",
-          "why": "Lab rats now have a cool direction metaphor."
+          "why": ":g/pat/s/// aims the substitution at matching lines only — the rest stay put."
         },
         {
           "start": [
@@ -8957,7 +8946,7 @@
             "teacher: grade papers [educational]"
           ],
           "solution": ":g/teacher/s/$/ [educational]/<CR>",
-          "why": "The addition acknowledges the teacher's noble quest."
+          "why": ":g/pat/s/// aims the substitution at matching lines only — the rest stay put."
         },
         {
           "start": [
@@ -8973,7 +8962,7 @@
             "rockstar: smash equipment [epic]"
           ],
           "solution": ":g/rockstar/s/$/ [epic]/<CR>",
-          "why": "The adjustment adds flair to the rockstar's lifestyle."
+          "why": ":g/pat/s/// aims the substitution at matching lines only — the rest stay put."
         }
       ]
     },
@@ -9064,7 +9053,7 @@
             "}"
           ],
           "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "It brings order to chaos, without breaking a sweat!"
+          "why": "For every '{', the .+1,/}/-1 range sorts just the guts of the block and leaves the braces alone."
         },
         {
           "start": [
@@ -9094,7 +9083,7 @@
             "}"
           ],
           "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Who knew Vim could make my unrealistic dreams so organized?"
+          "why": "For every '{', the .+1,/}/-1 range sorts just the guts of the block and leaves the braces alone."
         },
         {
           "start": [
@@ -9124,7 +9113,7 @@
             "}"
           ],
           "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Even superheroes need order in their planning."
+          "why": "For every '{', the .+1,/}/-1 range sorts just the guts of the block and leaves the braces alone."
         },
         {
           "start": [
@@ -9154,7 +9143,7 @@
             "}"
           ],
           "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Sorted menus make for less confusing mornings."
+          "why": "For every '{', the .+1,/}/-1 range sorts just the guts of the block and leaves the braces alone."
         },
         {
           "start": [
@@ -9184,7 +9173,7 @@
             "}"
           ],
           "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Because a superhero's life is too hectic for chaos."
+          "why": "For every '{', the .+1,/}/-1 range sorts just the guts of the block and leaves the braces alone."
         },
         {
           "start": [
@@ -9214,7 +9203,7 @@
             "}"
           ],
           "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Bands play in sync; so should their lists."
+          "why": "For every '{', the .+1,/}/-1 range sorts just the guts of the block and leaves the braces alone."
         },
         {
           "start": [
@@ -9244,7 +9233,7 @@
             "}"
           ],
           "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Even in medieval times, order reigned supreme."
+          "why": "For every '{', the .+1,/}/-1 range sorts just the guts of the block and leaves the braces alone."
         },
         {
           "start": [
@@ -9274,7 +9263,7 @@
             "}"
           ],
           "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Who knew dog whisperers needed a tidy registry?"
+          "why": "For every '{', the .+1,/}/-1 range sorts just the guts of the block and leaves the braces alone."
         },
         {
           "start": [
@@ -9304,7 +9293,7 @@
             "}"
           ],
           "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Rock and roll with a side of order, please."
+          "why": "For every '{', the .+1,/}/-1 range sorts just the guts of the block and leaves the braces alone."
         },
         {
           "start": [
@@ -9334,7 +9323,7 @@
             "}"
           ],
           "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "A chef's secret: mise en place in Vim."
+          "why": "For every '{', the .+1,/}/-1 range sorts just the guts of the block and leaves the braces alone."
         },
         {
           "start": [
@@ -9364,7 +9353,7 @@
             "}"
           ],
           "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Dates and jokes both benefit from clever arrangements."
+          "why": "For every '{', the .+1,/}/-1 range sorts just the guts of the block and leaves the braces alone."
         },
         {
           "start": [
@@ -9394,7 +9383,7 @@
             "}"
           ],
           "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "When opinions clash, at least alphabetize."
+          "why": "For every '{', the .+1,/}/-1 range sorts just the guts of the block and leaves the braces alone."
         },
         {
           "start": [
@@ -9424,7 +9413,7 @@
             "}"
           ],
           "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Even wizards need organized spellbooks."
+          "why": "For every '{', the .+1,/}/-1 range sorts just the guts of the block and leaves the braces alone."
         },
         {
           "start": [
@@ -9454,7 +9443,7 @@
             "}"
           ],
           "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Pirate crews should be sorted for mutiny prevention."
+          "why": "For every '{', the .+1,/}/-1 range sorts just the guts of the block and leaves the braces alone."
         },
         {
           "start": [
@@ -9484,7 +9473,7 @@
             "}"
           ],
           "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "In space, everything should be meticulously aligned."
+          "why": "For every '{', the .+1,/}/-1 range sorts just the guts of the block and leaves the braces alone."
         },
         {
           "start": [
@@ -9513,7 +9502,8 @@
             "  The Hound of the Baskervilles;",
             "}"
           ],
-          "solution": ":g/{/.+1,/}/-1 sort<CR>"
+          "solution": ":g/{/.+1,/}/-1 sort<CR>",
+          "why": "For every '{', the .+1,/}/-1 range sorts just the guts of the block and leaves the braces alone."
         }
       ]
     },
@@ -9556,7 +9546,7 @@
             "    transmogrifyWidget"
           ],
           "solution": "jA<C-n><Esc>",
-          "why": "Vim knows 'transmogrifyWidget' is already defined."
+          "why": "<C-n> finishes the word from names already in the buffer — let Vim type it."
         },
         {
           "start": [
@@ -9570,7 +9560,7 @@
             "summonNarwhal"
           ],
           "solution": "jA<C-n><Esc>",
-          "why": "<C-n> autocompletes 'summonNarwhal' from function."
+          "why": "<C-n> finishes the word from names already in the buffer — let Vim type it."
         },
         {
           "start": [
@@ -9584,7 +9574,7 @@
             "themop"
           ],
           "solution": "jA<C-n><Esc>",
-          "why": "<C-n> completes to 'themop', which you already have."
+          "why": "<C-n> finishes the word from names already in the buffer — let Vim type it."
         }
       ]
     },

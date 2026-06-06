@@ -22,6 +22,42 @@ uv run python -m tests.test_grader
 uv run python -m tests.test_engine
 ```
 
+## Workflow
+
+Work on a branch, never directly on `master` — a named branch keeps your pull
+request reviewable and lets you pull upstream changes without conflicts.
+
+1. **Fork** the repo and clone your fork.
+
+2. **Branch, named for the change.** Use a short prefix so the intent is obvious:
+   `fix/` for a bug, `lesson/` for a new or reworked lesson, `feature/` for
+   anything else.
+
+   ```sh
+   git switch -c fix/ctrl-j-quit-counted
+   ```
+
+3. **Make one focused change.** One bug fix or one lesson per branch — small PRs
+   get reviewed and merged faster. Match the surrounding style (the package is
+   stdlib-only; no new dependencies without discussion).
+
+4. **Run both test suites** (commands above) and confirm they pass. If you touched
+   grading behaviour, add a check to `tests/test_grader.py`; if you touched
+   selection/scoring, add one to `tests/test_engine.py`.
+
+5. **Commit in the repo's style** — a short, lowercase, imperative summary with no
+   `type:` prefix, e.g.
+
+   ```
+   count the save keystrokes correctly when Enter sends <NL>
+   ```
+
+   Keep each commit a single logical change; squash noise before pushing.
+
+6. **Push and open a pull request** against `master`. In the description, say what
+   changed and why. For a lesson, paste the **start buffer**, the **goal**, and the
+   **keystrokes** so a reviewer can verify it in one paste.
+
 ## Layout
 
 ```
@@ -36,12 +72,10 @@ src/vimhjkl/
 tests/              # headless grader and engine checks
 ```
 
-The engine is generic: a technique is a **data entry**, never an engine edit.
-
-## Code changes
-
-Keep PRs small and focused, match the surrounding style, and make sure both test
-suites pass. If you change grading behaviour, add a check to `tests/test_grader.py`.
+The engine is generic: a technique is a **data entry**, never an engine edit. A new
+trick should be a lesson in `skills.json`, not a special case in `grader.py` or
+`engine.py` — if you find yourself editing those to teach one specific move, stop
+and reconsider.
 
 ## Adding or fixing a lesson
 

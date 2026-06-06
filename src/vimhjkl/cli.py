@@ -26,7 +26,7 @@ from .engine import (
     pick_challenge, outcome_passed, attempt_abstained, run_attempt,
     reveal_pane_lines, EFFICIENCY_FLOOR,
 )
-from .grader import find_editor
+from .grader import find_editor, display_solution
 
 
 # ---------------------------------------------------------------------------
@@ -107,6 +107,17 @@ def _render_question(skill: Skill, challenge: Challenge) -> None:
                   + tui.c(f"cell (line {challenge.target[0]}, "
                           f"column {challenge.target[1]}), then quit with ", tui.GREEN)
                   + tui.c(":q", tui.BOLD) + tui.c(".", tui.GREEN))
+    elif challenge.yank is not None:
+        # Yank challenge: the buffer doesn't change, so showing an identical
+        # before/after is meaningless — show what the register must end up holding.
+        tui.render_buffer(challenge.start, "BUFFER:", tui.BLUE,
+                          cursor=challenge.start_cursor)
+        print()
+        tui.render_buffer(_yank_lines(challenge.yank),
+                          "GOAL — yank this text into a register:", tui.GREEN)
+        print()
+        print(tui.c("  Yank it (the buffer stays the same), then quit with ", tui.GREEN)
+              + tui.c(":q", tui.BOLD) + tui.c(".", tui.GREEN))
     else:
         tui.render_buffer(challenge.start, "START — edit this:", tui.BLUE)
         print()
@@ -116,8 +127,19 @@ def _render_question(skill: Skill, challenge: Challenge) -> None:
               + tui.c(":wq", tui.BOLD) + tui.c(".", tui.GREEN))
 
 
+def _yank_lines(yank: str) -> list[str]:
+    """The expected register text as display lines.  A linewise yank ends in a
+    newline (its last element is empty) — drop that one trailing blank so the
+    rendered box shows just the yanked lines."""
+    lines = yank.split("\n")
+    if lines and lines[-1] == "":
+        lines = lines[:-1]
+    return lines
+
+
 def _show_task(skill: Skill, challenge: Challenge, mode: str = "learn",
-               rep: Optional[tuple] = None) -> None:
+               rep: Optional[tuple] = None,
+               remaps: Optional[list[dict]] = None) -> None:
     """Present a challenge before launching vim.
 
     ``learn`` / ``practice`` reveal the technique + the move + why up front
@@ -128,7 +150,7 @@ def _show_task(skill: Skill, challenge: Challenge, mode: str = "learn",
     spec = CATEGORIES.get(skill.category)
     tui.banner(_task_title(skill, mode),
                _rep_prefix(rep, spec.blurb if spec else skill.category))
-    _render_task_body(skill, challenge, mode)
+    _render_task_body(skill, challenge, mode, remaps)
     print(tui.rule())
     tui.pause("press any key to launch vim…")
 
@@ -139,7 +161,8 @@ def _task_title(skill: Skill, mode: str) -> str:
     return skill.title if mode != "blind" else _strip_keys_from_title(skill.title)
 
 
-def _render_task_body(skill: Skill, challenge: Challenge, mode: str) -> None:
+def _render_task_body(skill: Skill, challenge: Challenge, mode: str,
+                      remaps: Optional[list[dict]] = None) -> None:
     """The full task screen content (below the banner): mode tag, teach, the
     before/after buffers, and — outside Blind — the move/why/hint/par."""
     reveal = mode != "blind"
@@ -152,15 +175,22 @@ def _render_task_body(skill: Skill, challenge: Challenge, mode: str) -> None:
     _render_question(skill, challenge)
     print()
     if reveal:
-        # Read-and-do: show the idiomatic path before the user drills it.
-        print(tui.c("  the move:  ", tui.CYAN) + tui.c(challenge.solution, tui.BOLD))
+        # Read-and-do: show the idiomatic path before the user drills it (with the
+        # player's own remapped keys, if any).
+        print(tui.c("  the move:  ", tui.CYAN)
+              + tui.c(display_solution(challenge.solution, remaps), tui.BOLD))
         if challenge.why:
             print(tui.c("  why:       " + challenge.why, tui.GREY))
         if challenge.hint:
             print(tui.c("  hint:      " + challenge.hint, tui.YELLOW))
         print(tui.c(f"  par:       {challenge.par_keys} keystrokes", tui.GREY))
     else:
-        print(tui.c("  no hints — recall the move from the before/after alone.",
+        # Blind hides the exact move, but still names the technique family being
+        # drilled (the key_commands) so you know what kind of command is expected
+        # and aren't demoted for solving it off-category (issue #5/#6).
+        if skill.key_commands:
+            print(tui.c("  family:    " + "  ".join(skill.key_commands), tui.GREY))
+        print(tui.c("  no hints — recall the exact move from the before/after.",
                     tui.MAGENTA))
 
 
@@ -201,7 +231,8 @@ def _abstain_action() -> str:
 
 
 def _show_result(record: AttemptRecord, show_moves: bool = True,
-                 mode: str = "learn", rep: Optional[tuple] = None) -> str:
+                 mode: str = "learn", rep: Optional[tuple] = None,
+                 remaps: Optional[list[dict]] = None) -> str:
     r = record.result
     tui.clear()
     if r.aborted:
@@ -215,7 +246,7 @@ def _show_result(record: AttemptRecord, show_moves: bool = True,
         # relaunches the same task in a fresh buffer.
         tui.banner(_task_title(record.skill, mode),
                    _rep_prefix(rep, "you quit — no penalty · here's the task again"))
-        _render_task_body(record.skill, record.challenge, mode)
+        _render_task_body(record.skill, record.challenge, mode, remaps)
         print(tui.rule())
         return _abstain_action()
     tui.banner(record.skill.title, _rep_prefix(rep, "result"))
@@ -235,7 +266,8 @@ def _show_result(record: AttemptRecord, show_moves: bool = True,
     if show_moves and r.keys_typed:
         print(tui.c("  your moves: ", tui.YELLOW) + tui.c(r.keys_typed, tui.BOLD))
     if record.challenge.solution:
-        print(tui.c("  optimal:    ", tui.CYAN) + tui.c(record.challenge.solution, tui.BOLD))
+        print(tui.c("  optimal:    ", tui.CYAN)
+              + tui.c(display_solution(record.challenge.solution, remaps), tui.BOLD))
     if record.challenge.why:
         print(tui.c("  why:        " + record.challenge.why, tui.GREY))
     if record.skill.key_commands:
@@ -251,8 +283,8 @@ def _show_result(record: AttemptRecord, show_moves: bool = True,
 def run_drill(skills: list[Skill], progress: dict, count: int,
               new_gate: Optional[int] = None, mode: str = "learn",
               show_moves: bool = True,
-              escape_aliases: Optional[list[str]] = None,
-              blind_all: bool = False) -> None:
+              blind_all: bool = False,
+              remaps: Optional[list[dict]] = None) -> None:
     if find_editor() is None:
         print(tui.c("No vim or nvim found on PATH — install one, or try "
                     "`--review` for the no-vim flashcards.", tui.RED))
@@ -264,31 +296,76 @@ def run_drill(skills: list[Skill], progress: dict, count: int,
         new_gate = mastery_summary(skills, progress)["new_gate"]
     # Blind mode defaults to recalling what you already know — it never introduces
     # brand-new skills (the pool grows on its own as Learn/Practice/Grind mark
-    # skills seen).  "Blind-all" (cold) opts INTO unseen skills: it bypasses the
-    # difficulty gate and a cold miss marks the skill seen, pulling it into normal
-    # scheduling.
+    # skills seen).  "Blind-all" (cold) is a full sweep for the confident: it pulls
+    # in EVERY skill (no difficulty gate), accepts any path that reaches the goal
+    # (free-form — no ex-command enforcement), runs until you quit rather than
+    # stopping after N, and remembers which skills you've already passed so a
+    # restart shows you the gaps, not the wins (issues #4/#5).
     cold = mode == "blind" and blind_all
-    include_new = mode != "blind" or blind_all
-    selected = select_due_skills(skills, progress, count,
-                                 new_gate=None if cold else new_gate,
-                                 include_new=include_new, rng=random.Random())
-    if not selected:
-        if not include_new:
-            print(tui.c("Nothing to recall yet — play Learn mode first to "
-                        "unlock skills for Blind.", tui.YELLOW))
-        else:
+    if cold:
+        selected, reset = _blind_all_sweep(skills, progress)
+        if not selected:
             print(tui.c("No skills available. Build the curriculum first.", tui.YELLOW))
-        return
-    present = partial(_show_task, mode=mode)
-    review = partial(_show_result, show_moves=show_moves, mode=mode)
+            return
+        if reset:
+            print(tui.c("✦ you've cleared every skill in blind-all — "
+                        "starting a fresh sweep.", tui.GREEN + tui.BOLD))
+            tui.pause()
+    else:
+        include_new = mode != "blind"
+        selected = select_due_skills(skills, progress, count, new_gate=new_gate,
+                                     include_new=include_new, rng=random.Random())
+        if not selected:
+            if not include_new:
+                print(tui.c("Nothing to recall yet — play Learn mode first to "
+                            "unlock skills for Blind.", tui.YELLOW))
+            else:
+                print(tui.c("No skills available. Build the curriculum first.",
+                            tui.YELLOW))
+            return
+    present = partial(_show_task, mode=mode, remaps=remaps)
+    review = partial(_show_result, show_moves=show_moves, mode=mode, remaps=remaps)
     session = DrillSession(skills, progress, present=present, review=review,
                            on_record=lambda: store.save_progress(progress),
-                           escape_aliases=escape_aliases,
                            highlight_target=(mode != "blind"),
-                           reveal_detail=(mode == "learn"))
+                           reveal_detail=(mode == "learn"),
+                           free_form=cold, remaps=remaps)
     summary = session.run(selected)
+    sweep = None
+    if cold:
+        _record_blind_all_cleared(progress, summary)
+        sweep = (len(progress.get("blind_all_cleared", [])), len(skills))
     store.save_progress(progress)
-    _show_summary(summary, skills, progress, mode=mode)
+    _show_summary(summary, skills, progress, mode=mode, sweep=sweep)
+
+
+def _blind_all_sweep(skills: list[Skill], progress: dict) -> tuple[list[Skill], bool]:
+    """The skill list for a blind-all sweep, plus whether the sweep was reset.
+
+    The pool is every skill you haven't yet passed in the current sweep, shuffled.
+    When you've cleared them all, the sweep resets (cleared list emptied) so
+    blind-all never runs dry — the caller shows a "fresh sweep" note on reset.
+    Pure (no I/O) so it stays unit-testable."""
+    cleared = set(progress.get("blind_all_cleared", []))
+    pool = [s for s in skills if s.id not in cleared]
+    reset = False
+    if not pool and skills:
+        progress["blind_all_cleared"] = []
+        pool = list(skills)
+        reset = True
+    random.Random().shuffle(pool)
+    return pool, reset
+
+
+def _record_blind_all_cleared(progress: dict, summary) -> None:
+    """Mark every skill PASSED in this sweep as cleared, so a restart skips it and
+    surfaces the gaps instead.  A failed/abstained skill stays in the pool — the
+    user said they're fine seeing one they didn't pass again."""
+    cleared = set(progress.get("blind_all_cleared", []))
+    for rec in summary.attempts:
+        if rec.passed:
+            cleared.add(rec.skill.id)
+    progress["blind_all_cleared"] = sorted(cleared)
 
 
 # ---------------------------------------------------------------------------
@@ -296,7 +373,8 @@ def run_drill(skills: list[Skill], progress: dict, count: int,
 # ---------------------------------------------------------------------------
 
 def _show_practice_result(record: AttemptRecord, show_moves: bool = True,
-                          mode: str = "practice") -> str:
+                          mode: str = "practice",
+                          remaps: Optional[list[dict]] = None) -> str:
     """Show the graded outcome and ask what to do next.
 
     Returns one of ``"retry"`` / ``"next"`` / ``"quit"``.
@@ -313,7 +391,7 @@ def _show_practice_result(record: AttemptRecord, show_moves: bool = True,
         # relaunches it in a fresh buffer.
         tui.banner(_task_title(record.skill, mode),
                    "you quit — no penalty · here's the task again")
-        _render_task_body(record.skill, record.challenge, mode)
+        _render_task_body(record.skill, record.challenge, mode, remaps)
         print(tui.rule())
         return _abstain_action()
     tui.banner(record.skill.title, "practice · result")
@@ -328,7 +406,8 @@ def _show_practice_result(record: AttemptRecord, show_moves: bool = True,
     if show_moves and r.keys_typed:
         print(tui.c("  your moves: ", tui.YELLOW) + tui.c(r.keys_typed, tui.BOLD))
     if record.challenge.solution:
-        print(tui.c("  optimal:    ", tui.CYAN) + tui.c(record.challenge.solution, tui.BOLD))
+        print(tui.c("  optimal:    ", tui.CYAN)
+              + tui.c(display_solution(record.challenge.solution, remaps), tui.BOLD))
     if record.challenge.why:
         print(tui.c("  why:        " + record.challenge.why, tui.GREY))
     print(tui.rule())
@@ -350,7 +429,7 @@ def _show_practice_result(record: AttemptRecord, show_moves: bool = True,
 
 def run_practice(skills: list[Skill], progress: dict, count: int,
                  show_moves: bool = True,
-                 escape_aliases: Optional[list[str]] = None) -> None:
+                 remaps: Optional[list[dict]] = None) -> None:
     if find_editor() is None:
         print(tui.c("No vim or nvim found on PATH — install one, or try "
                     "`--review` for the no-vim flashcards.", tui.RED))
@@ -381,12 +460,13 @@ def run_practice(skills: list[Skill], progress: dict, count: int,
         # task itself, so its retry relaunches the SAME buffer (no double-present).
         while True:
             if present_next:
-                _show_task(skill, challenge, mode="practice")
+                _show_task(skill, challenge, mode="practice", remaps=remaps)
             present_next = True
             result = run_attempt(challenge, skill.category,
-                                 escape_aliases=escape_aliases,
                                  highlight_target=True,
-                                 goal_extra=reveal_pane_lines(skill, challenge))
+                                 goal_extra=reveal_pane_lines(skill, challenge,
+                                                              remaps=remaps),
+                                 remaps=remaps)
             abstained = attempt_abstained(result, skill.category)
             if not abstained:
                 genuine_attempt = True
@@ -395,7 +475,7 @@ def run_practice(skills: list[Skill], progress: dict, count: int,
                 best_eff = max(best_eff, result.efficiency)
             record = AttemptRecord(skill, challenge, result, passed, abstained=abstained)
             summary.attempts.append(record)
-            action = _show_practice_result(record, show_moves=show_moves)
+            action = _show_practice_result(record, show_moves=show_moves, remaps=remaps)
             if action == "retry":
                 if abstained:
                     present_next = False    # abstain screen already showed it
@@ -422,14 +502,63 @@ def run_practice(skills: list[Skill], progress: dict, count: int,
 DEFAULT_GRIND_REPS = 6
 
 
+def _pick_grind_skill(skills: list[Skill], progress: dict,
+                      new_gate: Optional[int]) -> Optional[Skill]:
+    """Let the player choose WHICH skill to grind: pick a category, then a skill
+    within it (61 skills is too many for one flat menu).  Each skill shows its
+    difficulty and where it sits in your schedule, so you can target a weak move.
+    Returns the chosen Skill, or None if the player backed all the way out."""
+    now = time.time()
+    skill_progress = progress.get("skills", {})
+    by_cat: dict[str, list[Skill]] = {}
+    for s in skills:
+        by_cat.setdefault(s.category, []).append(s)
+
+    while True:
+        cat_opts = []
+        for cat in CATEGORIES:                       # registry order
+            group = by_cat.get(cat)
+            if group:
+                cat_opts.append((cat, cat.replace("_", " "),
+                                 f"{len(group)} skills · {CATEGORIES[cat].blurb}"))
+        if not cat_opts:
+            return None
+        cat = tui.menu("grind — pick a category", cat_opts,
+                       subtitle="choose the kind of move to drill")
+        if cat is None:
+            return None
+
+        skill_opts = []
+        for s in by_cat[cat]:
+            entry = skill_progress.get(s.id, {})
+            label = _STATUS[_skill_status(s, entry, now, new_gate)][0]
+            stars = "★" * s.difficulty
+            reps = min(entry.get("passes", 0), MASTERY_REPS)
+            skill_opts.append((s.id, _strip_keys_from_title(s.title),
+                               f"{stars}  {label} · {reps}/{MASTERY_REPS} reps"))
+        skill_opts.append(("\x00back", "← back to categories", ""))
+        chosen = tui.menu(f"grind — pick a skill ({cat.replace('_', ' ')})", skill_opts,
+                          subtitle="drilled back-to-back until you quit")
+        if chosen is None:
+            return None
+        if chosen == "\x00back":
+            continue
+        return next(s for s in by_cat[cat] if s.id == chosen)
+
+
 def run_grind(skills: list[Skill], progress: dict, reps: int,
               new_gate: Optional[int] = None, show_moves: bool = True,
-              escape_aliases: Optional[list[str]] = None) -> None:
+              skill: Optional[Skill] = None,
+              remaps: Optional[list[dict]] = None) -> None:
     """Drill a SINGLE skill ``reps`` times back-to-back, recording every rep, so
     you groove one move into muscle memory in one sitting (depth, vs the breadth
     of a normal session).  Each rep is a fresh random instance of the same skill
     so you learn the technique, not one keystroke sequence.  A quit-without-save
-    (abstain) is not penalised and does not burn a rep."""
+    (abstain) is not penalised and does not burn a rep.
+
+    ``skill`` is the skill to grind — the whole point of Grind is to pick the move
+    you want to drill.  When it's None (e.g. a bare ``--reps`` from the CLI) we fall
+    back to the single highest-priority skill so the flag still does something."""
     if find_editor() is None:
         print(tui.c("No vim or nvim found on PATH — install one, or try "
                     "`--review` for the no-vim flashcards.", tui.RED))
@@ -441,13 +570,15 @@ def run_grind(skills: list[Skill], progress: dict, reps: int,
         return
     if new_gate is None:
         new_gate = mastery_summary(skills, progress)["new_gate"]
-    # Grind the single highest-priority skill (weakest / fewest reps / most due).
-    top = select_due_skills(skills, progress, 1, new_gate=new_gate,
-                            rng=random.Random())
-    if not top:
-        print(tui.c("No skills available. Build the curriculum first.", tui.YELLOW))
-        return
-    skill = top[0]
+    if skill is None:
+        # No explicit choice: grind the single highest-priority skill (weakest /
+        # fewest reps / most due) so a bare `--reps` still works.
+        top = select_due_skills(skills, progress, 1, new_gate=new_gate,
+                                rng=random.Random())
+        if not top:
+            print(tui.c("No skills available. Build the curriculum first.", tui.YELLOW))
+            return
+        skill = top[0]
 
     rng = random.Random()
     summary = SessionSummary()
@@ -457,17 +588,19 @@ def run_grind(skills: list[Skill], progress: dict, reps: int,
     present_next = True
     while done < reps:
         if present_next:
-            _show_task(skill, challenge, mode="grind", rep=(done + 1, reps))
+            _show_task(skill, challenge, mode="grind", rep=(done + 1, reps),
+                       remaps=remaps)
         present_next = True
         result = run_attempt(challenge, skill.category,
-                             escape_aliases=escape_aliases,
                              highlight_target=True,
-                             goal_extra=reveal_pane_lines(skill, challenge))
+                             goal_extra=reveal_pane_lines(skill, challenge,
+                                                          remaps=remaps),
+                             remaps=remaps)
         abstained = attempt_abstained(result, skill.category)
         passed = (not abstained) and outcome_passed(result)
         record = AttemptRecord(skill, challenge, result, passed, abstained=abstained)
         action = _show_result(record, show_moves=show_moves, mode="grind",
-                              rep=(done + 1, reps))
+                              rep=(done + 1, reps), remaps=remaps)
         if action == "retry":
             if abstained:
                 present_next = False        # abstain screen already re-showed it
@@ -557,7 +690,8 @@ def _next_steps(summary: SessionSummary, mode: str) -> list[str]:
 
 
 def _show_summary(summary: SessionSummary, skills: list[Skill],
-                  progress: dict, mode: str = "learn") -> None:
+                  progress: dict, mode: str = "learn",
+                  sweep: Optional[tuple[int, int]] = None) -> None:
     tui.clear()
     tui.banner("session complete", "")
     for line in _belt_header(skills, progress):
@@ -566,6 +700,10 @@ def _show_summary(summary: SessionSummary, skills: list[Skill],
     print(f"  challenges: {summary.total}")
     print("  correct:    " + tui.c(f"{summary.correct}/{summary.total}", tui.GREEN))
     print("  promoted:   " + tui.c(str(summary.promoted), tui.CYAN))
+    if sweep is not None:
+        done, total = sweep
+        print("  swept:      " + tui.c(f"{done}/{total} skills cleared", tui.CYAN)
+              + tui.c(f"  ·  {total - done} left in this blind-all sweep", tui.GREY))
     if summary.skipped:
         print("  skipped:    " + tui.c(str(summary.skipped), tui.GREY))
     print(tui.rule())
@@ -588,7 +726,8 @@ def _show_summary(summary: SessionSummary, skills: list[Skill],
 # review (no-vim flashcards)
 # ---------------------------------------------------------------------------
 
-def run_review(skills: list[Skill], progress: dict, count: int) -> None:
+def run_review(skills: list[Skill], progress: dict, count: int,
+               remaps: Optional[list[dict]] = None) -> None:
     selected = select_due_skills(skills, progress, count, rng=random.Random())
     if not selected:
         print(tui.c("No skills available. Build the curriculum first.", tui.YELLOW))
@@ -620,7 +759,8 @@ def run_review(skills: list[Skill], progress: dict, count: int) -> None:
         # BACK
         tui.clear()
         tui.banner("review · " + skill.title, "answer")
-        sol = challenge.solution or " ".join(skill.key_commands)
+        sol = (display_solution(challenge.solution, remaps)
+               if challenge.solution else " ".join(skill.key_commands))
         print(tui.c("  command(s): ", tui.CYAN) + tui.c(sol, tui.BOLD))
         print(tui.c(f"  par:        {challenge.par_keys} keystrokes", tui.GREY))
         if skill.key_commands:
@@ -1058,55 +1198,132 @@ def run_lessons(skills: list[Skill], cfg: dict) -> None:
     tui.live_view(render, on_key)
 
 
-def run_escape_aliases(cfg: dict) -> None:
-    """Configure insert-mode escape aliases (e.g. jk -> <Esc>).  Plain prompt:
-    the value is just a short list of letter aliases."""
-    tui.clear()
-    tui.banner("escape keys", "map a key sequence to <Esc> in drills")
-    cur = config.escape_aliases(cfg)
-    print(tui.c("  Insert-mode aliases that leave Insert mode, e.g. ", tui.RESET)
-          + tui.c("jk", tui.BOLD) + tui.c(" or ", tui.RESET) + tui.c("jj", tui.BOLD)
-          + tui.c(".", tui.RESET))
-    print(tui.c("  They apply only inside live drills (not the menu).", tui.GREY))
-    print(tui.c("  Your alias counts as ONE keystroke (same as <Esc>) — no "
-                "efficiency penalty for using it.", tui.GREEN))
-    print()
-    print(tui.c("  current: ", tui.CYAN)
-          + (tui.c("  ".join(cur), tui.BOLD) if cur else tui.c("(none)", tui.GREY)))
-    print(tui.rule())
-    raw = tui.prompt_line("aliases (space/comma separated, blank to clear, "
-                          "Enter keeps current): ")
-    if raw.strip() == "":
+def _remap_warnings(frm: str, to: str, skills: list[Skill]) -> list[str]:
+    """Honest caveats for a remap the user is about to add (none == fully clean):
+    a collision with a key the curriculum uses, and a suggestion that can't show the
+    user's key.  (A multi-key `from` is fine — it's folded back to a single key.)"""
+    from .keys import translate
+    warns: list[str] = []
+    fb = translate(frm)
+    if fb:
+        hits = sum(1 for s in skills for c in s.challenges
+                   if c.solution and fb in translate(c.solution))
+        if hits:
+            warns.append(f"{frm} is used by {hits} drill solution(s) — remapping it "
+                         "may get in the way there.")
+    if not (len(to) > 2 and to.startswith("<") and to.endswith(">")):
+        warns.append(f"suggestions keep showing {to} (only <..> keys like <Esc> are "
+                     "rewritten to your key); the remap still works in the drill.")
+    return warns
+
+
+def run_remaps(cfg: dict, skills: list[Skill]) -> None:
+    """Add/remove general key remaps (any key, any mode).  Each is injected into
+    live drills, shown in the suggested move (for <..> keys), and — for a single
+    key — costs the same as the original."""
+    while True:
+        cur = config.remaps(cfg)
+        tui.clear()
+        tui.banner("key remaps", "press YOUR key, get the canonical one — in drills")
+        print(tui.c("  e.g. ", tui.RESET) + tui.c("<C-p>", tui.BOLD)
+              + tui.c(" → ", tui.GREY) + tui.c("<Esc>", tui.BOLD)
+              + tui.c("  (insert)   ", tui.GREY) + tui.c(";", tui.BOLD)
+              + tui.c(" → ", tui.GREY) + tui.c(":", tui.BOLD)
+              + tui.c("  (normal)", tui.GREY))
+        print(tui.c("  Use vim notation: <C-p>, <Esc>, <CR>, ; , H …", tui.GREY))
+        print()
+        if cur:
+            for i, r in enumerate(cur, 1):
+                mode = "insert" if r["mode"] == "i" else "normal"
+                print(f"   {tui.c(str(i), tui.YELLOW)}. "
+                      + tui.c(r["from"], tui.BOLD) + tui.c("  →  ", tui.GREY)
+                      + tui.c(r["to"], tui.BOLD) + tui.c(f"   ({mode})", tui.GREY))
+        else:
+            print(tui.c("   (no remaps yet)", tui.GREY))
+        print(tui.rule())
+        opts = [("escape", "Add an escape remap", "your key → <Esc> (e.g. jk, <C-p>)"),
+                ("custom", "Add a custom remap", "any key → any key, insert or normal")]
+        if cur:
+            opts.append(("remove", "Remove a remap", ""))
+        opts.append(("back", "Back", ""))
+        choice = tui.menu("key remaps", opts)
+        if choice in (None, "back"):
+            return
+        if choice == "escape":
+            frm = tui.prompt_line("the key you press to leave insert mode "
+                                  "(e.g. jk or <C-p>): ").strip()
+            if frm:
+                _remap_add(cfg, skills, frm, "<Esc>", "i")
+        elif choice == "custom":
+            frm = tui.prompt_line("the key YOU press (e.g. ; or <C-p>): ").strip()
+            to = tui.prompt_line("the canonical key it acts as (e.g. : or <Esc>): ").strip()
+            if not frm or not to:
+                continue
+            mode = tui.menu("which mode does this remap apply in?",
+                            [("i", "Insert mode", "e.g. <C-p> → <Esc> while typing"),
+                             ("n", "Normal mode", "e.g. ; → : for ex commands")])
+            if mode is not None:
+                _remap_add(cfg, skills, frm, to, mode)
+        elif choice == "remove":
+            _remap_remove(cfg, cur)
+
+
+def _remap_add(cfg: dict, skills: list[Skill], frm: str, to: str, mode: str) -> None:
+    candidate = {"from": frm, "to": to, "mode": mode}
+    if not config._valid_remap(candidate):
+        tui.clear()
+        tui.banner("key remaps", "not added")
+        print(tui.c("  Couldn't add that — from/to must be non-empty and contain "
+                    "no '|'.", tui.YELLOW))
+        print(tui.rule())
+        tui.pause()
         return
-    aliases = [a for a in re.split(r"[\s,]+", raw.strip()) if a]
-    valid = [a for a in aliases if a.isalpha() and 1 <= len(a) <= 3]
-    config.set_escape_aliases(cfg, valid)
-    config.save(cfg)
-    rejected = [a for a in aliases if a not in valid]
+    warns = _remap_warnings(frm, to, skills)
     tui.clear()
-    tui.banner("escape keys", "saved")
-    saved = config.escape_aliases(cfg)
-    print(tui.c("  now active: ", tui.GREEN)
-          + (tui.c("  ".join(saved), tui.BOLD) if saved else tui.c("(none)", tui.GREY)))
-    if rejected:
-        print(tui.c("  ignored (letters only, 1–3 chars): " + " ".join(rejected),
-                    tui.YELLOW))
+    tui.banner("key remaps", "review")
+    print(tui.c("  adding: ", tui.CYAN) + tui.c(frm, tui.BOLD)
+          + tui.c("  →  ", tui.GREY) + tui.c(to, tui.BOLD)
+          + tui.c(f"   ({'insert' if mode == 'i' else 'normal'})", tui.GREY))
+    print()
+    for w in warns:
+        print(tui.c("  ⚠ " + w, tui.YELLOW))
+    if not warns:
+        print(tui.c("  ✓ clean — shown in suggestions and costs the same as "
+                    + to + ".", tui.GREEN))
     print(tui.rule())
-    tui.pause()
+    print("  " + tui.c("y", tui.GREEN) + " add it   "
+          + tui.c("any other key", tui.GREY) + " cancel")
+    if tui.read_key() not in ("y", "Y"):
+        return
+    config.set_remaps(cfg, config.remaps(cfg) + [candidate])
+    config.save(cfg)
+
+
+def _remap_remove(cfg: dict, cur: list[dict]) -> None:
+    opts = [(str(i), f"{r['from']} → {r['to']}",
+             "insert" if r["mode"] == "i" else "normal")
+            for i, r in enumerate(cur)]
+    opts.append(("back", "Back", ""))
+    pick = tui.menu("remove which remap?", opts)
+    if pick in (None, "back"):
+        return
+    rest = [r for i, r in enumerate(cur) if str(i) != pick]
+    config.set_remaps(cfg, rest)
+    config.save(cfg)
 
 
 def run_settings(skills: list[Skill], cfg: dict) -> None:
     while True:
         off_n = len(config.disabled_set(cfg))
-        aliases = config.escape_aliases(cfg)
+        remaps = config.remaps(cfg)
         choice = tui.menu(
             "settings",
             [
                 ("lessons", "Lessons on/off",
                  f"{len(skills) - off_n}/{len(skills)} on — pick what to drill"),
-                ("escape", "Escape keys",
-                 ("aliases: " + " ".join(aliases)) if aliases
-                 else "map jk/jj to <Esc> in drills"),
+                ("remaps", "Key remaps",
+                 (f"{len(remaps)} set — incl. your escape key") if remaps
+                 else "remap any key (e.g. jk/<C-p>→<Esc>, ;→:)"),
                 ("back", "Back", ""),
             ],
             subtitle="tune the trainer to your setup",
@@ -1115,8 +1332,8 @@ def run_settings(skills: list[Skill], cfg: dict) -> None:
             return
         if choice == "lessons":
             run_lessons(skills, cfg)
-        elif choice == "escape":
-            run_escape_aliases(cfg)
+        elif choice == "remaps":
+            run_remaps(cfg, skills)
 
 
 # ---------------------------------------------------------------------------
@@ -1148,17 +1365,17 @@ def interactive_menu(skills: list[Skill], progress: dict, cfg: dict,
         # switched-off skill never appears AND never drags the belt down.  The
         # full list still feeds the curriculum + settings views.
         enabled = config.enabled_skills(skills, cfg)
-        aliases = config.escape_aliases(cfg)
+        remaps = config.remaps(cfg)
         choice = tui.menu(
             "vimhjkl — pick up where vimtutor stopped",
             [
                 ("learn",    "Learn",      "read the move, then drill it in real vim"),
                 ("blind",    "Blind",      "drill from memory — no hints, pure recall"),
                 ("practice", "Practice",   "hammer the moves you keep missing, with retries"),
-                ("grind",    "Grind",      f"drill ONE skill {DEFAULT_GRIND_REPS}× back-to-back to burn it in"),
+                ("grind",    "Grind",      f"pick a skill, drill it {DEFAULT_GRIND_REPS}× back-to-back to burn it in"),
                 ("review",   "Review",     "no-vim flashcards, away from a good terminal"),
                 ("list",     "Curriculum", "your belt, every skill, and its mastery"),
-                ("settings", "Settings",   "lessons on/off, escape-key aliases"),
+                ("settings", "Settings",   "lessons on/off, key remaps"),
                 ("quit",     "Quit",       ""),
             ],
             subtitle="a dojo for the tricks vimtutor never taught you",
@@ -1170,21 +1387,24 @@ def interactive_menu(skills: list[Skill], progress: dict, cfg: dict,
             return
         if choice == "learn":
             run_drill(enabled, progress, count=10, mode="learn",
-                      show_moves=show_moves, escape_aliases=aliases)
+                      show_moves=show_moves, remaps=remaps)
         elif choice == "blind":
             cold = _blind_is_cold(enabled)
             if cold is None:
                 continue
             run_drill(enabled, progress, count=10, mode="blind",
-                      show_moves=show_moves, escape_aliases=aliases, blind_all=cold)
+                      show_moves=show_moves, blind_all=cold, remaps=remaps)
         elif choice == "practice":
             run_practice(enabled, progress, count=10, show_moves=show_moves,
-                         escape_aliases=aliases)
+                         remaps=remaps)
         elif choice == "grind":
-            run_grind(enabled, progress, reps=DEFAULT_GRIND_REPS,
-                      show_moves=show_moves, escape_aliases=aliases)
+            new_gate = mastery_summary(enabled, progress)["new_gate"]
+            chosen = _pick_grind_skill(enabled, progress, new_gate)
+            if chosen is not None:        # None = backed out, return to the menu
+                run_grind(enabled, progress, reps=DEFAULT_GRIND_REPS, skill=chosen,
+                          show_moves=show_moves, remaps=remaps)
         elif choice == "review":
-            run_review(enabled, progress, count=10)
+            run_review(enabled, progress, count=10, remaps=remaps)
         elif choice == "list":
             run_list(skills, progress, cfg)
         elif choice == "settings":
@@ -1211,6 +1431,9 @@ def build_parser() -> argparse.ArgumentParser:
                    metavar="N",
                    help="grind ONE skill N times back-to-back to build muscle "
                         f"memory (default {DEFAULT_GRIND_REPS})")
+    p.add_argument("--skill", metavar="ID",
+                   help="with --reps: the skill id to grind (default: your "
+                        "highest-priority skill; see --list for ids)")
     p.add_argument("--review", nargs="?", const=10, type=int, metavar="N",
                    help="no-vim flashcard recall (default 10 cards)")
     p.add_argument("--list", action="store_true",
@@ -1233,7 +1456,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     cfg = config.load()
     # Single filter point for CLI-flag sessions too: drill only enabled lessons.
     enabled = config.enabled_skills(skills, cfg)
-    aliases = config.escape_aliases(cfg)
+    remaps = config.remaps(cfg)
 
     problems = [p for s in skills for p in s.validate()]
     if problems:
@@ -1249,19 +1472,26 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     try:
         if args.review is not None:
-            run_review(enabled, progress, count=args.review)
+            run_review(enabled, progress, count=args.review, remaps=remaps)
         elif args.list:
             run_list(skills, progress, cfg)
         elif args.reps is not None:
+            grind_skill = None
+            if args.skill is not None:
+                grind_skill = next((s for s in enabled if s.id == args.skill), None)
+                if grind_skill is None:
+                    print(tui.c(f"No enabled skill with id {args.skill!r}. "
+                                "Run --list to see skill ids.", tui.YELLOW))
+                    return 1
             run_grind(enabled, progress, reps=args.reps, new_gate=args.gate,
-                      show_moves=show_moves, escape_aliases=aliases)
+                      show_moves=show_moves, skill=grind_skill, remaps=remaps)
         elif args.practice:
             run_practice(enabled, progress, count=args.count, show_moves=show_moves,
-                         escape_aliases=aliases)
+                         remaps=remaps)
         elif args.drill:
             run_drill(enabled, progress, count=args.count, new_gate=args.gate,
-                      mode=args.mode, show_moves=show_moves, escape_aliases=aliases,
-                      blind_all=args.blind_all)
+                      mode=args.mode, show_moves=show_moves,
+                      blind_all=args.blind_all, remaps=remaps)
         else:
             interactive_menu(skills, progress, cfg, show_moves=show_moves)
     except KeyboardInterrupt:
