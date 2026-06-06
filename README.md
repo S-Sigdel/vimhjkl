@@ -14,8 +14,8 @@
 ⭐ Star it if it makes you faster — it helps a lot!
 
 The dot command, operator + motion grammar, text objects, registers, macros, ex
-commands (`:g`, `:normal`, ranges), and substitution — **61 lessons, 548
-challenges**, every one replayed through real vim so the "optimal" it shows you
+commands (`:g`, `:normal`, ranges), and substitution — **61 lessons, 240
+hand-vetted challenges**, every one replayed through real vim so the "optimal" it shows you
 actually works. While you edit, the goal sits in a pane beside the buffer, so you
 practise the move instead of remembering it.
 

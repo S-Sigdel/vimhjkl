@@ -1274,100 +1274,6 @@
         },
         {
           "start": [
-            "Eggs",
-            "Milk",
-            "Bread"
-          ],
-          "par_keys": 13,
-          "hint": "Prep the list for some serious markdown.",
-          "goal": [
-            "# Eggs",
-            "# Milk",
-            "# Bread"
-          ],
-          "solution": ":%normal I# <CR>",
-          "why": ":%normal runs the same keys on every line."
-        },
-        {
-          "start": [
-            "light",
-            "dark",
-            "gray"
-          ],
-          "par_keys": 16,
-          "hint": "Enhance the darkness, a bit of goth touch.",
-          "goal": [
-            "light",
-            "very dark",
-            "gray"
-          ],
-          "solution": ":2normal Ivery <CR>",
-          "why": ":2normal runs the keys on just that range."
-        },
-        {
-          "start": [
-            "whisper",
-            "shout",
-            "mumble"
-          ],
-          "par_keys": 14,
-          "hint": "Left-align these sounds with some pointers.",
-          "goal": [
-            "<< whisper",
-            "<< shout",
-            "<< mumble"
-          ],
-          "solution": ":%normal I<< <CR>",
-          "why": ":%normal runs the same keys on every line."
-        },
-        {
-          "start": [
-            "sky",
-            "ocean",
-            "forest"
-          ],
-          "par_keys": 19,
-          "hint": "Infuse some greenness into the natural scenery.",
-          "goal": [
-            "sky",
-            "green ocean",
-            "green forest"
-          ],
-          "solution": ":2,3normal Igreen <CR>",
-          "why": ":2,3normal runs the keys on just that range."
-        },
-        {
-          "start": [
-            "eatApples()",
-            "eatBananas()",
-            "eatCherries()"
-          ],
-          "par_keys": 24,
-          "hint": "Prefix all meals with a healthy reminder.",
-          "goal": [
-            "// Nutrition:eatApples()",
-            "// Nutrition:eatBananas()",
-            "// Nutrition:eatCherries()"
-          ],
-          "solution": ":%normal I// Nutrition:<CR>",
-          "why": ":%normal runs the same keys on every line."
-        },
-        {
-          "start": [
-            "openCurtains",
-            "closeCurtains"
-          ],
-          "par_keys": 17,
-          "hint": "Emphasize an invitation to reveal more light.",
-          "goal": [
-            "let's openCurtains",
-            "closeCurtains"
-          ],
-          "solution": ":1normal Ilet's <CR>",
-          "why": ":1normal runs the keys on just that range."
-        },
-        {
-          "start": [
             "if (raining)",
             "if (sunny)",
             "if (snowing)"
@@ -1428,193 +1334,6 @@
           ],
           "solution": ":1t1<CR>",
           "why": ":1t1 clones a line in place — handy for repeating boilerplate."
-        },
-        {
-          "start": [
-            "Dragon",
-            "Knight",
-            "Goblin"
-          ],
-          "par_keys": 5,
-          "hint": "Duplicate the second line to the beginning.",
-          "goal": [
-            "Knight",
-            "Dragon",
-            "Knight",
-            "Goblin"
-          ],
-          "solution": ":2t0<CR>",
-          "why": ":2t0 copies line 2 to the top."
-        },
-        {
-          "start": [
-            "Sphinx",
-            "Phoenix",
-            "Unicorn"
-          ],
-          "par_keys": 5,
-          "hint": "Clone the mythical creature to the end.",
-          "goal": [
-            "Sphinx",
-            "Phoenix",
-            "Unicorn",
-            "Unicorn"
-          ],
-          "solution": ":3t$<CR>",
-          "why": ":3t$ copies line 3 to the end."
-        },
-        {
-          "start": [
-            "Space Hamster",
-            "Cosmic Guinea Pig",
-            "Intergalactic Chinchilla"
-          ],
-          "par_keys": 5,
-          "hint": "Copy the second line of guinea pigry to the top.",
-          "goal": [
-            "Cosmic Guinea Pig",
-            "Space Hamster",
-            "Cosmic Guinea Pig",
-            "Intergalactic Chinchilla"
-          ],
-          "solution": ":2t0<CR>",
-          "why": ":2t0 copies line 2 to the top."
-        },
-        {
-          "start": [
-            "Potion of Madness",
-            "Potion of Calm",
-            "Potion of Boredom"
-          ],
-          "par_keys": 5,
-          "hint": "Madness spreads to the end of the potions list.",
-          "goal": [
-            "Potion of Madness",
-            "Potion of Calm",
-            "Potion of Boredom",
-            "Potion of Madness"
-          ],
-          "solution": ":1t$<CR>",
-          "why": ":1t$ copies line 1 to the end."
-        },
-        {
-          "start": [
-            "Llama Drama",
-            "Epic Llama",
-            "Llama Lullaby"
-          ],
-          "par_keys": 5,
-          "hint": "The epic llama wants an encore.",
-          "goal": [
-            "Llama Drama",
-            "Epic Llama",
-            "Epic Llama",
-            "Llama Lullaby"
-          ],
-          "solution": ":2t.<CR>",
-          "why": ":2t. copies line 2 to below the cursor."
-        },
-        {
-          "start": [
-            "Robot",
-            "AI Assistant",
-            "Machine Learning Engineer"
-          ],
-          "par_keys": 5,
-          "hint": "The engineer needs to be at the forefront.",
-          "goal": [
-            "Machine Learning Engineer",
-            "Robot",
-            "AI Assistant",
-            "Machine Learning Engineer"
-          ],
-          "solution": ":3t0<CR>",
-          "why": ":3t0 copies line 3 to the top."
-        },
-        {
-          "start": [
-            "Quantum Potato",
-            "Turbo Carrot",
-            "Neon Squash"
-          ],
-          "par_keys": 5,
-          "hint": "The potato should quantum leap to below its original spot.",
-          "goal": [
-            "Quantum Potato",
-            "Quantum Potato",
-            "Turbo Carrot",
-            "Neon Squash"
-          ],
-          "solution": ":1t.<CR>",
-          "why": ":1t. copies line 1 to below the cursor."
-        },
-        {
-          "start": [
-            "Jelly Bean",
-            "Candy Corn",
-            "Gummy Bear"
-          ],
-          "par_keys": 5,
-          "hint": "Candy Corn needs a dessert encore.",
-          "goal": [
-            "Jelly Bean",
-            "Candy Corn",
-            "Gummy Bear",
-            "Candy Corn"
-          ],
-          "solution": ":2t$<CR>",
-          "why": ":2t$ copies line 2 to the end."
-        },
-        {
-          "start": [
-            "Punk Rock",
-            "Jazz",
-            "Classical"
-          ],
-          "par_keys": 5,
-          "hint": "Go classical after the first beat.",
-          "goal": [
-            "Punk Rock",
-            "Classical",
-            "Jazz",
-            "Classical"
-          ],
-          "solution": ":3t1<CR>",
-          "why": ":3t1 copies line 3 to below line 1."
-        },
-        {
-          "start": [
-            "Mango Salsa",
-            "Guacamole",
-            "Nachos"
-          ],
-          "par_keys": 5,
-          "hint": "Double down on that fruity entrance.",
-          "goal": [
-            "Mango Salsa",
-            "Mango Salsa",
-            "Guacamole",
-            "Nachos"
-          ],
-          "solution": ":1t0<CR>",
-          "why": ":1t0 copies line 1 to the top."
-        },
-        {
-          "start": [
-            "Twinkle Star",
-            "Rising Sun",
-            "Midnight Moon"
-          ],
-          "par_keys": 5,
-          "hint": "The sun rises again just before the moon.",
-          "goal": [
-            "Twinkle Star",
-            "Rising Sun",
-            "Midnight Moon",
-            "Rising Sun"
-          ],
-          "solution": ":2t3<CR>",
-          "why": ":2t3 copies line 2 to below line 3."
         }
       ]
     },
@@ -1664,94 +1383,6 @@
           ],
           "solution": ":2m$<CR>",
           "why": ":m$ relocates a line to the end without any yanking."
-        },
-        {
-          "start": [
-            "Voldemort's nose",
-            "Harry's scar",
-            "Dumbledore's beard"
-          ],
-          "par_keys": 5,
-          "hint": "Shift Voldemort's nose to the bottom.",
-          "goal": [
-            "Harry's scar",
-            "Dumbledore's beard",
-            "Voldemort's nose"
-          ],
-          "solution": ":1m$<CR>",
-          "why": ":1m$ moves line 1 to the end."
-        },
-        {
-          "start": [
-            "Night's Watch oath:",
-            "3. I am the shield that guards the realms of men.",
-            "1. Night gathers, and now my watch begins.",
-            "2. It shall not end until my death."
-          ],
-          "par_keys": 5,
-          "hint": "Start with the first part of the oath.",
-          "goal": [
-            "1. Night gathers, and now my watch begins.",
-            "Night's Watch oath:",
-            "3. I am the shield that guards the realms of men.",
-            "2. It shall not end until my death."
-          ],
-          "solution": ":3m0<CR>",
-          "why": ":3m0 moves line 3 to the top."
-        },
-        {
-          "start": [
-            "Quantum Mechanics Lecture:",
-            "Cats are both alive and not",
-            "Do not question the cat",
-            "Schrödinger's deprived feline"
-          ],
-          "par_keys": 5,
-          "hint": "Start with that cryptic warning.",
-          "goal": [
-            "Do not question the cat",
-            "Quantum Mechanics Lecture:",
-            "Cats are both alive and not",
-            "Schrödinger's deprived feline"
-          ],
-          "solution": ":3m0<CR>",
-          "why": ":3m0 moves line 3 to the top."
-        },
-        {
-          "start": [
-            "Technobabble Incantations:",
-            "Eureka!",
-            "To boldly go",
-            "Engage!"
-          ],
-          "par_keys": 5,
-          "hint": "Eureka should be the grand finale.",
-          "goal": [
-            "Technobabble Incantations:",
-            "To boldly go",
-            "Engage!",
-            "Eureka!"
-          ],
-          "solution": ":2m$<CR>",
-          "why": ":2m$ moves line 2 to the end."
-        },
-        {
-          "start": [
-            "New Year's Resolutions:",
-            "2. Train unicorns",
-            "1. Find Narnia",
-            "3. Duel with a dragon"
-          ],
-          "par_keys": 5,
-          "hint": "Narnia should be the first quest.",
-          "goal": [
-            "1. Find Narnia",
-            "New Year's Resolutions:",
-            "2. Train unicorns",
-            "3. Duel with a dragon"
-          ],
-          "solution": ":3m0<CR>",
-          "why": ":3m0 moves line 3 to the top."
         }
       ]
     },
@@ -3494,36 +3125,6 @@
         },
         {
           "start": [
-            "zero111one222two333three",
-            "four444five555six666"
-          ],
-          "par_keys": 14,
-          "hint": "Replace all digit runs with X.",
-          "goal": [
-            "zeroXoneXtwoXthree",
-            "fourXfiveXsixX"
-          ],
-          "solution": ":%s/\\v\\d+/X/g<CR>",
-          "why": "\\v mode simplifies handling of numeric patterns without verbose escapes."
-        },
-        {
-          "start": [
-            "4-8 monsters",
-            "9-15 witches",
-            "16-32 goblins"
-          ],
-          "par_keys": 21,
-          "hint": "Replace all ranged numbers with 'many'.",
-          "goal": [
-            "many monsters",
-            "many witches",
-            "many goblins"
-          ],
-          "solution": ":%s/\\v\\d+-\\d+/many/g<CR>",
-          "why": "Using \\v makes handling numerical ranges straightforward."
-        },
-        {
-          "start": [
             "Bug #9012 - replicate in dark mode",
             "Bug #3344 - crash on rainbow interaction"
           ],
@@ -3552,22 +3153,6 @@
         },
         {
           "start": [
-            "123 How to bake a cake,",
-            "   456 Fry an egg.",
-            "789 Paint a masterpiece."
-          ],
-          "par_keys": 20,
-          "hint": "Turn all numbers into 'Section'.",
-          "goal": [
-            "Section How to bake a cake,",
-            "   Section Fry an egg.",
-            "Section Paint a masterpiece."
-          ],
-          "solution": ":%s/\\v\\d+/Section/g<CR>",
-          "why": "Switching from digit-heavy text to text labeling is easier in \\v mode."
-        },
-        {
-          "start": [
             "Call 911 in emergencies",
             "Dial 999 if you're in the UK"
           ],
@@ -3579,36 +3164,6 @@
           ],
           "solution": ":%s/\\v\\d{3}/XXX/g<CR>",
           "why": "The \\d{3} pattern is cleanly interpreted with \\v."
-        },
-        {
-          "start": [
-            "HEART-1234 BEAT-5678",
-            "RHYTHM-9012"
-          ],
-          "par_keys": 21,
-          "hint": "Turn any UPPERCASE-1234 pattern into CODE.",
-          "goal": [
-            "CODE CODE",
-            "CODE"
-          ],
-          "solution": ":%s/\\v\\u+-\\d+/CODE/g<CR>",
-          "why": "The uppercase path with numbers is simplified using \\v."
-        },
-        {
-          "start": [
-            "juicy-lemons",
-            "dry-raisins",
-            "sour-apples"
-          ],
-          "par_keys": 22,
-          "hint": "Merge all descriptions into 'fruit'.",
-          "goal": [
-            "fruit",
-            "fruit",
-            "fruit"
-          ],
-          "solution": ":%s/\\v\\w+-\\w+/fruit/g<CR>",
-          "why": "Replacing hyphenated patterns is straightforward in very magic mode."
         }
       ]
     },
@@ -3653,20 +3208,6 @@
         },
         {
           "start": [
-            "a.b.c is literal",
-            "axbxc is not"
-          ],
-          "par_keys": 17,
-          "hint": "match the dots literally with \\V",
-          "goal": [
-            "DOT is literal",
-            "axbxc is not"
-          ],
-          "solution": ":%s/\\Va.b.c/DOT/<CR>",
-          "why": "\\V makes . stop being a wildcard."
-        },
-        {
-          "start": [
             "price: $9.99",
             "other"
           ],
@@ -3677,17 +3218,6 @@
             "other"
           ],
           "solution": ":%s/\\V$9.99/PAID/<CR>"
-        },
-        {
-          "start": [
-            "regex .* matches all"
-          ],
-          "par_keys": 15,
-          "hint": "replace a literal .* ",
-          "goal": [
-            "regex STAR matches all"
-          ],
-          "solution": ":%s/\\V.*/STAR/<CR>"
         },
         {
           "start": [
@@ -3729,22 +3259,6 @@
         },
         {
           "start": [
-            "Teacup",
-            "teAcuP",
-            "TEACUP"
-          ],
-          "par_keys": 19,
-          "hint": "add \\c so the pattern ignores case",
-          "goal": [
-            "mug",
-            "mug",
-            "mug"
-          ],
-          "solution": ":%s/teacup\\c/mug/g<CR>",
-          "why": "\\c makes the pattern case-insensitive."
-        },
-        {
-          "start": [
             "The cat chased the Cat which scared the CAT."
           ],
           "par_keys": 16,
@@ -3753,46 +3267,6 @@
             "The dog chased the dog which scared the dog."
           ],
           "solution": ":%s/cat\\c/dog/g<CR>",
-          "why": "\\c makes the pattern case-insensitive."
-        },
-        {
-          "start": [
-            "I scream, you scream, we all scream for ice cream!"
-          ],
-          "par_keys": 23,
-          "hint": "add \\c so the pattern ignores case",
-          "goal": [
-            "I whisper, you whisper, we all whisper for ice cream!"
-          ],
-          "solution": ":%s/scream\\c/whisper/g<CR>",
-          "why": "\\c makes the pattern case-insensitive."
-        },
-        {
-          "start": [
-            "Dr. SUSAN is not the same as dr. susan, or is she Dr. SuSaN?"
-          ],
-          "par_keys": 31,
-          "hint": "add \\c so the pattern ignores case",
-          "goal": [
-            "Ms. Mystery is not the same as Ms. Mystery, or is she Ms. Mystery?"
-          ],
-          "solution": ":%s/Dr\\. Susan\\c/Ms. Mystery/g<CR>",
-          "why": "\\c makes the pattern case-insensitive."
-        },
-        {
-          "start": [
-            "Oh no, the door was left ajar!",
-            "Oh no, the DOOR was left ajar!",
-            "Oh no, the Door was left ajar!"
-          ],
-          "par_keys": 20,
-          "hint": "add \\c so the pattern ignores case",
-          "goal": [
-            "Oh no, the window was left ajar!",
-            "Oh no, the window was left ajar!",
-            "Oh no, the window was left ajar!"
-          ],
-          "solution": ":%s/door\\c/window/g<CR>",
           "why": "\\c makes the pattern case-insensitive."
         },
         {
@@ -3813,38 +3287,6 @@
         },
         {
           "start": [
-            "I feel better when I see the Sun.",
-            "The sun is shining brightly.",
-            "SUNlight is refreshing."
-          ],
-          "par_keys": 17,
-          "hint": "add \\c so the pattern ignores case",
-          "goal": [
-            "I feel better when I see the moon.",
-            "The moon is shining brightly.",
-            "moonlight is refreshing."
-          ],
-          "solution": ":%s/sun\\c/moon/g<CR>",
-          "why": "\\c makes the pattern case-insensitive."
-        },
-        {
-          "start": [
-            "Mama had a little Lamb.",
-            "The LAMB loved to bleat.",
-            "Even the little lamb was naughty."
-          ],
-          "par_keys": 19,
-          "hint": "add \\c so the pattern ignores case",
-          "goal": [
-            "Mama had a little sheep.",
-            "The sheep loved to bleat.",
-            "Even the little sheep was naughty."
-          ],
-          "solution": ":%s/lamb\\c/sheep/g<CR>",
-          "why": "\\c makes the pattern case-insensitive."
-        },
-        {
-          "start": [
             "The apple is red.",
             "The APPLE is Green.",
             "An AppLe a day keeps the doctor away."
@@ -3857,54 +3299,6 @@
             "An banana a day keeps the doctor away."
           ],
           "solution": ":%s/apple\\c/banana/g<CR>",
-          "why": "\\c makes the pattern case-insensitive."
-        },
-        {
-          "start": [
-            "Captain Sparrow set sail on the High seas.",
-            "captain sparrow explored the high seas.",
-            "CAPTAIN SPARROW marooned on a High island."
-          ],
-          "par_keys": 18,
-          "hint": "add \\c so the pattern ignores case",
-          "goal": [
-            "Captain Sparrow set sail on the open seas.",
-            "captain sparrow explored the open seas.",
-            "CAPTAIN SPARROW marooned on a open island."
-          ],
-          "solution": ":%s/high\\c/open/g<CR>",
-          "why": "\\c makes the pattern case-insensitive."
-        },
-        {
-          "start": [
-            "Mr. Whiskers the cat",
-            "mr. WHISKERS WAS here",
-            "MR. whiskers hides well"
-          ],
-          "par_keys": 36,
-          "hint": "add \\c so the pattern ignores case",
-          "goal": [
-            "lord fuzzball the cat",
-            "lord fuzzball WAS here",
-            "lord fuzzball hides well"
-          ],
-          "solution": ":%s/mr\\. whiskers\\c/lord fuzzball/g<CR>",
-          "why": "\\c makes the pattern case-insensitive."
-        },
-        {
-          "start": [
-            "Professor Snape;",
-            "professor snape;",
-            "PROFESSOR snape;"
-          ],
-          "par_keys": 25,
-          "hint": "add \\c so the pattern ignores case",
-          "goal": [
-            "wizard Snape;",
-            "wizard snape;",
-            "wizard snape;"
-          ],
-          "solution": ":%s/professor\\c/wizard/g<CR>",
           "why": "\\c makes the pattern case-insensitive."
         }
       ]
@@ -3952,38 +3346,6 @@
         },
         {
           "start": [
-            "Llama Drama",
-            "Goat Moat",
-            "Alpaca Cracker"
-          ],
-          "par_keys": 26,
-          "hint": "capture with (), replay with \\1 \\2",
-          "goal": [
-            "Drama, Llama",
-            "Moat, Goat",
-            "Cracker, Alpaca"
-          ],
-          "solution": ":%s/\\v(\\w+) (\\w+)/\\2, \\1/<CR>",
-          "why": "\\1 and \\2 replay the () groups in any order."
-        },
-        {
-          "start": [
-            "Knight:Black",
-            "Bishop:White",
-            "Rook:Black"
-          ],
-          "par_keys": 25,
-          "hint": "capture with (), replay with \\1 \\2",
-          "goal": [
-            "Black Knight",
-            "White Bishop",
-            "Black Rook"
-          ],
-          "solution": ":%s/\\v(\\w+):(\\w+)/\\2 \\1/<CR>",
-          "why": "\\1 and \\2 replay the () groups in any order."
-        },
-        {
-          "start": [
             "salty sweet",
             "bitter sour",
             "spicy savory"
@@ -3996,22 +3358,6 @@
             "savory, spicy"
           ],
           "solution": ":%s/\\v(\\w+) (\\w+)/\\2, \\1/<CR>",
-          "why": "\\1 and \\2 replay the () groups in any order."
-        },
-        {
-          "start": [
-            "cartwheel:345",
-            "somersault:678",
-            "backflip:123"
-          ],
-          "par_keys": 27,
-          "hint": "capture with (), replay with \\1 \\2",
-          "goal": [
-            "345 - cartwheel",
-            "678 - somersault",
-            "123 - backflip"
-          ],
-          "solution": ":%s/\\v(\\w+):(\\d+)/\\2 - \\1/<CR>",
           "why": "\\1 and \\2 replay the () groups in any order."
         },
         {
@@ -4032,50 +3378,6 @@
         },
         {
           "start": [
-            "Dog Park - Bella",
-            "Cat Cafe - Whiskers"
-          ],
-          "par_keys": 43,
-          "hint": "capture with (), replay with \\1 \\2",
-          "goal": [
-            "Welcome Bella to Dog Park!",
-            "Welcome Whiskers to Cat Cafe!"
-          ],
-          "solution": ":%s/\\v(\\w+ \\w+) - (\\w+)/Welcome \\2 to \\1!/<CR>",
-          "why": "\\1 and \\2 replay the () groups in any order."
-        },
-        {
-          "start": [
-            "Lion Den:leader",
-            "Sheep Flock:member"
-          ],
-          "par_keys": 31,
-          "hint": "capture with (), replay with \\1 \\2",
-          "goal": [
-            "leader of Lion Den",
-            "member of Sheep Flock"
-          ],
-          "solution": ":%s/\\v(\\w+ \\w+):(\\w+)/\\2 of \\1<CR>",
-          "why": "\\1 and \\2 replay the () groups in any order."
-        },
-        {
-          "start": [
-            "purple shoes",
-            "yellow hats",
-            "green socks"
-          ],
-          "par_keys": 28,
-          "hint": "capture with (), replay with \\1 \\2",
-          "goal": [
-            "shoes in purple",
-            "hats in yellow",
-            "socks in green"
-          ],
-          "solution": ":%s/\\v(\\w+) (\\w+)/\\2 in \\1/<CR>",
-          "why": "\\1 and \\2 replay the () groups in any order."
-        },
-        {
-          "start": [
             "piano:88",
             "guitar:6",
             "flute:0"
@@ -4088,38 +3390,6 @@
             "flute has 0 strings"
           ],
           "solution": ":%s/\\v(\\w+):(\\d+)/\\1 has \\2 strings<CR>",
-          "why": "\\1 and \\2 replay the () groups in any order."
-        },
-        {
-          "start": [
-            "Crawler:Poem",
-            "Lurker:Narrative",
-            "Climber:Haiku"
-          ],
-          "par_keys": 35,
-          "hint": "capture with (), replay with \\1 \\2",
-          "goal": [
-            "Poem: a work by Crawler",
-            "Narrative: a work by Lurker",
-            "Haiku: a work by Climber"
-          ],
-          "solution": ":%s/\\v(\\w+):(\\w+)/\\2: a work by \\1<CR>",
-          "why": "\\1 and \\2 replay the () groups in any order."
-        },
-        {
-          "start": [
-            "chocolate:dark",
-            "vanilla:smooth",
-            "strawberry:sweet"
-          ],
-          "par_keys": 41,
-          "hint": "capture with (), replay with \\1 \\2",
-          "goal": [
-            "dark is the nature of chocolate",
-            "smooth is the nature of vanilla",
-            "sweet is the nature of strawberry"
-          ],
-          "solution": ":%s/\\v(\\w+):(\\w+)/\\2 is the nature of \\1<CR>",
           "why": "\\1 and \\2 replay the () groups in any order."
         }
       ]
@@ -4163,56 +3433,6 @@
         },
         {
           "start": [
-            "start stop restart startle stoplight"
-          ],
-          "par_keys": 22,
-          "hint": "anchor with \\v< > to whole words",
-          "goal": [
-            "begin stop restart startle stoplight"
-          ],
-          "solution": ":%s/\\v<start>/begin/g<CR>",
-          "why": "\\v< > match whole words, skipping longer ones."
-        },
-        {
-          "start": [
-            "cow cowbell cowboy cow tipping"
-          ],
-          "par_keys": 20,
-          "hint": "anchor with \\v< > to whole words",
-          "goal": [
-            "moose cowbell cowboy moose tipping"
-          ],
-          "solution": ":%s/\\v<cow>/moose/g<CR>",
-          "why": "\\v< > match whole words, skipping longer ones."
-        },
-        {
-          "start": [
-            "menu menus amend menuette menagerie",
-            "end submenu end"
-          ],
-          "par_keys": 21,
-          "hint": "anchor with \\v< > to whole words",
-          "goal": [
-            "start menus amend menuette menagerie",
-            "end submenu end"
-          ],
-          "solution": ":%s/\\v<menu>/start/g<CR>",
-          "why": "\\v< > match whole words, skipping longer ones."
-        },
-        {
-          "start": [
-            "ant anteater antics ant antelope"
-          ],
-          "par_keys": 21,
-          "hint": "anchor with \\v< > to whole words",
-          "goal": [
-            "spider anteater antics spider antelope"
-          ],
-          "solution": ":%s/\\v<ant>/spider/g<CR>",
-          "why": "\\v< > match whole words, skipping longer ones."
-        },
-        {
-          "start": [
             "port portrait import export portal"
           ],
           "par_keys": 20,
@@ -4237,32 +3457,6 @@
         },
         {
           "start": [
-            "brick bricklayer brisk bricked unbrick"
-          ],
-          "par_keys": 22,
-          "hint": "anchor with \\v< > to whole words",
-          "goal": [
-            "stone bricklayer brisk bricked unbrick"
-          ],
-          "solution": ":%s/\\v<brick>/stone/g<CR>",
-          "why": "\\v< > match whole words, skipping longer ones."
-        },
-        {
-          "start": [
-            "ball ballerina snowball ballcat ball",
-            "football basketball ball"
-          ],
-          "par_keys": 20,
-          "hint": "anchor with \\v< > to whole words",
-          "goal": [
-            "cube ballerina snowball ballcat cube",
-            "football basketball cube"
-          ],
-          "solution": ":%s/\\v<ball>/cube/g<CR>",
-          "why": "\\v< > match whole words, skipping longer ones."
-        },
-        {
-          "start": [
             "code decode encode codex coding"
           ],
           "par_keys": 22,
@@ -4271,32 +3465,6 @@
             "recipe decode encode codex coding"
           ],
           "solution": ":%s/\\v<code>/recipe/g<CR>",
-          "why": "\\v< > match whole words, skipping longer ones."
-        },
-        {
-          "start": [
-            "march marching marchers demarche march"
-          ],
-          "par_keys": 23,
-          "hint": "anchor with \\v< > to whole words",
-          "goal": [
-            "parade marching marchers demarche parade"
-          ],
-          "solution": ":%s/\\v<march>/parade/g<CR>",
-          "why": "\\v< > match whole words, skipping longer ones."
-        },
-        {
-          "start": [
-            "cat caterpillar catastrophe scat cat",
-            "bobcat catnip cat"
-          ],
-          "par_keys": 22,
-          "hint": "anchor with \\v< > to whole words",
-          "goal": [
-            "panther caterpillar catastrophe scat panther",
-            "bobcat catnip panther"
-          ],
-          "solution": ":%s/\\v<cat>/panther/g<CR>",
           "why": "\\v< > match whole words, skipping longer ones."
         }
       ]
@@ -4328,30 +3496,6 @@
         },
         {
           "start": [
-            "Dracula's cape is black like a moonless night"
-          ],
-          "par_keys": 34,
-          "hint": "Focus your transformation on the 'night' part.",
-          "goal": [
-            "Dracula's cape is black like a moonless brilliance"
-          ],
-          "solution": ":%s/moonless \\zsnight/brilliance/<CR>",
-          "why": "\\zs starts the match later, so only the tail changes."
-        },
-        {
-          "start": [
-            "The secret code is fizzbuzzfuzz for extra confusion"
-          ],
-          "par_keys": 27,
-          "hint": "Right in the fuzz. Swap it there!",
-          "goal": [
-            "The secret code is fizzbuzzmagic for extra confusion"
-          ],
-          "solution": ":%s/fizzbuzz\\zsfuzz/magic/<CR>",
-          "why": "\\zs starts the match later, so only the tail changes."
-        },
-        {
-          "start": [
             "We love icecreamcake so much"
           ],
           "par_keys": 30,
@@ -4364,18 +3508,6 @@
         },
         {
           "start": [
-            "Potion: Snake venom with dragon tears"
-          ],
-          "par_keys": 28,
-          "hint": "Transform the snake's contribution only.",
-          "goal": [
-            "Potion: Snake essence with dragon tears"
-          ],
-          "solution": ":%s/Snake \\zsvenom/essence/<CR>",
-          "why": "\\zs starts the match later, so only the tail changes."
-        },
-        {
-          "start": [
             "The art of quantum sarcasm takes decades"
           ],
           "par_keys": 32,
@@ -4384,18 +3516,6 @@
             "The art of quantum physics takes decades"
           ],
           "solution": ":%s/quantum \\zssarcasm/physics/<CR>",
-          "why": "\\zs starts the match later, so only the tail changes."
-        },
-        {
-          "start": [
-            "Mandrake screams in botanic concert"
-          ],
-          "par_keys": 29,
-          "hint": "The 'concert' performance is now solo.",
-          "goal": [
-            "Mandrake screams in botanic aria"
-          ],
-          "solution": ":%s/botanic \\zsconcert/aria/<CR>",
           "why": "\\zs starts the match later, so only the tail changes."
         }
       ]
@@ -4550,42 +3670,6 @@
         },
         {
           "start": [
-            "ho ho ho merry"
-          ],
-          "par_keys": 12,
-          "hint": "g changes every match on the line",
-          "goal": [
-            "ha ha ha merry"
-          ],
-          "solution": ":%s/ho/ha/g<CR>",
-          "why": "without g only the first match per line changes."
-        },
-        {
-          "start": [
-            "na na na batman"
-          ],
-          "par_keys": 11,
-          "hint": "no g: only the first match",
-          "goal": [
-            "yo na na batman"
-          ],
-          "solution": ":%s/na/yo/<CR>"
-        },
-        {
-          "start": [
-            "spam spam",
-            "spam eggs"
-          ],
-          "par_keys": 15,
-          "hint": "% spans the whole file",
-          "goal": [
-            "ham ham",
-            "ham eggs"
-          ],
-          "solution": ":%s/spam/ham/g<CR>"
-        },
-        {
-          "start": [
             "error error error"
           ],
           "par_keys": 15,
@@ -4636,18 +3720,6 @@
         },
         {
           "start": [
-            "1234-5678-91011"
-          ],
-          "par_keys": 16,
-          "hint": "Wrap each number with angle brackets; & is your BFF.",
-          "goal": [
-            "<1234>-<5678>-<91011>"
-          ],
-          "solution": ":%s/\\v\\d+/<&>/g<CR>",
-          "why": "& repeats the match so you can add stuff around it."
-        },
-        {
-          "start": [
             "10 cats, 20 dogs, 30 lizards"
           ],
           "par_keys": 18,
@@ -4657,18 +3729,6 @@
           ],
           "solution": ":%s/\\v\\d+/{{&}}/g<CR>",
           "why": "& helps you wrap numbers with ease in one stroke."
-        },
-        {
-          "start": [
-            "123 456 789"
-          ],
-          "par_keys": 15,
-          "hint": "Add a hash before each number using &.",
-          "goal": [
-            "#123 #456 #789"
-          ],
-          "solution": ":%s/\\v\\d+/#&/g<CR>",
-          "why": "& makes prefixing each match a breeze."
         }
       ]
     },
@@ -4736,20 +3796,6 @@
           ],
           "solution": ":s/.*/\\U& MAN!/<CR>",
           "why": "\\U& uppercases the whole match."
-        },
-        {
-          "start": [
-            "tinker Tailor",
-            "soldier SPY"
-          ],
-          "par_keys": 16,
-          "hint": "\\u& / \\U& change case in the replacement",
-          "goal": [
-            "Tinker Tailor",
-            "Soldier SPY"
-          ],
-          "solution": ":%s/\\v<\\l/\\u&/g<CR>",
-          "why": "\\u& capitalises each match's first letter."
         }
       ]
     },
@@ -4853,22 +3899,6 @@
         },
         {
           "start": [
-            "magic wand: 2",
-            "witch hat: 3",
-            "broomstick: 5"
-          ],
-          "par_keys": 27,
-          "hint": "Triple the numbers to boost your magical items!",
-          "goal": [
-            "magic wand: 6",
-            "witch hat: 9",
-            "broomstick: 15"
-          ],
-          "solution": ":%s/\\v\\d+/\\=submatch(0)*3/<CR>",
-          "why": "\\= computes each replacement; submatch(0) is the match."
-        },
-        {
-          "start": [
             "level 10",
             "level 12",
             "level 15"
@@ -4881,36 +3911,6 @@
             "level 10"
           ],
           "solution": ":%s/\\v\\d+/\\=submatch(0)-5/<CR>",
-          "why": "\\= computes each replacement; submatch(0) is the match."
-        },
-        {
-          "start": [
-            "carrots 7",
-            "apples 4",
-            "bananas 5"
-          ],
-          "par_keys": 28,
-          "hint": "Someone took one fruit from each; decrement by 1.",
-          "goal": [
-            "carrots 6",
-            "apples 3",
-            "bananas 4"
-          ],
-          "solution": ":%s/\\v\\d+/\\=submatch(0)-1/g<CR>",
-          "why": "\\= computes each replacement; submatch(0) is the match."
-        },
-        {
-          "start": [
-            "dragon power level 50",
-            "phoenix power level 60"
-          ],
-          "par_keys": 28,
-          "hint": "Add 20 to each power level for extra mythical might.",
-          "goal": [
-            "dragon power level 70",
-            "phoenix power level 80"
-          ],
-          "solution": ":%s/\\v\\d+/\\=submatch(0)+20/<CR>",
           "why": "\\= computes each replacement; submatch(0) is the match."
         },
         {
@@ -4931,54 +3931,6 @@
         },
         {
           "start": [
-            "steak 400g",
-            "chicken 200g",
-            "fish 300g"
-          ],
-          "par_keys": 30,
-          "hint": "Reduce each weight by 100 grams to ease digestion.",
-          "goal": [
-            "steak 300g",
-            "chicken 100g",
-            "fish 200g"
-          ],
-          "solution": ":%s/\\v\\d+/\\=submatch(0)-100/g<CR>",
-          "why": "\\= computes each replacement; submatch(0) is the match."
-        },
-        {
-          "start": [
-            "episode 5",
-            "episode 10",
-            "episode 15"
-          ],
-          "par_keys": 31,
-          "hint": "Invert the episode numbers to throw off your couch.",
-          "goal": [
-            "episode -5",
-            "episode -10",
-            "episode -15"
-          ],
-          "solution": ":%s/\\v\\d+/\\=submatch(0)*(-1)/g<CR>",
-          "why": "\\= computes each replacement; submatch(0) is the match."
-        },
-        {
-          "start": [
-            "quest 4 gold",
-            "quest 8 gold",
-            "quest 15 gold"
-          ],
-          "par_keys": 30,
-          "hint": "Increase the treasury by 10% by multiplying by 1.1.",
-          "goal": [
-            "quest 4.4 gold",
-            "quest 8.8 gold",
-            "quest 16.5 gold"
-          ],
-          "solution": ":%s/\\v\\d+/\\=submatch(0)*1.1/g<CR>",
-          "why": "\\= computes each replacement; submatch(0) is the match."
-        },
-        {
-          "start": [
             "book 1 edition 3",
             "book 2 edition 4",
             "book 3 edition 5"
@@ -4991,68 +3943,6 @@
             "book 3 edition 6"
           ],
           "solution": ":%s/\\v\\d+$/\\=submatch(0)+1/g<CR>",
-          "why": "\\= computes each replacement; submatch(0) is the match."
-        },
-        {
-          "start": [
-            "zombie attack 20",
-            "vampire sighting 25"
-          ],
-          "par_keys": 28,
-          "hint": "Reduce the numbers to calm the panic.",
-          "goal": [
-            "zombie attack 15",
-            "vampire sighting 20"
-          ],
-          "solution": ":%s/\\v\\d+/\\=submatch(0)-5/g<CR>",
-          "why": "\\= computes each replacement; submatch(0) is the match."
-        },
-        {
-          "start": [
-            "page 45",
-            "page 50",
-            "page 60"
-          ],
-          "par_keys": 29,
-          "hint": "Subtract 10 pages to enhance mystery plot continuity.",
-          "goal": [
-            "page 35",
-            "page 40",
-            "page 50"
-          ],
-          "solution": ":%s/\\v\\d+/\\=submatch(0)-10/g<CR>",
-          "why": "\\= computes each replacement; submatch(0) is the match."
-        },
-        {
-          "start": [
-            "sword 5 sharpness",
-            "axe 6 sharpness",
-            "dagger 7 sharpness"
-          ],
-          "par_keys": 29,
-          "hint": "Sharpen by adding 10 to wield remarkable strength.",
-          "goal": [
-            "sword 15 sharpness",
-            "axe 16 sharpness",
-            "dagger 17 sharpness"
-          ],
-          "solution": ":%s/\\v\\d+/\\=submatch(0)+10/g<CR>",
-          "why": "\\= computes each replacement; submatch(0) is the match."
-        },
-        {
-          "start": [
-            "cactus: 201",
-            "orchid: 125",
-            "fern: 150"
-          ],
-          "par_keys": 30,
-          "hint": "Trim the botanical inventory down by 100 plants each.",
-          "goal": [
-            "cactus: 101",
-            "orchid: 25",
-            "fern: 50"
-          ],
-          "solution": ":%s/\\v\\d+/\\=submatch(0)-100/g<CR>",
           "why": "\\= computes each replacement; submatch(0) is the match."
         }
       ]
@@ -5089,198 +3979,6 @@
           ],
           "solution": ":s/TODO/DONE/<CR>g&",
           "why": "g& replays the last :s over every line in two keystrokes — no retyping."
-        },
-        {
-          "start": [
-            "My cat sprints",
-            "My dog sprints",
-            "My turtle sprints"
-          ],
-          "par_keys": 20,
-          "hint": "do :s on one line, then g& everywhere",
-          "goal": [
-            "My cat jumps",
-            "My dog jumps",
-            "My turtle jumps"
-          ],
-          "solution": ":s/sprints/jumps/<CR>g&",
-          "why": "g& repeats the last :s on every line."
-        },
-        {
-          "start": [
-            "The banana is long",
-            "The cucumber is long",
-            "The carrot is long"
-          ],
-          "par_keys": 17,
-          "hint": "do :s on one line, then g& everywhere",
-          "goal": [
-            "The banana is short",
-            "The cucumber is short",
-            "The carrot is short"
-          ],
-          "solution": ":s/long/short/<CR>g&",
-          "why": "g& repeats the last :s on every line."
-        },
-        {
-          "start": [
-            "Hire a dragon trainer",
-            "Find a dragon trainer",
-            "Reward a dragon trainer"
-          ],
-          "par_keys": 21,
-          "hint": "do :s on one line, then g& everywhere",
-          "goal": [
-            "Hire a unicorn trainer",
-            "Find a unicorn trainer",
-            "Reward a unicorn trainer"
-          ],
-          "solution": ":s/dragon/unicorn/<CR>g&",
-          "why": "g& repeats the last :s on every line."
-        },
-        {
-          "start": [
-            "I really love broccoli",
-            "I somewhat love broccoli",
-            "I secretly love broccoli"
-          ],
-          "par_keys": 16,
-          "hint": "do :s on one line, then g& everywhere",
-          "goal": [
-            "I really hate broccoli",
-            "I somewhat hate broccoli",
-            "I secretly hate broccoli"
-          ],
-          "solution": ":s/love/hate/<CR>g&",
-          "why": "g& repeats the last :s on every line."
-        },
-        {
-          "start": [
-            "ERROR: File not found",
-            "WARNING: File not found",
-            "INFO: File not found"
-          ],
-          "par_keys": 30,
-          "hint": "do :s on one line, then g& everywhere",
-          "goal": [
-            "ERROR: Planet getting found",
-            "WARNING: Planet getting found",
-            "INFO: Planet getting found"
-          ],
-          "solution": ":s/File not/Planet getting/<CR>g&",
-          "why": "g& repeats the last :s on every line."
-        },
-        {
-          "start": [
-            "The quick brown fox",
-            "The lazy brown fox",
-            "The tired brown fox"
-          ],
-          "par_keys": 19,
-          "hint": "do :s on one line, then g& everywhere",
-          "goal": [
-            "The quick brown hedgehog",
-            "The lazy brown hedgehog",
-            "The tired brown hedgehog"
-          ],
-          "solution": ":s/fox/hedgehog/<CR>g&",
-          "why": "g& repeats the last :s on every line."
-        },
-        {
-          "start": [
-            "This is a spooky ghost story",
-            "This is a spooky zombie story",
-            "This is a spooky vampire story"
-          ],
-          "par_keys": 19,
-          "hint": "do :s on one line, then g& everywhere",
-          "goal": [
-            "This is a scary ghost story",
-            "This is a scary zombie story",
-            "This is a scary vampire story"
-          ],
-          "solution": ":s/spooky/scary/<CR>g&",
-          "why": "g& repeats the last :s on every line."
-        },
-        {
-          "start": [
-            "I found a gold nugget",
-            "I found a diamond nugget",
-            "I found a silver nugget"
-          ],
-          "par_keys": 17,
-          "hint": "do :s on one line, then g& everywhere",
-          "goal": [
-            "I found a gold gem",
-            "I found a diamond gem",
-            "I found a silver gem"
-          ],
-          "solution": ":s/nugget/gem/<CR>g&",
-          "why": "g& repeats the last :s on every line."
-        },
-        {
-          "start": [
-            "Don't panic, stay calm",
-            "Keep calm and code on",
-            "The calm before the storm"
-          ],
-          "par_keys": 16,
-          "hint": "do :s on one line, then g& everywhere",
-          "goal": [
-            "Don't panic, stay cool",
-            "Keep cool and code on",
-            "The cool before the storm"
-          ],
-          "solution": ":s/calm/cool/<CR>g&",
-          "why": "g& repeats the last :s on every line."
-        },
-        {
-          "start": [
-            "Ogres like onions",
-            "Ogres dislike onions",
-            "Ogres eat onions"
-          ],
-          "par_keys": 19,
-          "hint": "do :s on one line, then g& everywhere",
-          "goal": [
-            "Ogres like cakes",
-            "Ogres dislike cakes",
-            "Ogres eat cakes"
-          ],
-          "solution": ":s/onions/cakes/<CR>g&",
-          "why": "g& repeats the last :s on every line."
-        },
-        {
-          "start": [
-            "The wizard cast a spell",
-            "The witch cast a spell",
-            "The sorcerer cast a spell"
-          ],
-          "par_keys": 21,
-          "hint": "do :s on one line, then g& everywhere",
-          "goal": [
-            "The wizard cast a fireball",
-            "The witch cast a fireball",
-            "The sorcerer cast a fireball"
-          ],
-          "solution": ":s/spell/fireball/<CR>g&",
-          "why": "g& repeats the last :s on every line."
-        },
-        {
-          "start": [
-            "Jellybeans are tasty",
-            "Gummybears are tasty",
-            "Licorice is tasty"
-          ],
-          "par_keys": 18,
-          "hint": "do :s on one line, then g& everywhere",
-          "goal": [
-            "Jellybeans are sweet",
-            "Gummybears are sweet",
-            "Licorice is sweet"
-          ],
-          "solution": ":s/tasty/sweet/<CR>g&",
-          "why": "g& repeats the last :s on every line."
         },
         {
           "start": [
@@ -5389,133 +4087,6 @@
         },
         {
           "start": [
-            "suspicious-rabbit.jpg",
-            "report.pdf",
-            "sneaky-fox.png",
-            "notes.txt",
-            "curious-owl.gif"
-          ],
-          "par_keys": 11,
-          "hint": "Get rid of the PDF files.",
-          "goal": [
-            "suspicious-rabbit.jpg",
-            "sneaky-fox.png",
-            "notes.txt",
-            "curious-owl.gif"
-          ],
-          "solution": ":g/\\.pdf/d<CR>",
-          "why": ":g/pat/d deletes every line that matches."
-        },
-        {
-          "start": [
-            "todo: buy unicorn food",
-            "fix time machine bug",
-            "todo: catch shooting star",
-            "learn quantum knitting",
-            "todo: feed dragon"
-          ],
-          "par_keys": 11,
-          "hint": "Eliminate anything that starts with 'todo'.",
-          "goal": [
-            "fix time machine bug",
-            "learn quantum knitting"
-          ],
-          "solution": ":g/^todo/d<CR>",
-          "why": ":g/pat/d deletes every line that matches."
-        },
-        {
-          "start": [
-            "knight.data",
-            "castle.jpg",
-            "dragon.png",
-            "moat.txt",
-            "armor.gif"
-          ],
-          "par_keys": 12,
-          "hint": "Discard everything that isn't the .data file.",
-          "goal": [
-            "knight.data"
-          ],
-          "solution": ":v/\\.data/d<CR>",
-          "why": ":v/pat/d deletes every line that does NOT match."
-        },
-        {
-          "start": [
-            "ERROR: Gremlin invasion imminent",
-            "INFO: All systems nominal",
-            "WARNING: Jelly beans expired",
-            "ERROR: Dragon loose in lab.",
-            "DEBUG: Goblins at the gate"
-          ],
-          "par_keys": 12,
-          "hint": "Keep only the ERROR lines.",
-          "goal": [
-            "ERROR: Gremlin invasion imminent",
-            "ERROR: Dragon loose in lab."
-          ],
-          "solution": ":v/^ERROR/d<CR>",
-          "why": ":v/pat/d deletes every line that does NOT match."
-        },
-        {
-          "start": [
-            "cat",
-            "tiger",
-            "platypus",
-            "jaguar",
-            "puma",
-            "leopard"
-          ],
-          "par_keys": 11,
-          "hint": "Remove the tiger from the jungle.",
-          "goal": [
-            "cat",
-            "platypus",
-            "jaguar",
-            "puma",
-            "leopard"
-          ],
-          "solution": ":g/tiger/d<CR>",
-          "why": ":g/pat/d deletes every line that matches."
-        },
-        {
-          "start": [
-            "Cheese: Gouda",
-            "Fruit: Apple",
-            "Cheese: Brie",
-            "Veggie: Carrot",
-            "Cheese: Cheddar"
-          ],
-          "par_keys": 13,
-          "hint": "Keep only the cheesy lines.",
-          "goal": [
-            "Cheese: Gouda",
-            "Cheese: Brie",
-            "Cheese: Cheddar"
-          ],
-          "solution": ":v/^Cheese/d<CR>",
-          "why": ":v/pat/d deletes every line that does NOT match."
-        },
-        {
-          "start": [
-            "attack: goblins",
-            "defense: disable traps",
-            "attack: ogres",
-            "strategy: flee",
-            "defense: castle walls",
-            "attack: trolls"
-          ],
-          "par_keys": 13,
-          "hint": "Remove the attack plans.",
-          "goal": [
-            "defense: disable traps",
-            "strategy: flee",
-            "defense: castle walls"
-          ],
-          "solution": ":g/^attack/d<CR>",
-          "why": ":g/pat/d deletes every line that matches."
-        },
-        {
-          "start": [
             "ERROR: Critical potion spilled.",
             "INFO: Wand polished successfully.",
             "DEBUG: Wizard hat located.",
@@ -5530,26 +4101,6 @@
             "ERROR: Spell mispronounced."
           ],
           "solution": ":g/^INFO/d<CR>",
-          "why": ":g/pat/d deletes every line that matches."
-        },
-        {
-          "start": [
-            "banana",
-            "kiwi",
-            "apple",
-            "mango",
-            "peach",
-            "banana"
-          ],
-          "par_keys": 12,
-          "hint": "Get rid of the bananas.",
-          "goal": [
-            "kiwi",
-            "apple",
-            "mango",
-            "peach"
-          ],
-          "solution": ":g/banana/d<CR>",
           "why": ":g/pat/d deletes every line that matches."
         },
         {
@@ -5586,44 +4137,6 @@
           ],
           "solution": ":g/\\.html/d<CR>",
           "why": ":g/pat/d deletes every line that matches."
-        },
-        {
-          "start": [
-            "Magic Wand",
-            "Invisibility Cloak",
-            "Potion of Luck",
-            "Spellbook",
-            "Potion of Strength",
-            "Mystic Orb"
-          ],
-          "par_keys": 12,
-          "hint": "Dispose of all Potions.",
-          "goal": [
-            "Magic Wand",
-            "Invisibility Cloak",
-            "Spellbook",
-            "Mystic Orb"
-          ],
-          "solution": ":g/Potion/d<CR>",
-          "why": ":g/pat/d deletes every line that matches."
-        },
-        {
-          "start": [
-            "ERROR: Flooded dungeon",
-            "INFO: Smooth sailing",
-            "ERROR: Unstable bridge",
-            "SUCCESS: Gold acquired",
-            "ERROR: Giant spider spotted"
-          ],
-          "par_keys": 11,
-          "hint": "Preserve only the ERROR lines.",
-          "goal": [
-            "ERROR: Flooded dungeon",
-            "ERROR: Unstable bridge",
-            "ERROR: Giant spider spotted"
-          ],
-          "solution": ":v/ERROR/d<CR>",
-          "why": ":v/pat/d deletes every line that does NOT match."
         }
       ]
     },
@@ -5722,134 +4235,6 @@
         },
         {
           "start": [
-            "eats plants",
-            "eats insects",
-            "eats cats",
-            "eats fruits"
-          ],
-          "par_keys": 24,
-          "hint": "Accentuate the unappetizing nature of all diets.",
-          "goal": [
-            "eats plants, gross",
-            "eats insects, gross",
-            "eats cats, gross",
-            "eats fruits, gross"
-          ],
-          "solution": ":g/eats/normal A, gross<CR>",
-          "why": ":g/pat/normal runs the keys on each matching line."
-        },
-        {
-          "start": [
-            "init() {",
-            "startMission()",
-            "finishMission()",
-            "}"
-          ],
-          "par_keys": 28,
-          "hint": "Flag mission operations as needing further review.",
-          "goal": [
-            "init() {",
-            "// TODO:startMission()",
-            "// TODO:finishMission()",
-            "}"
-          ],
-          "solution": ":g/Mission/normal I// TODO:<CR>",
-          "why": ":g/pat/normal runs the keys on each matching line."
-        },
-        {
-          "start": [
-            "FOOD: Cake",
-            "DRINK: Tea",
-            "FOOD: Pie",
-            "DRINK: Coffee"
-          ],
-          "par_keys": 24,
-          "hint": "Yum applies only to the FOOD lines.",
-          "goal": [
-            "FOOD: Cake - yum",
-            "DRINK: Tea",
-            "FOOD: Pie - yum",
-            "DRINK: Coffee"
-          ],
-          "solution": ":g/^FOOD/normal A - yum<CR>",
-          "why": ":g/pat/normal runs the keys on each matching line."
-        },
-        {
-          "start": [
-            "petList: [",
-            "  dragon",
-            "  unicorn",
-            "  bat",
-            "]"
-          ],
-          "par_keys": 23,
-          "hint": "Label and comment out the pets.",
-          "goal": [
-            "petList: [",
-            "  // pet: dragon",
-            "  // pet: unicorn",
-            "  // pet: bat",
-            "]"
-          ],
-          "solution": ":g/  /normal I// pet: <CR>",
-          "why": ":g/pat/normal runs the keys on each matching line."
-        },
-        {
-          "start": [
-            "Pizza: Done",
-            "Salad: Done",
-            "Cake: Not Done",
-            "Soup: Done"
-          ],
-          "par_keys": 24,
-          "hint": "Hide items that aren't ready yet.",
-          "goal": [
-            "Pizza: Done",
-            "Salad: Done",
-            "// Cake: Not Done",
-            "Soup: Done"
-          ],
-          "solution": ":g/Not Done/normal I// <CR>",
-          "why": ":g/pat/normal runs the keys on each matching line."
-        },
-        {
-          "start": [
-            "fn ignite():",
-            "fn extinguish():",
-            "ignite()",
-            "extinguish()"
-          ],
-          "par_keys": 30,
-          "hint": "Document only the function definitions.",
-          "goal": [
-            "fn ignite(): // doc needed",
-            "fn extinguish(): // doc needed",
-            "ignite()",
-            "extinguish()"
-          ],
-          "solution": ":g/^fn/normal A // doc needed<CR>",
-          "why": ":g/pat/normal runs the keys on each matching line."
-        },
-        {
-          "start": [
-            "Gizmo: Activate",
-            "Widget: Disable",
-            "Gizmo: Deactivate",
-            "Widget: Enable"
-          ],
-          "par_keys": 22,
-          "hint": "Deactivate the Gizmos in the script.",
-          "goal": [
-            "// Gizmo: Activate",
-            "Widget: Disable",
-            "// Gizmo: Deactivate",
-            "Widget: Enable"
-          ],
-          "solution": ":g/Gizmo/normal! I//<Space><CR>",
-          "why": ":g/pat/normal runs the keys on each matching line."
-        },
-        {
-          "start": [
             "userAction = createAccount()",
             "trackEvent('Account Created')",
             "userAction = deleteAccount()",
@@ -5938,28 +4323,6 @@
         },
         {
           "start": [
-            "Error: Cannot find unicorn",
-            "Note: Check the horn",
-            "Warning: Rainbow malfunction",
-            "Info: All systems go",
-            "Error: Sparkle overflow"
-          ],
-          "par_keys": 14,
-          "hint": "copy all matching lines to the end",
-          "goal": [
-            "Error: Cannot find unicorn",
-            "Note: Check the horn",
-            "Warning: Rainbow malfunction",
-            "Info: All systems go",
-            "Error: Sparkle overflow",
-            "Error: Cannot find unicorn",
-            "Error: Sparkle overflow"
-          ],
-          "solution": ":g/^Error:/t$<CR>",
-          "why": ":g/pat/t$ copies every matching line to the end."
-        },
-        {
-          "start": [
             "def bake_cake():",
             "pass",
             "def fry_egg():",
@@ -5981,69 +4344,6 @@
             "def make_pancakes():"
           ],
           "solution": ":g/^def /t$<CR>",
-          "why": ":g/pat/t$ copies every matching line to the end."
-        },
-        {
-          "start": [
-            "12345: Ninja appears",
-            "67890: Samurai attacks",
-            "55555: Ninja hides",
-            "99999: Ronin travels"
-          ],
-          "par_keys": 14,
-          "hint": "copy all matching lines to the end",
-          "goal": [
-            "12345: Ninja appears",
-            "67890: Samurai attacks",
-            "55555: Ninja hides",
-            "99999: Ronin travels",
-            "12345: Ninja appears",
-            "55555: Ninja hides"
-          ],
-          "solution": ":g/: Ninja/t$<CR>",
-          "why": ":g/pat/t$ copies every matching line to the end."
-        },
-        {
-          "start": [
-            "Groceries:",
-            "- Milk",
-            "- Bread",
-            "- Eggs",
-            "End of List"
-          ],
-          "par_keys": 10,
-          "hint": "copy all matching lines to the end",
-          "goal": [
-            "Groceries:",
-            "- Milk",
-            "- Bread",
-            "- Eggs",
-            "End of List",
-            "- Milk",
-            "- Bread",
-            "- Eggs"
-          ],
-          "solution": ":g/^- /t$<CR>",
-          "why": ":g/pat/t$ copies every matching line to the end."
-        },
-        {
-          "start": [
-            "DEBUG: Missing sock in washer",
-            "INFO: Washer started",
-            "DEBUG: Sock found under couch",
-            "ERROR: Washer stopped"
-          ],
-          "par_keys": 14,
-          "hint": "copy all matching lines to the end",
-          "goal": [
-            "DEBUG: Missing sock in washer",
-            "INFO: Washer started",
-            "DEBUG: Sock found under couch",
-            "ERROR: Washer stopped",
-            "DEBUG: Missing sock in washer",
-            "DEBUG: Sock found under couch"
-          ],
-          "solution": ":g/^DEBUG:/t$<CR>",
           "why": ":g/pat/t$ copies every matching line to the end."
         },
         {
@@ -6073,46 +4373,6 @@
         },
         {
           "start": [
-            "404: Dragon not found",
-            "200: Unicorn available",
-            "500: Phoenix on fire",
-            "200: Fairy operational"
-          ],
-          "par_keys": 12,
-          "hint": "copy all matching lines to the end",
-          "goal": [
-            "404: Dragon not found",
-            "200: Unicorn available",
-            "500: Phoenix on fire",
-            "200: Fairy operational",
-            "200: Unicorn available",
-            "200: Fairy operational"
-          ],
-          "solution": ":g/^200:/t$<CR>",
-          "why": ":g/pat/t$ copies every matching line to the end."
-        },
-        {
-          "start": [
-            "NOTE: Eat more cupcakes",
-            "CRITICAL: Cupcake shortage",
-            "NOTE: Bake backup cupcakes",
-            "CRITICAL: Sugar low"
-          ],
-          "par_keys": 13,
-          "hint": "copy all matching lines to the end",
-          "goal": [
-            "NOTE: Eat more cupcakes",
-            "CRITICAL: Cupcake shortage",
-            "NOTE: Bake backup cupcakes",
-            "CRITICAL: Sugar low",
-            "NOTE: Eat more cupcakes",
-            "NOTE: Bake backup cupcakes"
-          ],
-          "solution": ":g/^NOTE:/t$<CR>",
-          "why": ":g/pat/t$ copies every matching line to the end."
-        },
-        {
-          "start": [
             "function embarkOnQuest()",
             "return true",
             "function slayDragon()",
@@ -6134,156 +4394,6 @@
             "function rescuePrincess()"
           ],
           "solution": ":g/^function /t$<CR>",
-          "why": ":g/pat/t$ copies every matching line to the end."
-        },
-        {
-          "start": [
-            "### Task: Acquire potion ingredients",
-            "Mixing steps",
-            "### Task: Cast spell",
-            "Casting steps",
-            "### Task: Concerning levitation",
-            "Levitation tips"
-          ],
-          "par_keys": 12,
-          "hint": "copy all matching lines to the end",
-          "goal": [
-            "### Task: Acquire potion ingredients",
-            "Mixing steps",
-            "### Task: Cast spell",
-            "Casting steps",
-            "### Task: Concerning levitation",
-            "Levitation tips",
-            "### Task: Acquire potion ingredients",
-            "### Task: Cast spell",
-            "### Task: Concerning levitation"
-          ],
-          "solution": ":g/^### /t$<CR>",
-          "why": ":g/pat/t$ copies every matching line to the end."
-        },
-        {
-          "start": [
-            "LOG: Begin cheese fondue",
-            "ALERT: Cheese depletion",
-            "LOG: Refilling cheese",
-            "ERROR: Cheese melting point exceeded"
-          ],
-          "par_keys": 12,
-          "hint": "copy all matching lines to the end",
-          "goal": [
-            "LOG: Begin cheese fondue",
-            "ALERT: Cheese depletion",
-            "LOG: Refilling cheese",
-            "ERROR: Cheese melting point exceeded",
-            "LOG: Begin cheese fondue",
-            "LOG: Refilling cheese"
-          ],
-          "solution": ":g/^LOG:/t$<CR>",
-          "why": ":g/pat/t$ copies every matching line to the end."
-        },
-        {
-          "start": [
-            "REMINDER: Pay dragon tamer",
-            "ALERT: Dragon unleashes!",
-            "REMINDER: Feed the griffins",
-            "ALERT: Griffin guards asleep"
-          ],
-          "par_keys": 17,
-          "hint": "copy all matching lines to the end",
-          "goal": [
-            "REMINDER: Pay dragon tamer",
-            "ALERT: Dragon unleashes!",
-            "REMINDER: Feed the griffins",
-            "ALERT: Griffin guards asleep",
-            "REMINDER: Pay dragon tamer",
-            "REMINDER: Feed the griffins"
-          ],
-          "solution": ":g/^REMINDER:/t$<CR>",
-          "why": ":g/pat/t$ copies every matching line to the end."
-        },
-        {
-          "start": [
-            "DEBUG: Spaceship launching",
-            "UPDATE: Spaceship velocity nomial",
-            "DEBUG: Hyperdrive engaged",
-            "ERROR: Spaceship overheating"
-          ],
-          "par_keys": 14,
-          "hint": "copy all matching lines to the end",
-          "goal": [
-            "DEBUG: Spaceship launching",
-            "UPDATE: Spaceship velocity nomial",
-            "DEBUG: Hyperdrive engaged",
-            "ERROR: Spaceship overheating",
-            "DEBUG: Spaceship launching",
-            "DEBUG: Hyperdrive engaged"
-          ],
-          "solution": ":g/^DEBUG:/t$<CR>",
-          "why": ":g/pat/t$ copies every matching line to the end."
-        },
-        {
-          "start": [
-            "ACTION: Wrestle the Kraken",
-            "INFO: Kraken is pleased",
-            "ACTION: Capture mermaids",
-            "INFO: Mermaids are elusive"
-          ],
-          "par_keys": 15,
-          "hint": "copy all matching lines to the end",
-          "goal": [
-            "ACTION: Wrestle the Kraken",
-            "INFO: Kraken is pleased",
-            "ACTION: Capture mermaids",
-            "INFO: Mermaids are elusive",
-            "ACTION: Wrestle the Kraken",
-            "ACTION: Capture mermaids"
-          ],
-          "solution": ":g/^ACTION:/t$<CR>",
-          "why": ":g/pat/t$ copies every matching line to the end."
-        },
-        {
-          "start": [
-            "### Bug: Overenthusiastic squirrel",
-            "Nature of problem",
-            "### Bug: Groundhog day loop",
-            "Nature of loop",
-            "### Bug: Cat stuck in a paradox",
-            "Confusion detected"
-          ],
-          "par_keys": 16,
-          "hint": "copy all matching lines to the end",
-          "goal": [
-            "### Bug: Overenthusiastic squirrel",
-            "Nature of problem",
-            "### Bug: Groundhog day loop",
-            "Nature of loop",
-            "### Bug: Cat stuck in a paradox",
-            "Confusion detected",
-            "### Bug: Overenthusiastic squirrel",
-            "### Bug: Groundhog day loop",
-            "### Bug: Cat stuck in a paradox"
-          ],
-          "solution": ":g/^### Bug:/t$<CR>",
-          "why": ":g/pat/t$ copies every matching line to the end."
-        },
-        {
-          "start": [
-            "CHALLENGE: Samurai sword dance",
-            "INFO: Practice regularly",
-            "CHALLENGE: Climb mountiously high",
-            "INFO: Check altitude"
-          ],
-          "par_keys": 18,
-          "hint": "copy all matching lines to the end",
-          "goal": [
-            "CHALLENGE: Samurai sword dance",
-            "INFO: Practice regularly",
-            "CHALLENGE: Climb mountiously high",
-            "INFO: Check altitude",
-            "CHALLENGE: Samurai sword dance",
-            "CHALLENGE: Climb mountiously high"
-          ],
-          "solution": ":g/^CHALLENGE:/t$<CR>",
           "why": ":g/pat/t$ copies every matching line to the end."
         }
       ]
@@ -6347,70 +4457,6 @@
         },
         {
           "start": [
-            "chef: prepare pasta",
-            "gardener: plant tomatoes",
-            "chef: bake bread"
-          ],
-          "par_keys": 17,
-          "hint": "run :s only on matching lines",
-          "goal": [
-            "chef -> prepare pasta",
-            "gardener: plant tomatoes",
-            "chef -> bake bread"
-          ],
-          "solution": ":g/chef/s/:/ ->/<CR>",
-          "why": ":g/pat/s/// substitutes only on matching lines."
-        },
-        {
-          "start": [
-            "wizard: cast spell",
-            "orc: swing axe",
-            "wizard: prepare potion"
-          ],
-          "par_keys": 24,
-          "hint": "run :s only on matching lines",
-          "goal": [
-            "wizard: cast spell (magic)",
-            "orc: swing axe",
-            "wizard: prepare potion (magic)"
-          ],
-          "solution": ":g/wizard/s/$/ (magic)/<CR>",
-          "why": ":g/pat/s/// substitutes only on matching lines."
-        },
-        {
-          "start": [
-            "fish: swim in sea",
-            "bird: fly in sky",
-            "fish: nibble coral"
-          ],
-          "par_keys": 20,
-          "hint": "run :s only on matching lines",
-          "goal": [
-            "fish: swim in sea [wet]",
-            "bird: fly in sky",
-            "fish: nibble coral [wet]"
-          ],
-          "solution": ":g/fish/s/$/ [wet]/<CR>",
-          "why": ":g/pat/s/// substitutes only on matching lines."
-        },
-        {
-          "start": [
-            "cat: nap on mat",
-            "dog: chase tail",
-            "cat: scratch post"
-          ],
-          "par_keys": 21,
-          "hint": "run :s only on matching lines",
-          "goal": [
-            "cat: nap on mat [purrs]",
-            "dog: chase tail",
-            "cat: scratch post [purrs]"
-          ],
-          "solution": ":g/cat/s/$/ [purrs]/<CR>",
-          "why": ":g/pat/s/// substitutes only on matching lines."
-        },
-        {
-          "start": [
             "meeting: brainstorm ideas",
             "coffee break: sip slowly",
             "meeting: review notes"
@@ -6423,166 +4469,6 @@
             "meeting = review notes"
           ],
           "solution": ":g/meeting/s/:/ =/<CR>",
-          "why": ":g/pat/s/// substitutes only on matching lines."
-        },
-        {
-          "start": [
-            "unicorn: gallop freely",
-            "dragon: hoard treasure",
-            "unicorn: feast on rainbows"
-          ],
-          "par_keys": 28,
-          "hint": "run :s only on matching lines",
-          "goal": [
-            "unicorn: gallop freely [majestic]",
-            "dragon: hoard treasure",
-            "unicorn: feast on rainbows [majestic]"
-          ],
-          "solution": ":g/unicorn/s/$/ [majestic]/<CR>",
-          "why": ":g/pat/s/// substitutes only on matching lines."
-        },
-        {
-          "start": [
-            "Librarian: organize books",
-            "Gamer: achieve high score",
-            "Librarian: catalog new arrivals"
-          ],
-          "par_keys": 29,
-          "hint": "run :s only on matching lines",
-          "goal": [
-            "Librarian: organize books [quietly]",
-            "Gamer: achieve high score",
-            "Librarian: catalog new arrivals [quietly]"
-          ],
-          "solution": ":g/Librarian/s/$/ [quietly]/<CR>",
-          "why": ":g/pat/s/// substitutes only on matching lines."
-        },
-        {
-          "start": [
-            "pirate: sail the seven seas",
-            "ninja: master stealth",
-            "pirate: find buried treasure"
-          ],
-          "par_keys": 26,
-          "hint": "run :s only on matching lines",
-          "goal": [
-            "pirate: plunder the seven seas",
-            "ninja: master stealth",
-            "pirate: find buried treasure"
-          ],
-          "solution": ":g/pirate/s/sail/plunder/<CR>",
-          "why": ":g/pat/s/// substitutes only on matching lines."
-        },
-        {
-          "start": [
-            "robot: compute data",
-            "alien: explore universe",
-            "robot: recharge"
-          ],
-          "par_keys": 18,
-          "hint": "run :s only on matching lines",
-          "goal": [
-            "robot => compute data",
-            "alien: explore universe",
-            "robot => recharge"
-          ],
-          "solution": ":g/robot/s/:/ =>/<CR>",
-          "why": ":g/pat/s/// substitutes only on matching lines."
-        },
-        {
-          "start": [
-            "zombie: search for brains",
-            "vampire: avoid sunlight",
-            "zombie: moan loudly"
-          ],
-          "par_keys": 25,
-          "hint": "run :s only on matching lines",
-          "goal": [
-            "zombie: search for brains [undead]",
-            "vampire: avoid sunlight",
-            "zombie: moan loudly [undead]"
-          ],
-          "solution": ":g/zombie/s/$/ [undead]/<CR>",
-          "why": ":g/pat/s/// substitutes only on matching lines."
-        },
-        {
-          "start": [
-            "spy: gather intel",
-            "soldier: follow orders",
-            "spy: remain undetected"
-          ],
-          "par_keys": 15,
-          "hint": "run :s only on matching lines",
-          "goal": [
-            "spy = gather intel",
-            "soldier: follow orders",
-            "spy = remain undetected"
-          ],
-          "solution": ":g/spy/s/:/ =/<CR>",
-          "why": ":g/pat/s/// substitutes only on matching lines."
-        },
-        {
-          "start": [
-            "alien: abduct cows",
-            "farmer: plant corn",
-            "alien: decode human technology"
-          ],
-          "par_keys": 34,
-          "hint": "run :s only on matching lines",
-          "goal": [
-            "alien: abduct cows [extraterrestrial]",
-            "farmer: plant corn",
-            "alien: decode human technology [extraterrestrial]"
-          ],
-          "solution": ":g/alien/s/$/ [extraterrestrial]/<CR>",
-          "why": ":g/pat/s/// substitutes only on matching lines."
-        },
-        {
-          "start": [
-            "lab rat: eat cheese",
-            "scientist: conduct experiment",
-            "lab rat: run maze"
-          ],
-          "par_keys": 20,
-          "hint": "run :s only on matching lines",
-          "goal": [
-            "lab rat -> eat cheese",
-            "scientist: conduct experiment",
-            "lab rat -> run maze"
-          ],
-          "solution": ":g/lab rat/s/:/ ->/<CR>",
-          "why": ":g/pat/s/// substitutes only on matching lines."
-        },
-        {
-          "start": [
-            "teacher: start class",
-            "student: take notes",
-            "teacher: grade papers"
-          ],
-          "par_keys": 31,
-          "hint": "run :s only on matching lines",
-          "goal": [
-            "teacher: start class [educational]",
-            "student: take notes",
-            "teacher: grade papers [educational]"
-          ],
-          "solution": ":g/teacher/s/$/ [educational]/<CR>",
-          "why": ":g/pat/s/// substitutes only on matching lines."
-        },
-        {
-          "start": [
-            "rockstar: play guitar",
-            "groupie: scream loudly",
-            "rockstar: smash equipment"
-          ],
-          "par_keys": 25,
-          "hint": "run :s only on matching lines",
-          "goal": [
-            "rockstar: play guitar [epic]",
-            "groupie: scream loudly",
-            "rockstar: smash equipment [epic]"
-          ],
-          "solution": ":g/rockstar/s/$/ [epic]/<CR>",
           "why": ":g/pat/s/// substitutes only on matching lines."
         }
       ]
@@ -6678,126 +4564,6 @@
         },
         {
           "start": [
-            "wishlist {",
-            "  pony;",
-            "  flying car;",
-            "  teleportation device;",
-            "}",
-            "scaryMovies {",
-            "  The Shining;",
-            "  It;",
-            "  The Exorcist;",
-            "}"
-          ],
-          "par_keys": 20,
-          "hint": "sort each braced block's interior",
-          "goal": [
-            "wishlist {",
-            "  flying car;",
-            "  pony;",
-            "  teleportation device;",
-            "}",
-            "scaryMovies {",
-            "  It;",
-            "  The Exorcist;",
-            "  The Shining;",
-            "}"
-          ],
-          "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Sorts the lines inside each { } block, braces untouched."
-        },
-        {
-          "start": [
-            "partyGuests {",
-            "  Groot;",
-            "  Thor;",
-            "  Hulk;",
-            "}",
-            "tasks {",
-            "  save the world;",
-            "  eat shawarma;",
-            "  defeat Loki;",
-            "}"
-          ],
-          "par_keys": 20,
-          "hint": "sort each braced block's interior",
-          "goal": [
-            "partyGuests {",
-            "  Groot;",
-            "  Hulk;",
-            "  Thor;",
-            "}",
-            "tasks {",
-            "  defeat Loki;",
-            "  eat shawarma;",
-            "  save the world;",
-            "}"
-          ],
-          "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Sorts the lines inside each { } block, braces untouched."
-        },
-        {
-          "start": [
-            "breakfastMenu {",
-            "  pancakes;",
-            "  waffles;",
-            "  bacon;",
-            "}",
-            "lunchMenu {",
-            "  salad;",
-            "  sandwich;",
-            "  soup;",
-            "}"
-          ],
-          "par_keys": 20,
-          "hint": "sort each braced block's interior",
-          "goal": [
-            "breakfastMenu {",
-            "  bacon;",
-            "  pancakes;",
-            "  waffles;",
-            "}",
-            "lunchMenu {",
-            "  salad;",
-            "  sandwich;",
-            "  soup;",
-            "}"
-          ],
-          "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Sorts the lines inside each { } block, braces untouched."
-        },
-        {
-          "start": [
-            "superpowers {",
-            "  invisibility;",
-            "  flying;",
-            "  strength;",
-            "}",
-            "villains {",
-            "  Joker;",
-            "  Thanos;",
-            "  Lex Luthor;",
-            "}"
-          ],
-          "par_keys": 20,
-          "hint": "sort each braced block's interior",
-          "goal": [
-            "superpowers {",
-            "  flying;",
-            "  invisibility;",
-            "  strength;",
-            "}",
-            "villains {",
-            "  Joker;",
-            "  Lex Luthor;",
-            "  Thanos;",
-            "}"
-          ],
-          "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Sorts the lines inside each { } block, braces untouched."
-        },
-        {
-          "start": [
             "bandInstruments {",
             "  guitar;",
             "  drums;",
@@ -6828,96 +4594,6 @@
         },
         {
           "start": [
-            "medievalWeapons {",
-            "  sword;",
-            "  lance;",
-            "  bow;",
-            "}",
-            "knights {",
-            "  Lancelot;",
-            "  Arthur;",
-            "  Gawain;",
-            "}"
-          ],
-          "par_keys": 20,
-          "hint": "sort each braced block's interior",
-          "goal": [
-            "medievalWeapons {",
-            "  bow;",
-            "  lance;",
-            "  sword;",
-            "}",
-            "knights {",
-            "  Arthur;",
-            "  Gawain;",
-            "  Lancelot;",
-            "}"
-          ],
-          "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Sorts the lines inside each { } block, braces untouched."
-        },
-        {
-          "start": [
-            "petRegistry {",
-            "  hamster;",
-            "  cat;",
-            "  dog;",
-            "}",
-            "nannyWishlist {",
-            "  Mary Poppins;",
-            "  Nanny McPhee;",
-            "  Fran Fine;",
-            "}"
-          ],
-          "par_keys": 20,
-          "hint": "sort each braced block's interior",
-          "goal": [
-            "petRegistry {",
-            "  cat;",
-            "  dog;",
-            "  hamster;",
-            "}",
-            "nannyWishlist {",
-            "  Fran Fine;",
-            "  Mary Poppins;",
-            "  Nanny McPhee;",
-            "}"
-          ],
-          "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Sorts the lines inside each { } block, braces untouched."
-        },
-        {
-          "start": [
-            "rockBands {",
-            "  Queen;",
-            "  Beatles;",
-            "  Rolling Stones;",
-            "}",
-            "guitarSolos {",
-            "  Jimmy Page;",
-            "  Jimi Hendrix;",
-            "  Eric Clapton;",
-            "}"
-          ],
-          "par_keys": 20,
-          "hint": "sort each braced block's interior",
-          "goal": [
-            "rockBands {",
-            "  Beatles;",
-            "  Queen;",
-            "  Rolling Stones;",
-            "}",
-            "guitarSolos {",
-            "  Eric Clapton;",
-            "  Jimi Hendrix;",
-            "  Jimmy Page;",
-            "}"
-          ],
-          "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Sorts the lines inside each { } block, braces untouched."
-        },
-        {
-          "start": [
             "ingredients {",
             "  sugar;",
             "  flour;",
@@ -6941,186 +4617,6 @@
             "  bowl;",
             "  spatula;",
             "  whisk;",
-            "}"
-          ],
-          "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Sorts the lines inside each { } block, braces untouched."
-        },
-        {
-          "start": [
-            "awkwardDates {",
-            "  April 1st;",
-            "  February 14th;",
-            "  December 25th;",
-            "}",
-            "weirdJokes {",
-            "  Knock, knock;",
-            "  Why did the chicken cross the road?;",
-            "  What do you call a bear with no teeth?;",
-            "}"
-          ],
-          "par_keys": 20,
-          "hint": "sort each braced block's interior",
-          "goal": [
-            "awkwardDates {",
-            "  April 1st;",
-            "  December 25th;",
-            "  February 14th;",
-            "}",
-            "weirdJokes {",
-            "  Knock, knock;",
-            "  What do you call a bear with no teeth?;",
-            "  Why did the chicken cross the road?;",
-            "}"
-          ],
-          "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Sorts the lines inside each { } block, braces untouched."
-        },
-        {
-          "start": [
-            "debatableTopics {",
-            "  pineapple on pizza;",
-            "  cats vs dogs;",
-            "  Star Wars vs Star Trek;",
-            "}",
-            "famousQuotes {",
-            "  To be or not to be;",
-            "  I think, therefore I am;",
-            "  May the force be with you;",
-            "}"
-          ],
-          "par_keys": 20,
-          "hint": "sort each braced block's interior",
-          "goal": [
-            "debatableTopics {",
-            "  Star Wars vs Star Trek;",
-            "  cats vs dogs;",
-            "  pineapple on pizza;",
-            "}",
-            "famousQuotes {",
-            "  I think, therefore I am;",
-            "  May the force be with you;",
-            "  To be or not to be;",
-            "}"
-          ],
-          "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Sorts the lines inside each { } block, braces untouched."
-        },
-        {
-          "start": [
-            "wizardSpells {",
-            "  levitation;",
-            "  invisibility;",
-            "  pyrokinesis;",
-            "}",
-            "creatures {",
-            "  unicorn;",
-            "  dragon;",
-            "  griffon;",
-            "}"
-          ],
-          "par_keys": 20,
-          "hint": "sort each braced block's interior",
-          "goal": [
-            "wizardSpells {",
-            "  invisibility;",
-            "  levitation;",
-            "  pyrokinesis;",
-            "}",
-            "creatures {",
-            "  dragon;",
-            "  griffon;",
-            "  unicorn;",
-            "}"
-          ],
-          "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Sorts the lines inside each { } block, braces untouched."
-        },
-        {
-          "start": [
-            "pirateCrew {",
-            "  Blackbeard;",
-            "  Long John Silver;",
-            "  Captain Hook;",
-            "}",
-            "seaShanties {",
-            "  Drunken Sailor;",
-            "  Blow the Man Down;",
-            "  Leave Her Johnny;",
-            "}"
-          ],
-          "par_keys": 20,
-          "hint": "sort each braced block's interior",
-          "goal": [
-            "pirateCrew {",
-            "  Blackbeard;",
-            "  Captain Hook;",
-            "  Long John Silver;",
-            "}",
-            "seaShanties {",
-            "  Blow the Man Down;",
-            "  Drunken Sailor;",
-            "  Leave Her Johnny;",
-            "}"
-          ],
-          "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Sorts the lines inside each { } block, braces untouched."
-        },
-        {
-          "start": [
-            "spaceStations {",
-            "  ISS;",
-            "  Deep Space Nine;",
-            "  Babylon 5;",
-            "}",
-            "favoritePlanets {",
-            "  Mars;",
-            "  Jupiter;",
-            "  Saturn;",
-            "}"
-          ],
-          "par_keys": 20,
-          "hint": "sort each braced block's interior",
-          "goal": [
-            "spaceStations {",
-            "  Babylon 5;",
-            "  Deep Space Nine;",
-            "  ISS;",
-            "}",
-            "favoritePlanets {",
-            "  Jupiter;",
-            "  Mars;",
-            "  Saturn;",
-            "}"
-          ],
-          "solution": ":g/{/.+1,/}/-1 sort<CR>",
-          "why": "Sorts the lines inside each { } block, braces untouched."
-        },
-        {
-          "start": [
-            "urbanLegends {",
-            "  Bigfoot;",
-            "  Loch Ness Monster;",
-            "  Chupacabra;",
-            "}",
-            "mysteryBooks {",
-            "  The Hound of the Baskervilles;",
-            "  Murder on the Orient Express;",
-            "  Da Vinci Code;",
-            "}"
-          ],
-          "par_keys": 20,
-          "hint": "sort each braced block's interior",
-          "goal": [
-            "urbanLegends {",
-            "  Bigfoot;",
-            "  Chupacabra;",
-            "  Loch Ness Monster;",
-            "}",
-            "mysteryBooks {",
-            "  Da Vinci Code;",
-            "  Murder on the Orient Express;",
-            "  The Hound of the Baskervilles;",
             "}"
           ],
           "solution": ":g/{/.+1,/}/-1 sort<CR>",
